@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <!-- Referencia de la hoja de estilo de Css -->
+    <link rel="stylesheet" href="CSS\style.css">   
+    <link rel="stylesheet" href="CSS\flexbox.css">
+    <link rel="stylesheet" href="CSS\styleLogin.css">
+     <!-- Referencia Paginas web -->
+    <link rel="stylesheet" href="index.html">
+    <link rel="stylesheet" href="login.html">
+    <link rel="stylesheet" href="crearUsuario.html">
+</head>
+<body>
+    <div class="all">
+    <section class="encabezado" id="encabezado">
+        <a href="index.html#encabezado">   
+        <header class="menu_header">
+            <img class="logo" src="img proyeto\logo.png">
+            <h3 class="nameLabheader">Laboratorio La Bendicion</h3>
+        </header>
+        </a>
+        <nav>
+            <ul class="menu_encabezado">
+                <li class="menu_list_encabezado"><a class="name" href="index.html#servicios">Servicios</a></li>
+                <li class="menu_list_encabezado"><a class="name" href="index.html#nosotros">Nosotros</a></li>
+                <li class="menu_list_encabezado"><a class="name" href="#horario">Horarios</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="login-section">
+        <div class="login-container">
+            <h1>Iniciar Sesión</h1>
+
+            <form class="login_list" method="POST" id="form">
+                <ul><img class="imgLogin" src="img proyeto\login.png" alt="Inicio de Sesion"></ul>
+               
+                <ul class="loginList">  
+
+                <label for="usuario">Usuario:</label>
+                <input type="email" id="usuario" name="usuario" placeholder="correo" required>
+
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+
+                <button type="submit">Iniciar Sesión</button>
+                </ul>
+
+            </form>
+            <div class="crearCuenta">
+            <h3>¿No tiene cuenta?</h3>
+            <li class="login_list_encabezado2"><a class="crearUser" href="crearUsuario.html">Crear Usuario</a></li>
+        </div>
+        <script src="JS\validacionesLogin.js"></script>
+    </section>
+
+    <section class="horarios" id="horario">
+        <footer class="footer" >
+            <div class="horarios">
+                <p><strong>HORARIOS:</strong></p>
+                <p>Lunes a viernes de 06:00 AM a 17:00 PM</p>
+                <p>Sábado de 06:00 AM a 12:00 PM</p>
+                <p>Domingo: cerrado</p>
+            </div>
+            <div>
+            <img class="copyImg" src="img proyeto\logoFooter.webp" alt="Logo de la Barbería Alura">
+            <p class="copyright">&copy Copyright Laboratorio la Bendición - 2023</p>
+            </div>
+            <div class="contacto">
+                <p><strong>HORARIOS:</strong></p>
+                <p>Tel: 123456789</p>
+            </div>
+        </footer>
+    </section>
+    </div>
+</body>
+</html>

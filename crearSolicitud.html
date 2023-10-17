@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Referencia de la hoja de estilo de Css -->
+    <link rel="stylesheet" href="CSS/crearSolicitud.css">
+    <link rel="stylesheet" href="CSS/styleMulStep.css">
+
+
+    <!-- Referencia Paginas web -->
+    <link rel="stylesheet" href="login.html">
+    <link rel="stylesheet" href="crearUsuario.html">
+    <link rel="stylesheet" href="index.html">
+
+    <title>Crear Solicitud Medica</title>
+    <!-- Referencia js -->
+</head>
+
+<body class="bodyCrearSoli">
+    <Div class="bodyDiv">
+        <div class="menuOpciones">
+            <section class="encabezadoOpciones">
+                <a href="index.html">
+                    <header>
+                        <img class="logo" src="img proyeto\logo.png" alt="Logotipo de Mi Proyecto" title="Mi Proyecto">
+                        <h3 class="nameLabheader">Laboratorio La Bendicion</h3>
+                    </header>
+                </a>
+            </section>
+            <div class="divisor"></div>
+            <section class="loginOpciones">
+                <div class="menuDeplegable"><a href="#">Registrarte</a>
+                    <div class="menu">
+                        <ul>
+                            <li class="login_list_encabezado"><a class="name" href="login.html">Iniciar Sesion</a></li>
+                            <li class="login_list_encabezado"><a class="name" href="crearUsuario.html">Crear Usuario</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="menuDeplegable"><a href="crearSolicitud.html">Crear Solicitud</a></div>
+                <div class="menuDeplegable"><a href="verSolicitudes.html">Documentos</a></div>
+            </section>
+            <div class="divisor"></div>
+        </div>
+        <div class="acciones">
+            <section class="ventana">
+                <h1>Analisis Tecnico de Solicitudes</h1>
+            </section>
+            <section>
+                <div class="container"><!-- container-->
+                    <div class="headerDiv">
+                        <header>Crear Solicitud</header>
+                        <p class="usuarioExterno">Usuario Externo</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="step">
+                            <p></p>
+                            <div class="bullet">
+                                <span>1</span>
+                            </div>
+                            <div class="check fas fa-check"></div>
+                        </div>
+                        <div class="step">
+                            <p></p>
+                            <div class="bullet">
+                                <span>2</span>
+                            </div>
+                            <div class="check fas fa-check"></div>
+                        </div>
+                    </div>
+                    <div class="form-outer"><!--form-outer-->
+                        <form action="#"><!--form-->
+                            <div class="page slide-page">
+                                <div class="nameAndNit">
+                                    <div class="field">
+                                        <div class="label">Usuario</div>
+                                        <input type="text" placeholder="username">
+                                    </div>
+                                    <div class="field">
+                                        <div class="label">NIT</div>
+                                        <input type="text" placeholder="NIT">
+                                    </div>
+                                </div>
+                                <div class="tipoAndDescription">
+                                    <div class="field">
+                                        <div class="label">Tipo de Solicitud</div>
+                                        <select>
+                                            <option value="null"> --Tipo De Solicitud-- </option>
+                                            <option>MM-Muestra Medica</option>
+                                            <option>LQ-Laboratorios</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <div class="label">Descripcion</div>
+                                        <textarea class="descripcions" name="descripcions" id="descripcions" cols="50"
+                                            rows="10" placeholder="descripción"></textarea>
+                                    </div>
+                                </div>
+                                <div class="botones">
+                                    <div class="field">
+                                        <button class="Cancelar"><a class="Cancelar"
+                                                href="index.html">Cancelar</a></button>
+                                        <button class="firstNext next">Siguiente</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page">
+                                <div class="nameAndNit">
+                                    <div class="field">
+                                        <div class="label">Usuario</div>
+                                        <input type="text" placeholder="username">
+                                    </div>
+                                    <div class="field">
+                                        <div class="label">NIT</div>
+                                        <input type="text" placeholder="NIT">
+                                    </div>
+                                </div>
+                                <div class="nameAndNit">
+                                    <div class="field">
+                                        <div class="label">Tipo de Soporte</div>
+                                        <select>
+                                            <option value="null"> --Tipo De Soporte-- </option>
+                                            <option>FP-Factura</option>
+                                            <option>HO-Hoja De Oficio</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <div class="label">No. Soporte</div>
+                                        <input type="text" placeholder="Soporte">
+                                    </div>
+                                </div>
+                                <div class="nameAndNit">
+                                    <div class="field">
+                                        <div class="label">No. Telefono</div>
+                                        <input type="text" placeholder="Telefono">
+                                    </div>
+                                    <div class="field">
+                                        <div class="label">Correo</div>
+                                        <input type="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="botones">
+                                    <div class="field btns">
+                                        <button class="prev-3 prev">Atrás</button>
+                                        <button class="submit" type="button">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <script src="JS/multiStep.js"></script>
+            </section>
+        </div>
+    </Div>
+    <div>
+        <section class="horarios" id="horario">
+            <footer class="footer">
+                <div class="horarios">
+                    <p><strong>HORARIOS:</strong></p>
+                    <p>Lunes a viernes de 06:00 AM a 17:00 PM</p>
+                    <p>Sábado de 06:00 AM a 12:00 PM</p>
+                    <p>Domingo: cerrado</p>
+                </div>
+                <div>
+                    <img class="copyImg" src="img proyeto\logoFooter.webp" alt="Logo de la Barbería Alura">
+                    <p class="copyright">&copy Copyright Laboratorio la Bendición - 2023</p>
+                </div>
+                <div class="contacto">
+                    <p><strong>HORARIOS:</strong></p>
+                    <p>Tel: 123456789</p>
+                </div>
+            </footer>
+        </section>
+    </div>
+</body>
+
+</html>
