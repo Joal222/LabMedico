@@ -1,0 +1,6 @@
+com\proyecto\progra\backend\service\IUsuario.class
+com\proyecto\progra\backend\BackendApplication.class
+com\proyecto\progra\backend\model\dao\UsuarioDao.class
+com\proyecto\progra\backend\controller\UsuarioController.class
+com\proyecto\progra\backend\service\impl\UsuarioImpl.class
+com\proyecto\progra\backend\model\entity\Usuario.class
