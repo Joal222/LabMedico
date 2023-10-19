@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 //La anotación @RestController se aplica a una clase para marcarla como controlador de solicitudes. La anotación se usa para crear servicios web Restful usando Spring MVC
 @RestController
 //La notación RequestMappingse utiliza para asignar solicitudes web a las clases del controlador específica y/o métodos de controlador
@@ -18,6 +20,7 @@ public class UsuarioController {
     @Autowired
     private IUsuario usuarioService;
 
+
     //Para realizar acciones debemos utilizar los métodos HTTP
     //El sustantivo usuario queda asociado a nuestro recurso @PostMappeing
     //Importantisimo! @RequestBody, aquí indicamos que cuando me envien a través de JSON la información, va a ser transformada a Usuario
@@ -28,6 +31,8 @@ public class UsuarioController {
     public Usuario create(@RequestBody Usuario usuario){
         return usuarioService.save(usuario);
     }
+
+
     @PutMapping ("usuario")
     //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
@@ -35,6 +40,8 @@ public class UsuarioController {
     public Usuario update(@RequestBody Usuario usuario){
         return usuarioService.save(usuario);
     }
+
+
     //En los parámetros recibe el Id y no va a retornar ningún valor, hay que indicarle que nos envíe el cliente completo, no solo el Id
     //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @DeleteMapping("usuario") agregandoles /{id}
     @DeleteMapping ("usuario/{id}")
@@ -45,6 +52,8 @@ public class UsuarioController {
         Usuario usuarioDelete = usuarioService.findById(id);
         usuarioService.delete(usuarioDelete);
     }
+
+
     //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @GetMapping("usuario") agregandoles /{id}
     @GetMapping("usuario/{id}")
     //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
@@ -52,5 +61,13 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.OK)
     public Usuario showById(@PathVariable Integer id) {
         return usuarioService.findById(id);
+    }
+
+
+    //Controlador para consultar todos los usuarios.
+    @GetMapping("usuarios")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Usuario> findAll(){
+        return usuarioService.findAll();
     }
 }

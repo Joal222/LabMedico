@@ -2,6 +2,8 @@ package com.proyecto.progra.backend.service;
 //Importar clase entity.Usuario
 import com.proyecto.progra.backend.model.entity.Usuario;
 
+import java.util.List;
+
 //Una interfaz es un contrato que tienen que seguir al pie de la letra las clases para poder realizar las operacioens CRUD
 //Se implementan métodos CRUD, estos pueden ser consultados en las declaraciones de CrudRepository
 public interface IUsuario {
@@ -11,4 +13,6 @@ public interface IUsuario {
     Usuario findById(Integer id);
     //Eliminar
     void delete(Usuario usuario);
+    //Consultar todos;
+    List<Usuario> findAll();
 }

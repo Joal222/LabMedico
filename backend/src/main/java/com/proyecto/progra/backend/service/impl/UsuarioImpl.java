@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 //Debemos llamar a nuestro cliente DAO o el repositoryo que contiene los métodos CRUD
 //Primero debemos implementar nuestra clase de tipo interfaz IUsuario para poder utilizar los métodos que elegimos
 //Debemos definir con la notación @Service que esta clas será un servicio, la cual se usa para construir una clas de Servicio que habitualmente se conecta a varios
@@ -47,5 +49,11 @@ public class UsuarioImpl implements IUsuario {
     public void delete(Usuario usuario) {
         //en el retur debemos de llamar el método de la clase que queremos ejecutar de nuestro dao/repository, ejemplo clase.método(modelo/entidad)
         usuarioDao.delete(usuario);
+    }
+    //Implementación de método para consultar a todos los usuarios
+    @Transactional
+    @Override
+    public List<Usuario> findAll() {
+        return (List<Usuario>) usuarioDao.findAll();
     }
 }
