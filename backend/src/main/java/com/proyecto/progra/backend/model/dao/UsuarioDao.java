@@ -7,3 +7,4 @@ import org.springframework.data.repository.CrudRepository;
 //Los parámetros son la clase "Usuario" y el tipo de dato de nuestra clase que es "Integer"
 public interface UsuarioDao extends CrudRepository<Usuario, Integer> {
 }
+
