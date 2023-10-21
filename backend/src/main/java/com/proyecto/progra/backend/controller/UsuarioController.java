@@ -4,10 +4,15 @@ import ch.qos.logback.core.net.server.Client;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 //La anotación @RestController se aplica a una clase para marcarla como controlador de solicitudes. La anotación se usa para crear servicios web Restful usando Spring MVC
 @RestController
@@ -38,6 +43,7 @@ public class UsuarioController {
     //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
     @PutMapping ("usuario")
+
     @ResponseStatus(HttpStatus.CREATED)
     public Usuario update(@RequestBody Usuario usuario){
         return usuarioService.save(usuario);
@@ -49,11 +55,28 @@ public class UsuarioController {
     //Para identificar el status de Respueta "ej:204 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo delete sería o corresponde (HttpStatus.NO_CONTENT) con número #204
     //Respuesta métodos Http estáticos
+    /*
     @DeleteMapping ("usuario/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id){
         Usuario usuarioDelete = usuarioService.findById(id);
         usuarioService.delete(usuarioDelete);
+    }
+    */
+
+    //Estudiar estructura DTO
+    @DeleteMapping ("usuario/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            Usuario usuarioDelete = usuarioService.findById(id);
+            usuarioService.delete(usuarioDelete);
+            return new ResponseEntity<>(usuarioDelete,HttpStatus.NO_CONTENT);
+        }catch (DataAccessException exDt){
+            response.put("mensaje", exDt.getMessage());
+            response.put("cliente", null);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
