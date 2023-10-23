@@ -1,8 +1,11 @@
 package com.proyecto.progra.backend.controller;
 
 import ch.qos.logback.core.net.server.Client;
+import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
+import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.service.IUsuario;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -12,56 +15,103 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 //La anotación @RestController se aplica a una clase para marcarla como controlador de solicitudes. La anotación se usa para crear servicios web Restful usando Spring MVC
-@RestController
 //La notación RequestMappingse utiliza para asignar solicitudes web a las clases del controlador específica y/o métodos de controlador
 //Dentro del paréntesis colocamos api para indicar que es una api y luego colocamos la version con v1
+@RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
+
     //Primero debemos de llamar a nuestro servicio según la lógica de negocio.
     //debemos de llamar a nuestra Interfaz
     @Autowired
     private IUsuario usuarioService;
 
-    //La notación @ResponseStatus(HttpStatus."ej.OK"") son funcionales siempre que nuestro método no tenga validaciones, ya que de ser así nos mostrará un gran párrafo
-    //indicando el error que se haya cometido si fuera el caso, por tal motivo tenemos que manejar las Excepciones básicas con try{}catch{}
 
     //Para realizar acciones debemos utilizar los métodos HTTP
     //El sustantivo usuario queda asociado a nuestro recurso @PostMappeing
     //Importantisimo! @RequestBody, aquí indicamos que cuando me envien a través de JSON la información, va a ser transformada a Usuario
+    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
+    // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
+    //A partir de creación de paquete dto, clase UsuarioDto, se cambió la entidad de donde recibirá los datos, siendo de paquete entity clase Usuario a
+    //paquete dto clase Usuario Dto para controlar los datos que quermos mostrar.
     @PostMapping("usuario")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<?> create(@RequestBody UsuarioDto usuarioDto){
+        Usuario usuarioSave = null;
+        try{
+            usuarioSave = usuarioService.save(usuarioDto);
+            return new ResponseEntity<>(MensajeResponse.builder()
+                    .mensaje("Guardado correctamente")
+                    .object(UsuarioDto.builder()
+                            .id(usuarioSave.getId())
+                            .idTipoUsuario(usuarioSave.getIdTipoUsuario())
+                            .idExpediente(usuarioSave.getIdExpediente())
+                            .nombres(usuarioSave.getNombres())
+                            .apellidos(usuarioSave.getApellidos())
+                            .email(usuarioSave.getEmail())
+                            .genero(usuarioSave.getGenero())
+                            .telefono(usuarioSave.getTelefono())
+                            .contraseña(usuarioSave.getContraseña())
+                    .build())
+                    .build()
+                    ,HttpStatus.CREATED);
+        }catch (DataAccessException exDt){
+            return new ResponseEntity<>
+                    (MensajeResponse.builder()
+                            .mensaje(exDt.getMessage())
+                            .object(null)
+                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
+        }
+    }
+
+
     //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
-    @ResponseStatus(HttpStatus.CREATED)
-    public Usuario create(@RequestBody Usuario usuario){
-        return usuarioService.save(usuario);
-    }
+    @PutMapping ("usuario/{id}")
+    //@ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<?> update(@RequestBody UsuarioDto usuarioDto, @PathVariable Integer id) {
+        Usuario usuarioUpdate = null;
+        try{
+            if(usuarioService.existById(id)){
+                usuarioDto.setId(id);
+                usuarioUpdate = usuarioService.save(usuarioDto);
+                return new ResponseEntity<>(
+                        MensajeResponse.builder()
+                                .mensaje("Guardado correctamente")
+                                .object(UsuarioDto.builder()
+                                        .id(usuarioUpdate.getId())
+                                        .idTipoUsuario(usuarioUpdate.getIdTipoUsuario())
+                                        .idRol(usuarioUpdate.getIdRol())
+                                        .idExpediente(usuarioUpdate.getIdExpediente())
+                                        .nombres(usuarioUpdate.getNombres())
+                                        .apellidos(usuarioUpdate.getApellidos())
+                                        .email(usuarioUpdate.getEmail())
+                                        .genero(usuarioUpdate.getGenero())
+                                        .telefono(usuarioUpdate.getTelefono())
+                                        .contraseña(usuarioUpdate.getContraseña())
+                                        .build())
+                                .build()
+                        ,HttpStatus.CREATED);
+            }else {
+                return new ResponseEntity<>
+                        (MensajeResponse.builder()
+                                .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
+                                .object(null)
+                                .build(),HttpStatus.NOT_FOUND);
+            }
 
-
-    //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @GetMapping("usuario") agregandoles /{id}
-    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
-    // de método, ejemplo showById que es un método para consultar sería o corresponde (HttpStatus.OK) con número #200
-    @GetMapping("usuario/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Usuario showById(@PathVariable Integer id) {
-        return usuarioService.findById(id);
-    }
-
-
-    //Controlador para consultar todos los usuarios.
-    @GetMapping("usuarios")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Usuario> findAll(){
-        return usuarioService.findAll();
-    }
-
-    @PutMapping ("usuario")
-    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
-    // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
-    @ResponseStatus(HttpStatus.CREATED)
-    public Usuario update(@RequestBody Usuario usuario){
-        return usuarioService.save(usuario);
+        }catch (DataAccessException exDt){
+            return new ResponseEntity<>
+                    (MensajeResponse.builder()
+                            .mensaje(exDt.getMessage())
+                            .object(null)
+                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
+        }
     }
 
 
@@ -69,7 +119,7 @@ public class UsuarioController {
     //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @DeleteMapping("usuario") agregandoles /{id}
     //Para identificar el status de Respueta "ej:204 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo delete sería o corresponde (HttpStatus.NO_CONTENT) con número #204
-    //Este método es de tipo de respuesta Http estatica
+    //Respuesta métodos Http estáticos
     /*
     @DeleteMapping ("usuario/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -79,23 +129,94 @@ public class UsuarioController {
     }
     */
 
-    //La notación @ResponseStatus(HttpStatus."ej.OK"") son funcionales siempre que nuestro método no tenga validaciones, ya que de ser así nos mostrará un gran párrafo
-    //indicando el error que se haya cometido si fuera el caso, por tal motivo tenemos que manejar las Excepciones básicas con try{}catch{}
-    //Este método ya no es un tipo de respuesta Http estatica ya que se implementó una validación para los tipos de errores
-    //HttpStatus.INTERNAL_SERVER_ERROR indica un error en la base de datos.
-    //Estudiar conceptos de Dto
-    @DeleteMapping("usuario/{id}")
+    //Estudiar estructura DTO
+    @DeleteMapping ("usuario/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
-        Map<String, Object> response = new HashMap<>();
         try{
             Usuario usuarioDelete = usuarioService.findById(id);
             usuarioService.delete(usuarioDelete);
-            return new ResponseEntity<>(usuarioDelete, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(usuarioDelete,HttpStatus.NO_CONTENT);
         }catch (DataAccessException exDt){
-            response.put("mensaje",exDt.getMessage());
-            response.put("usuario",null);
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>
+                    (MensajeResponse.builder()
+                    .mensaje(exDt.getMessage())
+                    .object(null)
+                    .build(),HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
+
+
+    //Respuesta métodos Http con validaciones personalizadas
+    //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @GetMapping("usuario") agregandoles /{id}
+    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
+    // de método, ejemplo showById que es un método para consultar sería o corresponde (HttpStatus.OK) con número #200
+    @GetMapping("usuario/{id}")
+    //@ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> showById(@PathVariable Integer id) {
+        Usuario usuario = usuarioService.findById(id);
+        if(usuario==null){
+            return new ResponseEntity<>(
+                    MensajeResponse.builder()
+                            .mensaje("El registro que intenta buscar, no existe!!")
+                            .object(null)
+                            .build()
+                    ,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(
+                MensajeResponse.builder()
+                        .mensaje("Consulta Exitosa")
+                        .object(UsuarioDto.builder()
+                                .id(usuario.getId())
+                                .idTipoUsuario(usuario.getIdTipoUsuario())
+                                .idRol(usuario.getIdRol())
+                                .idExpediente(usuario.getIdExpediente())
+                                .nombres(usuario.getNombres())
+                                .apellidos(usuario.getApellidos())
+                                .email(usuario.getEmail())
+                                .genero(usuario.getGenero())
+                                .telefono(usuario.getTelefono())
+                                .contraseña(usuario.getContraseña())
+                                .build())
+                        .build()
+                        ,HttpStatus.OK);
+    }
+
+
+    // Controlador para consultar todos los usuarios.
+    @GetMapping("usuarios")
+    public ResponseEntity<?> findAll() {
+        try {
+            List<Usuario> usuarios = usuarioService.findAll();
+
+            // Convierte la lista de entidades Usuario a lista de DTO UsuarioDto
+            List<UsuarioDto> usuariosDto = usuarios.stream()
+                    .map(usuario -> UsuarioDto.builder()
+                            .id(usuario.getId())
+                            .idTipoUsuario(usuario.getIdTipoUsuario())
+                            .idRol(usuario.getIdRol())
+                            .idExpediente(usuario.getIdExpediente())
+                            .nombres(usuario.getNombres())
+                            .apellidos(usuario.getApellidos())
+                            .email(usuario.getEmail())
+                            .genero(usuario.getGenero())
+                            .telefono(usuario.getTelefono())
+                            .contraseña(usuario.getContraseña())
+                            .build())
+                    .collect(Collectors.toList());
+
+            // Retorna la lista de DTOs en una respuesta OK
+            return new ResponseEntity<>(usuariosDto, HttpStatus.OK);
+        } catch (DataAccessException exDt) {
+            // Si hay una excepción, devuelve un mensaje de error con un código 500 (Internal Server Error)
+            return new ResponseEntity<>(
+                    MensajeResponse.builder()
+                            .mensaje("Error al obtener la lista de usuarios: " + exDt.getMessage())
+                            .object(null)
+                            .build(),
+                    HttpStatus.NOT_FOUND
+            );
+        }
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.proyecto.progra.backend.model.dao;
 
+import com.proyecto.progra.backend.model.entity.Rol;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
