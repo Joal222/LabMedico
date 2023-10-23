@@ -1,5 +1,6 @@
 package com.proyecto.progra.backend.model.dao;
 
+import com.proyecto.progra.backend.model.entity.Rol;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
@@ -7,4 +8,3 @@ import org.springframework.data.repository.CrudRepository;
 //Los parámetros son la clase "Usuario" y el tipo de dato de nuestra clase que es "Integer"
 public interface UsuarioDao extends CrudRepository<Usuario, Integer> {
 }
-

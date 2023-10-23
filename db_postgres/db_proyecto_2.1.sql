@@ -91,6 +91,8 @@ create table expediente (
 	direccion varchar(255) not null,
 	id_tipo_soporte integer null,
 	numero_soporte integer null,
+    fecha_creacion date not null, --CAMPO NUEVO AGREGADO 22/10/2023, FORMATO DE INGRESO ej: '2023-10-22'
+    --fecha_creacion timestamp not null, --PENDIENTE SI SE AGREGA O NO, FORMATO DE INGRESO ej: '2023-10-15 22:30:00'
 	primary key (id)
 );
 
@@ -100,6 +102,7 @@ create table usuario (
     --SIN TABLA CATALOGO, POR DEFAULT 1 Y ROL CORRESPONDE A USUARIO INTERNO 2.1,2.2 ETC
     id_tipo_usuario integer default 1,
 	id_rol integer null,
+    --PENDIENTE DE APLICAR A MI DB LOCAL
 	id_expediente integer unique null,
 	nombres varchar(255) not null,
 	apellidos varchar(255) not null,
