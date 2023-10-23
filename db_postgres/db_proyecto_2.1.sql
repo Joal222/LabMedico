@@ -191,6 +191,7 @@ create table presentacion_muestra (
 --CATALOGO TIPO DE ITEMS
 create table tipo_items (
 	id SERIAL,
+    id_tipo_examen
 	nombre varchar(50) not null, 
 	descripcion varchar (255) not null,
 	fecha_creacion date not null,
@@ -200,6 +201,18 @@ create table tipo_items (
 	primary key (id)
 );
 
+--CATALOGO TIPO EXAMEN
+create table tipo_examen (
+    id SERIAL,
+    nombre varchar(50) not null,
+    descripcion varchar (255) not null,
+    fecha_creacion date not null,
+    fecha_modificacion date null,
+    creado_por varchar(255) not null,
+    modificado_por varchar (255) null,
+    primary key (id)
+);
+
 --TABLA ITEMS
 create table items (
 	id SERIAL,
@@ -207,6 +220,11 @@ create table items (
 	id_solicitud_muestra_medica integer not null,
 	primary key (id)
 );
+
+--RELACION ENTRE TABLA TIPO_EXAMEN A TIPO_ITEMS
+alter table tipo_items
+add constraint tipo_items_id_tipo_examen_fkey foreign key (id_tipo_examen)
+references tipo_examen (id) match simple;
 
 alter table items 
 add constraint items_tipo_items_fkey foreign key (id_tipo_items)
@@ -317,4 +335,14 @@ values
     ('TEC','Tecnico','2023-10-18 22:30:00','Jonathan'),
     ('CEN','Centralizador','2023-10-18 22:30:00','Jonathan'),
     ('ALT','Analista','2023-10-18 22:30:00','Jonathan"');
+
+
+
+
+
+
+
+
+
+
 
