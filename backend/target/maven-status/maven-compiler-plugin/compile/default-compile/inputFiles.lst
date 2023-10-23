@@ -9,7 +9,6 @@ C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\service\im
 C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\model\dao\UsuarioDao.java
 C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\model\payload\MensajeResponse.java
 C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\controller\UsuarioController.java
-C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\model\dao\ExpedienteDao.java
 C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\model\dto\RolDto.java
 C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\service\IUsuario.java
 C:\GitHub\LabMedico\backend\src\main\java\com\proyecto\progra\backend\model\entity\Rol.java

@@ -21,8 +21,8 @@ public class Expediente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(mappedBy = "expediente")
-    private Usuario usuario;
+    //@OneToOne(mappedBy = "expediente")
+    //private Usuario usuario;
 
     @Column (name="nit_cliente")
     private String nitCliente;
@@ -37,4 +37,16 @@ public class Expediente implements Serializable {
 
     @Column (name="fecha_creacion")
     private Date fechaCreacion;
+
+    /*
+    @OneToOne
+    @JoinColumn(name = "id_expediente", referencedColumnName = "id")
+    private Usuario usuario;
+
+
+    @PrePersist
+    public void prePersist(){
+        this.fechaCreacion = new Date();
+    }
+    */
 }

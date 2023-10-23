@@ -15,8 +15,8 @@ public class UsuarioDto implements Serializable {
 
     private Integer id;
     private Integer idTipoUsuario;
-    private Rol rol;
-    private Expediente expediente;
+    private Integer idRol;
+    private Integer idExpediente;
     private String nombres;
     private String apellidos;
     private String email;
