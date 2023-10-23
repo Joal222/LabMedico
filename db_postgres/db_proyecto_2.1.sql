@@ -84,18 +84,6 @@ alter table estado_solicitud
 add constraint estado_solicitud_tipo_estado_solicitud_fkey foreign key (id_tipo_estado_solicitud)
 references tipo_estado_solicitud (id) match simple;
 
---TABLA EXPEDIENTE MEDICO
-create table expediente (
-	id SERIAL,	
-	nit_cliente varchar(8) not null,
-	direccion varchar(255) not null,
-	id_tipo_soporte integer null,
-	numero_soporte integer null,
-    fecha_creacion date not null, --CAMPO NUEVO AGREGADO 22/10/2023, FORMATO DE INGRESO ej: '2023-10-22'
-    --fecha_creacion timestamp not null, --PENDIENTE SI SE AGREGA O NO, FORMATO DE INGRESO ej: '2023-10-15 22:30:00'
-	primary key (id)
-);
-
 --TABLA USUARIO
 create table usuario (
 	id SERIAL,
@@ -103,21 +91,17 @@ create table usuario (
     id_tipo_usuario integer default 1,
 	id_rol integer null,
     --PENDIENTE DE APLICAR A MI DB LOCAL
-	id_expediente integer unique null,
+	--id_expediente integer unique null, --ESTE CAMBO SE ELIMINO EL 23-10-23 POR LA OBIA ELIMINACION DE LA TABLA EXPEDIENTES.
+    nit varchar(8) not null,
 	nombres varchar(255) not null,
 	apellidos varchar(255) not null,
 	email varchar(255) not null,
 	genero varchar(255) not null,
 	telefono varchar(8) not null,
+    direccion varchar(255) not null,
 	password varchar(255) not null,
 	primary key (id)
 );
-
-
---FKEY ENTRE USUARIO Y EXPEDIENTE
-alter table usuario 
-add constraint usuario_id_expediente_fkey foreign key (id_expediente)
-references expediente (id) match simple;
 
 --FKEY EN TABLA USUARIO POR RELACION CON ROL
 alter table usuario
@@ -126,15 +110,21 @@ references rol (id) match simple;
 
 create table solicitud_muestra_medica (
 	id SERIAL,
-    id_usuario integer,
+    id_usuario integer not null,
 	id_tipo_solicitante integer default 1,
 	id_tipo_solicitud integer not null,
 	id_estado_solicitud integer null,
+    id_tipo_soporte integer not null, --CAMPO AGREGADO A PARTIR DE LA ELIMINACION DE TABLA DE EXPEDIENTES 23-10-23
 	descripcion_solicitud_muestra_medica varchar(2000) null,
 	fecha_creacion_solicitud date not null,
 	dias_vencimiento_solicitud integer null,
 	primary key (id)
 );
+
+--CRACION DE FKEY EN TABLA SOLICITUD_MUESTRA_MEDICA POR RELACION CON TABALA TIPO_SOPORTE
+alter table solicitud_muestra_medica
+add constraint solicitud_muestra_medica_id_tipo_soporte_fkey foreign key (id_tipo_soporte)
+references tipo_soporte (id) match simple;
 
 alter table solicitud_muestra_medica
 add constraint solicitud_muestra_medica_id_usuario_fkey foreign key (id_usuario)
@@ -191,7 +181,7 @@ create table presentacion_muestra (
 --CATALOGO TIPO DE ITEMS
 create table tipo_items (
 	id SERIAL,
-    id_tipo_examen
+    id_tipo_examen integer not null ,
 	nombre varchar(50) not null, 
 	descripcion varchar (255) not null,
 	fecha_creacion date not null,
@@ -313,20 +303,10 @@ values
 ('FP','Factura','2023-10-15 22:30:00','Jonathan'),
 ('HO','Hoja Oficio','2023-10-15 22:30:00','Jonathan"');
 
---CREACION DE RELACION DE EXPEDIENTE A TIPO DE SOPORTE
-alter table expediente 
-add constraint expediente_tipo_soporte_fkey foreign key (id_tipo_soporte)
-references tipo_soporte (id) match simple;
-
---CREACION DE EXPEDIENTE DE PRUEBA
-insert into expediente (nit_cliente,direccion,id_tipo_soporte)
-values
-('99914190','Ciudad Quetazal, San Juan Sac.',4);
-
 --CREACION DE USUARIO DE PRUEBA
-insert into usuario (id_expediente,nombres,apellidos,email,genero,telefono,password)
+insert into usuario (nit,nombres,apellidos,email,genero,telefono,direccion,password)
 values
-(1,'Jonathan','Guamuch','joelmorales0598@gmail.com','Masculino','46740797','prueba123');
+    ('89914190','Jonathan','Guamuch','morales0598@gmail.com','Masculino','46797979','Ciudad Quetazal','prueba123');
 
 --INGRESO DE DATOS A CATOLOGO DE ROL
 insert into rol(nombre, descripcion,fecha_creacion,creado_por)
