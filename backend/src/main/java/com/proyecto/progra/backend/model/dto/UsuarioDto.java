@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class UsuarioDto implements Serializable {
     private Integer id;
     private Integer idTipoUsuario;
-    private Integer rol;
+    private Integer idRol;
     private String nit;
     private String nombres;
     private String apellidos;

@@ -23,8 +23,8 @@ public class UsuarioImpl implements IUsuario {
     //Agregar notación @Autowired que nos proporciona control a la hora de querer inyectar nuestras dependencias o instancias que se almacenan
     @Autowired
     private UsuarioDao usuarioDao;
-    @Autowired  // Asegúrate de tener esta anotación para la inyección de dependencias
-    private RolDao rolDao;  // Declaración de la variable rolDao
+    //@Autowired  // Asegúrate de tener esta anotación para la inyección de dependencias
+    //private RolDao rolDao;  // Declaración de la variable rolDao
 
     // Todo este servicio trabaja como transacciones, por tal motivo debemos utilziar la notación @Transactional de Spring Framework, esta característica da soporte
     //a la transaccionalidad, de lo contrario, deberiamos inicializar la transacción con begin() y cerrarla con commit() o rollback()
@@ -33,11 +33,11 @@ public class UsuarioImpl implements IUsuario {
     @Override
     public Usuario save(UsuarioDto usuariodto) {
 
-        Rol rol = rolDao.findById(usuariodto.getRol()).orElse(null);
+        //Rol rol = rolDao.findById(usuariodto.getRol()).orElse(null);
         Usuario usuario = Usuario.builder()
                 .id(usuariodto.getId())
                 .idTipoUsuario(usuariodto.getIdTipoUsuario())
-                .rol(rol)  // Asignar el objeto Rol encontrado
+                .idRol(usuariodto.getIdRol())  // Asignar el objeto Rol encontrado
                 .nit(usuariodto.getNit())
                 .nombres(usuariodto.getNombres())
                 .apellidos(usuariodto.getApellidos())

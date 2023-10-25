@@ -21,10 +21,12 @@ public class Usuario implements Serializable {
     @Column(name = "id_tipo_usuario")
     private Integer idTipoUsuario;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_rol")
-    private Rol rol;
+    */
+    @Column(name = "id_rol")
+    private Integer idRol;
 
     @Column(name = "nit")
     private String nit;
