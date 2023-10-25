@@ -1,8 +1,8 @@
 package com.proyecto.progra.backend.service.impl;
-import com.proyecto.progra.backend.model.dao.UsuarioDao;
-import com.proyecto.progra.backend.model.dto.UsuarioDto;
-import com.proyecto.progra.backend.model.entity.Usuario;
-import com.proyecto.progra.backend.service.IUsuario;
+import com.proyecto.progra.backend.model.dao.ItemsDao;
+import com.proyecto.progra.backend.model.dto.ItemsDto;
+import com.proyecto.progra.backend.model.entity.Items;
+import com.proyecto.progra.backend.service.IItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,49 +10,41 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ItemsImpl implements IUsuario {
-
+public class ItemsImpl implements IItems {
     @Autowired
-    private UsuarioDao usuarioDao;
+    private ItemsDao itemsDao;
     @Transactional
     @Override
-    public Usuario save(UsuarioDto usuariodto) {
+    public Items save(ItemsDto itemsDto) {
 
-        Usuario usuario = Usuario.builder()
-                .id(usuariodto.getId())
-                .idTipoUsuario(usuariodto.getIdTipoUsuario())
-                .idRol(usuariodto.getIdRol())
-                .nit(usuariodto.getNit())
-                .nombres(usuariodto.getNombres())
-                .apellidos(usuariodto.getApellidos())
-                .email(usuariodto.getEmail())
-                .genero(usuariodto.getGenero())
-                .telefono(usuariodto.getTelefono())
-                .direccion(usuariodto.getDireccion())
-                .password(usuariodto.getPassword())
+        Items items = Items.builder()
+                .idTipoItems(itemsDto.getIdTipoItems())
+                .idSolicitudMuestraMedica(itemsDto.getIdSolicitudMuestraMedica())
                 .build();
-
-        return usuarioDao.save(usuario);
+        return itemsDao.save(items);
     }
+
     @Transactional(readOnly = true)
     @Override
-    public Usuario findById(Integer id) {
-
-        return usuarioDao.findById(id).orElse(null);
+    public Items findById(Integer id) {
+        return itemsDao.findById(id).orElse(null);
     }
+
     @Transactional
     @Override
-    public void delete(Usuario usuario) {
-        usuarioDao.delete(usuario);
+    public void delete(Items items) {
+        itemsDao.delete(items);
     }
+
     @Transactional
     @Override
-    public List<Usuario> findAll() {
-
-        return (List<Usuario>) usuarioDao.findAll();
+    public List<Items> findAll() {
+        return (List<Items>) itemsDao.findAll();
     }
+
     @Override
     public boolean existById(Integer id) {
-        return usuarioDao.existsById(id);
+        return itemsDao.existsById(id);
     }
+
 }

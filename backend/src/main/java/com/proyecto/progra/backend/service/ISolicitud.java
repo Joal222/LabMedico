@@ -4,7 +4,7 @@ import com.proyecto.progra.backend.model.entity.Solicitud;
 
 import java.util.List;
 public interface ISolicitud {
-    Solicitud save (SolicitudDto solicitud);
+    Solicitud save(SolicitudDto solicitud);
     Solicitud findById(Integer id);
 
     void delete(Solicitud solicitud);
