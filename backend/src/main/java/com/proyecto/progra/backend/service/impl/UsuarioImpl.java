@@ -1,10 +1,9 @@
 package com.proyecto.progra.backend.service.impl;
-//Importamos la clase dao.UsuarioDao
+import com.proyecto.progra.backend.model.dao.RolDao;
 import com.proyecto.progra.backend.model.dao.UsuarioDao;
-//Importamos la clase entity.Usuario
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
+import com.proyecto.progra.backend.model.entity.Rol;
 import com.proyecto.progra.backend.model.entity.Usuario;
-//Importamos la service.IUsuario
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,8 @@ public class UsuarioImpl implements IUsuario {
     //Agregar notación @Autowired que nos proporciona control a la hora de querer inyectar nuestras dependencias o instancias que se almacenan
     @Autowired
     private UsuarioDao usuarioDao;
+    @Autowired  // Asegúrate de tener esta anotación para la inyección de dependencias
+    private RolDao rolDao;  // Declaración de la variable rolDao
 
     // Todo este servicio trabaja como transacciones, por tal motivo debemos utilziar la notación @Transactional de Spring Framework, esta característica da soporte
     //a la transaccionalidad, de lo contrario, deberiamos inicializar la transacción con begin() y cerrarla con commit() o rollback()
@@ -31,20 +32,25 @@ public class UsuarioImpl implements IUsuario {
     @Transactional
     @Override
     public Usuario save(UsuarioDto usuariodto) {
+
+        Rol rol = rolDao.findById(usuariodto.getRol()).orElse(null);
         Usuario usuario = Usuario.builder()
                 .id(usuariodto.getId())
                 .idTipoUsuario(usuariodto.getIdTipoUsuario())
-                .idRol(usuariodto.getIdRol())
-                .idExpediente(usuariodto.getIdExpediente())
+                .rol(rol)  // Asignar el objeto Rol encontrado
+                .nit(usuariodto.getNit())
                 .nombres(usuariodto.getNombres())
                 .apellidos(usuariodto.getApellidos())
                 .email(usuariodto.getEmail())
                 .genero(usuariodto.getGenero())
                 .telefono(usuariodto.getTelefono())
-                .contraseña(usuariodto.getContraseña())
+                .direccion(usuariodto.getDireccion())
+                .password(usuariodto.getPassword())
                 .build();
+
         return usuarioDao.save(usuario);
     }
+
 
     //Cuando sean consultas o recuperación debemos de utilizar la notación @Transactional(read Only=true) de spring framework, para asegurarnos de que solo podemos
     //realizar operaciones de solo lectura

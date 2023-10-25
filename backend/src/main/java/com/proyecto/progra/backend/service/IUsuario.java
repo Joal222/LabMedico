@@ -1,5 +1,4 @@
 package com.proyecto.progra.backend.service;
-//Importar clase entity.Usuario
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 
@@ -22,5 +21,4 @@ public interface IUsuario {
     //public List<Usuario> listAll{return (list) usuarioDao.findAll();}
 
     boolean existById(Integer id);
-
 }

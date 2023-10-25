@@ -22,7 +22,7 @@ create table tipo_soporte(
 	primary key (id)
 );
 
---CATALOGO ROL/TIPO USUARIO - CATALOGO
+--CATALOGO ROL/TIPO USUARIO - CATALOGO*
 create table rol (
 	id SERIAL,
 	nombre varchar(50) not null, 
@@ -84,7 +84,7 @@ alter table estado_solicitud
 add constraint estado_solicitud_tipo_estado_solicitud_fkey foreign key (id_tipo_estado_solicitud)
 references tipo_estado_solicitud (id) match simple;
 
---TABLA USUARIO
+--TABLA USUARIO*
 create table usuario (
 	id SERIAL,
     --SIN TABLA CATALOGO, POR DEFAULT 1 Y ROL CORRESPONDE A USUARIO INTERNO 2.1,2.2 ETC
@@ -103,7 +103,7 @@ create table usuario (
 	primary key (id)
 );
 
---FKEY EN TABLA USUARIO POR RELACION CON ROL
+--FKEY EN TABLA USUARIO POR RELACION CON ROL*
 alter table usuario
 add constraint usuario_id_rol_fkey foreign key (id_rol)
 references rol (id) match simple;

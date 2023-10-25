@@ -1,21 +1,16 @@
 package com.proyecto.progra.backend.controller;
 
-import ch.qos.logback.core.net.server.Client;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.service.IUsuario;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 //La anotación @RestController se aplica a una clase para marcarla como controlador de solicitudes. La anotación se usa para crear servicios web Restful usando Spring MVC
@@ -50,13 +45,15 @@ public class UsuarioController {
                     .object(UsuarioDto.builder()
                             .id(usuarioSave.getId())
                             .idTipoUsuario(usuarioSave.getIdTipoUsuario())
-                            .idExpediente(usuarioSave.getIdExpediente())
+                            .rol(usuarioSave.getRol().getId())
+                            .nit(usuarioSave.getNit())
                             .nombres(usuarioSave.getNombres())
                             .apellidos(usuarioSave.getApellidos())
                             .email(usuarioSave.getEmail())
                             .genero(usuarioSave.getGenero())
                             .telefono(usuarioSave.getTelefono())
-                            .contraseña(usuarioSave.getContraseña())
+                            .direccion(usuarioSave.getDireccion())
+                            .password(usuarioSave.getPassword())
                     .build())
                     .build()
                     ,HttpStatus.CREATED);
@@ -75,7 +72,7 @@ public class UsuarioController {
     @PutMapping ("usuario/{id}")
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody UsuarioDto usuarioDto, @PathVariable Integer id) {
-        Usuario usuarioUpdate = null;
+        Usuario usuarioUpdate = null ;
         try{
             if(usuarioService.existById(id)){
                 usuarioDto.setId(id);
@@ -86,14 +83,15 @@ public class UsuarioController {
                                 .object(UsuarioDto.builder()
                                         .id(usuarioUpdate.getId())
                                         .idTipoUsuario(usuarioUpdate.getIdTipoUsuario())
-                                        .idRol(usuarioUpdate.getIdRol())
-                                        .idExpediente(usuarioUpdate.getIdExpediente())
+                                        .rol(usuarioUpdate.getRol().getId())
+                                        .nit(usuarioUpdate.getNit())
                                         .nombres(usuarioUpdate.getNombres())
                                         .apellidos(usuarioUpdate.getApellidos())
                                         .email(usuarioUpdate.getEmail())
                                         .genero(usuarioUpdate.getGenero())
                                         .telefono(usuarioUpdate.getTelefono())
-                                        .contraseña(usuarioUpdate.getContraseña())
+                                        .password(usuarioUpdate.getPassword())
+                                        .direccion(usuarioUpdate.getDireccion())
                                         .build())
                                 .build()
                         ,HttpStatus.CREATED);
@@ -168,14 +166,15 @@ public class UsuarioController {
                         .object(UsuarioDto.builder()
                                 .id(usuario.getId())
                                 .idTipoUsuario(usuario.getIdTipoUsuario())
-                                .idRol(usuario.getIdRol())
-                                .idExpediente(usuario.getIdExpediente())
+                                .nit(usuario.getNit())
+                                .rol(usuario.getRol().getId())
                                 .nombres(usuario.getNombres())
                                 .apellidos(usuario.getApellidos())
                                 .email(usuario.getEmail())
                                 .genero(usuario.getGenero())
                                 .telefono(usuario.getTelefono())
-                                .contraseña(usuario.getContraseña())
+                                .direccion(usuario.getDireccion())
+                                .password(usuario.getPassword())
                                 .build())
                         .build()
                         ,HttpStatus.OK);
@@ -193,14 +192,15 @@ public class UsuarioController {
                     .map(usuario -> UsuarioDto.builder()
                             .id(usuario.getId())
                             .idTipoUsuario(usuario.getIdTipoUsuario())
-                            .idRol(usuario.getIdRol())
-                            .idExpediente(usuario.getIdExpediente())
+                            .rol(usuario.getRol().getId())
+                            .nit(usuario.getNit())
                             .nombres(usuario.getNombres())
                             .apellidos(usuario.getApellidos())
                             .email(usuario.getEmail())
                             .genero(usuario.getGenero())
                             .telefono(usuario.getTelefono())
-                            .contraseña(usuario.getContraseña())
+                            .password(usuario.getPassword())
+                            .direccion(usuario.getDireccion())
                             .build())
                     .collect(Collectors.toList());
 
@@ -217,6 +217,5 @@ public class UsuarioController {
             );
         }
     }
-
 
 }
