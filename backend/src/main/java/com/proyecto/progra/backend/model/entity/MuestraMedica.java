@@ -1,0 +1,47 @@
+package com.proyecto.progra.backend.model.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
+@Entity
+@Table(name = "muestra_medica")
+public class MuestraMedica implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "id_solicitud_muestra_medica", nullable = false)
+    private Integer idSolicitudMuestraMedica;
+
+    @Column(name = "id_presentacion_muestra", nullable = false)
+    private Integer idPresentacionMuestra;
+
+    @Column(name = "id_tipo_muestra", nullable = false)
+    private Integer idTipoMuestra;
+
+    @Column(name = "id_documento_muestra_adjunto")
+    private Integer idDocumentoMuestraAdjunto;
+
+    @Column(name = "id_unidad_medida", nullable = false)
+    private Integer idUnidadMedida;
+
+    @Column(name = "fecha_recepcion_muestra", nullable = false)
+    private Date fechaRecepcionMuestra;
+
+    @Column(name = "fecha_creacion_muestra", nullable = false)
+    private Date fechaCreacionMuestra;
+
+    // Otros campos comentados
+
+    @Column(name = "observacion_expediente", length = 2000)
+    private String observacionExpediente;
+}

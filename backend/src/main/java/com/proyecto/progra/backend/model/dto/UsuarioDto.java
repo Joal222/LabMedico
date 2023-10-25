@@ -1,6 +1,4 @@
 package com.proyecto.progra.backend.model.dto;
-
-import com.proyecto.progra.backend.model.entity.Rol;
 import lombok.*;
 import java.io.Serializable;
 

@@ -316,6 +316,35 @@ values
     ('CEN','Centralizador','2023-10-18 22:30:00','Jonathan'),
     ('ALT','Analista','2023-10-18 22:30:00','Jonathan"');
 
+--INGRESO DE DATOS A CATOLO DE TIPO SOLICITANTE
+INSERT INTO tipo_solicitante (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('INT', 'Interno', CURRENT_DATE, 'Jonathan'),
+    ('EXT', 'Externo', CURRENT_DATE, 'Jonathan');
+
+-- Insertar registros en la tabla tipo_estado_solicitud
+INSERT INTO tipo_estado_solicitud (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('CRD', 'Creado', CURRENT_DATE, 'Jonathan'),
+    ('ENV', 'Enviado', CURRENT_DATE, 'Jonathan'),
+    ('ASG', 'Asignado', CURRENT_DATE, 'Jonathan'),
+    ('ESP', 'Espera', CURRENT_DATE, 'Jonathan'),
+    ('REV', 'Revisión', CURRENT_DATE, 'Jonathan'),
+    ('FIN', 'Finalizado', CURRENT_DATE, 'Jonathan'),
+    ('REH', 'Rechazado', CURRENT_DATE, 'Jonathan');
+
+-- Para tipo_solicitud
+INSERT INTO tipo_solicitud (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('MM', 'Muestra Médica', CURRENT_DATE, 'Jonathan'),
+    ('LQ', 'Laboratorio', CURRENT_DATE, 'Jonathan');
+
+-- Para tipo_soporte
+INSERT INTO tipo_soporte (id,nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (1,'FP', 'Factura', CURRENT_DATE, 'Jonathan'),
+    (2,'HO', 'Hoja Oficio', CURRENT_DATE, 'Jonathan');
+
 
 
 

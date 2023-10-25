@@ -1,11 +1,10 @@
 package com.proyecto.progra.backend.model.entity;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,8 +12,8 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name ="rol")
-public class Rol implements Serializable {
+@Table(name ="tipo_estado_solicitud")
+public class TipoEstadoSolicitud implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,20 +37,6 @@ public class Rol implements Serializable {
 
     @Column(name = "modificado_por")
     private String modificadoPor;
-    /*
-    @JsonIgnore
-    @OneToMany(mappedBy = "rol")
-    private List<Usuario> usuarios = new ArrayList<>();
-    */
-    /*
-    @PrePersist
-    public void prePersist() {
-        this.fechaCreacion = new Date();
-    }
 
-    @PreUpdate
-    public void preUpdate() {
-        this.fechaModificacion = new Date();
-    }
-    */
+
 }
