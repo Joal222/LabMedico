@@ -16,9 +16,9 @@ public class SolicitudImpl implements ISolicitud {
     public Solicitud save(SolicitudDto solicitudDto) {
         Solicitud solicitud = Solicitud.builder()
                 .id(solicitudDto.getId())
+                .idUsuario(solicitudDto.getIdUsuario())
                 .idTipoSolicitante(solicitudDto.getIdTipoSolicitante())
                 .idTipoSolicitud(solicitudDto.getIdTipoSolicitud())
-                .idEstadoSolicitud(solicitudDto.getIdEstadoSolicitud())
                 .idTipoSoporte(solicitudDto.getIdTipoSoporte())
                 .descripcionSolicitudMuestraMedica(solicitudDto.getDescripcionSolicitudMuestraMedica())
                 .fechaCreacionSolicitud(solicitudDto.getFechaCreacionSolicitud())
