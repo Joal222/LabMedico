@@ -20,25 +20,22 @@ public class Solicitud implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "id_usuario", nullable = false)
+    @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column(name = "id_tipo_solicitante", columnDefinition = "integer default 1", nullable = false)
+    @Column(name = "id_tipo_solicitante", columnDefinition = "integer default 1")
     private Integer idTipoSolicitante;
 
-    @Column(name = "id_tipo_solicitud", nullable = false)
+    @Column(name = "id_tipo_solicitud")
     private Integer idTipoSolicitud;
 
-    @Column(name = "id_estado_solicitud")
-    private Integer idEstadoSolicitud;
-
-    @Column(name = "id_tipo_soporte", nullable = false)
+    @Column(name = "id_tipo_soporte")
     private Integer idTipoSoporte;
 
     @Column(name = "descripcion_solicitud_muestra_medica", length = 2000)
     private String descripcionSolicitudMuestraMedica;
 
-    @Column(name = "fecha_creacion_solicitud", nullable = false)
+    @Column(name = "fecha_creacion_solicitud")
     private Date fechaCreacionSolicitud;
 
     @Column(name = "dias_vencimiento_solicitud")

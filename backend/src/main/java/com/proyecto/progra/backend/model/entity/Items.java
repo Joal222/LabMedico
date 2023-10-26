@@ -12,7 +12,7 @@ import java.util.Date;
 @ToString
 @Builder
 @Entity
-@Table(name ="tipo_soporte")
+@Table(name ="items")
 public class Items implements Serializable {
 
     @Id

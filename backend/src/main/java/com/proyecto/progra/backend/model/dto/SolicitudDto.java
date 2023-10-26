@@ -12,7 +12,6 @@ public class SolicitudDto implements Serializable{
     private Integer idUsuario;
     private Integer idTipoSolicitante;
     private Integer idTipoSolicitud;
-    private Integer idEstadoSolicitud;
     private Integer idTipoSoporte;
     private String descripcionSolicitudMuestraMedica;
     private Date fechaCreacionSolicitud;

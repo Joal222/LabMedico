@@ -71,25 +71,12 @@ create table privilegios(
 	primary key (id)
 );
 
---TABLA ESTADO SOLICITUD
-create table estado_solicitud (
-	id SERIAL,
-	id_tipo_estado_solicitud integer not null,
-	primary key (id)
-);
-
---drop table estado_solicitud;
-
-alter table estado_solicitud 
-add constraint estado_solicitud_tipo_estado_solicitud_fkey foreign key (id_tipo_estado_solicitud)
-references tipo_estado_solicitud (id) match simple;
-
 --TABLA USUARIO*
 create table usuario (
 	id SERIAL,
     --SIN TABLA CATALOGO, POR DEFAULT 1 Y ROL CORRESPONDE A USUARIO INTERNO 2.1,2.2 ETC
     id_tipo_usuario integer default 1,
-	id_rol integer null,
+	id_rol integer default null,
     --PENDIENTE DE APLICAR A MI DB LOCAL
 	--id_expediente integer unique null, --ESTE CAMBO SE ELIMINO EL 23-10-23 POR LA OBIA ELIMINACION DE LA TABLA EXPEDIENTES.
     nit varchar(8) not null,
@@ -113,7 +100,6 @@ create table solicitud_muestra_medica (
     id_usuario integer not null,
 	id_tipo_solicitante integer default 1,
 	id_tipo_solicitud integer not null,
-	id_estado_solicitud integer null,
     id_tipo_soporte integer not null, --CAMPO AGREGADO A PARTIR DE LA ELIMINACION DE TABLA DE EXPEDIENTES 23-10-23
 	descripcion_solicitud_muestra_medica varchar(2000) null,
 	fecha_creacion_solicitud date not null,
@@ -138,9 +124,28 @@ alter table solicitud_muestra_medica
 add constraint solicitud_muestra_medica_id_tipo_solicitud_fkey foreign key (id_tipo_solicitud)
 references tipo_solicitud (id) match simple;
 
-alter table solicitud_muestra_medica
-add constraint solicitud_muestra_medica_id_estado_solicitud_fkey foreign key (id_estado_solicitud)
-references estado_solicitud (id) match simple;
+--TABLA ESTADO SOLICITUD / BITCORA
+create table bitacora_estado (
+    id SERIAL,
+    id_tipo_estado_solicitud integer,
+    id_solicitud_muestra_medica integer,
+    id_usuario integer,
+    fecha_estado timestamp default current_timestamp,
+    comentario varchar (255),
+    primary key (id)
+);
+
+alter table bitacora_estado
+    add constraint bitacora_estado_id_tipo_estado_solicitud_fkey foreign key (id_tipo_estado_solicitud)
+        references tipo_estado_solicitud (id) match simple;
+
+alter table bitacora_estado
+    add constraint bitacora_estado_id_solicitud_muestra_medica_fkey foreign key (id_solicitud_muestra_medica)
+        references solicitud_muestra_medica (id) match simple;
+
+alter table bitacora_estado
+    add constraint bitacora_estado_id_usuario_fkey foreign key (id_usuario)
+        references usuario (id) match simple;
 
 --CATALOGO UNIDAD MEDIDA
 create table unidad_medida (
@@ -306,7 +311,8 @@ values
 --CREACION DE USUARIO DE PRUEBA
 insert into usuario (nit,nombres,apellidos,email,genero,telefono,direccion,password)
 values
-    ('89914190','Jonathan','Guamuch','morales0598@gmail.com','Masculino','46797979','Ciudad Quetazal','prueba123');
+    ('89914190','Jonathan','Guamuch','morales0598@gmail.com','Masculino','46797979','Ciudad Quetazal','prueba123'),
+    ('78984512','José','Ávila','chepe@gmail.com','Masculino','45654565','Ciudad Quetazal','umg');
 
 --INGRESO DE DATOS A CATOLOGO DE ROL
 insert into rol(nombre, descripcion,fecha_creacion,creado_por)
@@ -342,8 +348,16 @@ VALUES
 -- Para tipo_soporte
 INSERT INTO tipo_soporte (id,nombre, descripcion, fecha_creacion, creado_por)
 VALUES
-    (1,'FP', 'Factura', CURRENT_DATE, 'Jonathan'),
-    (2,'HO', 'Hoja Oficio', CURRENT_DATE, 'Jonathan');
+    ('FP', 'Factura', CURRENT_DATE, 'Jonathan'),
+    ('HO', 'Hoja Oficio', CURRENT_DATE, 'Jonathan');
+
+-- DATOS DE PRUEBA SOLICITUD_MUESTRA_MEDICA
+INSERT INTO solicitud_muestra_medica (id_usuario, id_tipo_solicitante, id_tipo_solicitud, id_tipo_soporte, descripcion_solicitud_muestra_medica, fecha_creacion_solicitud, dias_vencimiento_solicitud)
+VALUES
+    (1, 1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
+    (1, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7),
+    (2, 1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
+    (2, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
 
 
 
