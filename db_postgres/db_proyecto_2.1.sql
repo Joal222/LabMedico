@@ -58,19 +58,6 @@ create table tipo_solicitante(
 	primary key (id)
 );
 
---CATALOGO PRIVILEGIOS
---PENDIENTE INTERRELACION
-create table privilegios(
-	id SERIAL,
-	nombre varchar(50) not null, 
-	descripcion varchar (255) not null,
-	fecha_creacion date not null,
-	fecha_modificacion date null,
-	creado_por varchar(255) not null,
-	modificado_por varchar (255) null,
-	primary key (id)
-);
-
 --TABLA USUARIO*
 create table usuario (
 	id SERIAL,
@@ -346,7 +333,7 @@ VALUES
     ('LQ', 'Laboratorio', CURRENT_DATE, 'Jonathan');
 
 -- Para tipo_soporte
-INSERT INTO tipo_soporte (id,nombre, descripcion, fecha_creacion, creado_por)
+INSERT INTO tipo_soporte (nombre, descripcion, fecha_creacion, creado_por)
 VALUES
     ('FP', 'Factura', CURRENT_DATE, 'Jonathan'),
     ('HO', 'Hoja Oficio', CURRENT_DATE, 'Jonathan');
