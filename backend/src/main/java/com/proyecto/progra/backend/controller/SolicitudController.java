@@ -1,7 +1,6 @@
 package com.proyecto.progra.backend.controller;
 
 import com.proyecto.progra.backend.model.dto.SolicitudDto;
-import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.service.ISolicitud;
