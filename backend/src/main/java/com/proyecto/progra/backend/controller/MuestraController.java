@@ -47,18 +47,17 @@ public class MuestraController {
 
     }
 
-    @PutMapping ("muestra/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> update(@RequestBody MuestraDto muestraDto, @PathVariable Integer id){
+    @PutMapping("muestra/{id}")
+    public ResponseEntity<?> update(@RequestBody MuestraDto muestraDto, @PathVariable Integer id) {
         Muestra muestraUpdate = null;
         try {
-            if(muestraService.existById(id)){
+            if (muestraService.existById(id)) {
                 muestraDto.setId(id);
                 muestraUpdate = muestraService.save(muestraDto);
                 return new ResponseEntity<>(
                         MensajeResponse.builder()
                                 .mensaje("Guardado correctamente")
-                                .object(Muestra.builder()
+                                .object(MuestraDto.builder()
                                         .id(muestraUpdate.getId())
                                         .idSolicitudMuestraMedica(muestraUpdate.getIdSolicitudMuestraMedica())
                                         .idPresentacionMuestra(muestraUpdate.getIdPresentacionMuestra())
@@ -69,22 +68,23 @@ public class MuestraController {
                                         .observacionExpediente(muestraUpdate.getObservacionExpediente())
                                         .build())
                                 .build()
-                        ,HttpStatus.CREATED);
-            }else {
-                return new ResponseEntity<>
-                        (MensajeResponse.builder()
+                        , HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(
+                        MensajeResponse.builder()
                                 .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
                                 .object(null)
-                                .build(),HttpStatus.NOT_FOUND);
+                                .build(), HttpStatus.NOT_FOUND);
             }
-        }catch (DataAccessException exDt){
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
+        } catch (DataAccessException exDt) {
+            return new ResponseEntity<>(
+                    MensajeResponse.builder()
                             .mensaje(exDt.getMessage())
                             .object(null)
-                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
+                            .build(), HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
+
 
     @DeleteMapping ("muestra/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
