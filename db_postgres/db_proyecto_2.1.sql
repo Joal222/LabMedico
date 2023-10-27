@@ -350,6 +350,53 @@ VALUES
     (2, 1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
     (2, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
 
+insert into usuario (nit,nombres,apellidos,email,genero,telefono,direccion,password)
+values
+    ('45256598','Joel','Cifuentes','joeli@gmail.com','Masculino','45858596','Ciudad Quetazal','umg'),
+    ('78895456','Carlos','Pérez','carlos@gmail.com','Masculino','47475869','Ciudad Quetazal','umg');
+
+-- Inserciones para presentacion_muestra
+INSERT INTO presentacion_muestra (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('RV', 'Recipientes de vidrio', CURRENT_DATE, 'José'),
+    ('RP', 'Recipientes de plástico', CURRENT_DATE, 'José');
+
+-- Inserciones para unidad_medida
+INSERT INTO unidad_medida (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('mL', 'Mililitros', CURRENT_DATE, 'José'),
+    ('cm³', 'Centímetros Cúbicos', CURRENT_DATE, 'José'),
+    ('mg', 'Miligramos', CURRENT_DATE, 'José');
+
+-- Inserciones para tipo_muestra con creador José
+INSERT INTO tipo_muestra (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('SAN', 'Sangre', CURRENT_DATE, 'José'),
+    ('URI', 'Orina', CURRENT_DATE, 'José'),
+    ('SAL', 'Saliva', CURRENT_DATE, 'José'),
+    ('CEL', 'Células', CURRENT_DATE, 'José'),
+    ('TEJ', 'Tejidos', CURRENT_DATE, 'José'),
+    ('CSF', 'Líquido Cefalorraquídeo', CURRENT_DATE, 'José'),
+    ('ADR', 'Aire', CURRENT_DATE, 'José'),
+    ('HUE', 'Hueso', CURRENT_DATE, 'José'),
+    ('CER', 'Cerebro', CURRENT_DATE, 'José'),
+    ('HAI', 'Cabello', CURRENT_DATE, 'José'),
+    ('UN', 'Uñas', CURRENT_DATE, 'José'),
+    ('LEC', 'Líquido Cefalorraquídeo', CURRENT_DATE, 'José'),
+    ('ESP', 'Esputo', CURRENT_DATE, 'José');
+
+select * from solicitud_muestra_medica smm ;
+select * from usuario u ;
+select * from tipo_soporte ts ;
+select * from tipo_solicitud ts ;
+select * from tipo_soporte ts ;
+select * from rol;
+select * from tipo_estado_solicitud tes ;
+select * from presentacion_muestra pm ;
+select * from unidad_medida um ;
+select * from tipo_muestra tm ;
+select * from muestra_medica;
+
 
 
 
