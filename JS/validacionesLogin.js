@@ -27,18 +27,39 @@ async function obtenerUsuarios() {
         const usuario = usuarios.find(user => user.email === email && user.password === password);
 
         if (usuario) {
-            if (usuario.idTipoUsuario === 1) {
+            if (usuario.idTipoUsuario === 2) {
                 // Almacena el usuario en sessionStorage
                 sessionStorage.setItem('usuario', JSON.stringify(usuario)   );
-                // Redirige al usuario
-                window.location.href = 'index.html';
+                window.location.href = 'dashbord.html';
+               
             } else {
                 // Otra redirección
                 sessionStorage.setItem('usuario', JSON.stringify(usuario)   );
-                window.location.href = 'dashbord.html';
+                // Redirige al usuario
+                window.location.href = 'index.html';
             }
         } else {
             alert("Datos incorrectos");
         }
     });
 }
+function redirigirSiLogueado() {
+    // Verifica si el usuario está autenticado (puedes utilizar tu propio criterio)
+    const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
+
+    if (usuarioEnSesion) {
+        // El usuario está autenticado, redirige solo si no estamos ya en la página de origen
+        const paginaOrigen = usuarioEnSesion.idTipoUsuario === 2 ? 'dashbord.html' : 'index.html';
+
+        if (window.location.pathname.endsWith('/' + paginaOrigen)) {
+            // Estamos en la página de origen, no hagas nada
+            return;
+        } else {
+            // No estamos en la página de origen, redirige a la página de origen
+            window.location.href = paginaOrigen;
+        }
+    }
+}
+
+// Llama a esta función cuando la página se cargue
+redirigirSiLogueado();
