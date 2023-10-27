@@ -6,7 +6,6 @@ import java.util.List;
 public interface ISolicitud {
     Solicitud save(SolicitudDto solicitud);
     Solicitud findById(Integer id);
-
     void delete(Solicitud solicitud);
     List<Solicitud> findAll();
     boolean existById(Integer id);

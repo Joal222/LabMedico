@@ -4,7 +4,7 @@ import com.proyecto.progra.backend.model.entity.Muestra;
 
 import java.util.List;
 public interface IMuestra {
-    Muestra save (MuestraDto muestraMedica);
+    Muestra save (MuestraDto muestra);
     Muestra findById(Integer id);
     void delete(Muestra muestra);
     List<Muestra> findAll();

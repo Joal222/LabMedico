@@ -13,7 +13,6 @@ public class MuestraDto implements Serializable {
     private Integer idSolicitudMuestraMedica;
     private Integer idPresentacionMuestra;
     private Integer idTipoMuestra;
-    private Integer idDocumentoMuestraAdjunto;
     private Integer idUnidadMedida;
     private Date fechaRecepcionMuestra;
     private Date fechaCreacionMuestra;

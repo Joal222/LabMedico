@@ -29,7 +29,6 @@ public class UsuarioImpl implements IUsuario {
     @Transactional
     @Override
     public Usuario save(UsuarioDto usuariodto) {
-
         //Rol rol = rolDao.findById(usuariodto.getRol()).orElse(null);
         Usuario usuario = Usuario.builder()
                 .id(usuariodto.getId())

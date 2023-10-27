@@ -18,10 +18,9 @@ public class MuestraImpl implements IMuestra {
                 .idSolicitudMuestraMedica(muestraDto.getIdSolicitudMuestraMedica())
                 .idPresentacionMuestra(muestraDto.getIdPresentacionMuestra())
                 .idTipoMuestra(muestraDto.getIdTipoMuestra())
-                .idDocumentoMuestraAdjunto(muestraDto.getIdDocumentoMuestraAdjunto())
                 .idUnidadMedida(muestraDto.getIdUnidadMedida())
                 .fechaRecepcionMuestra(muestraDto.getFechaRecepcionMuestra())
-                .fechaRecepcionMuestra(muestraDto.getFechaCreacionMuestra())
+                .fechaCreacionMuestra(muestraDto.getFechaCreacionMuestra())
                 .observacionExpediente(muestraDto.getObservacionExpediente())
                 .build();
         return muestraDao.save(muestra);
@@ -36,6 +35,7 @@ public class MuestraImpl implements IMuestra {
     @Transactional
     @Override
     public void delete(Muestra muestra) {
+
         muestraDao.delete(muestra);
     }
 
