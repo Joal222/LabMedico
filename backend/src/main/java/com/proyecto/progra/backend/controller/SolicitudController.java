@@ -4,7 +4,6 @@ import com.proyecto.progra.backend.model.dto.SolicitudDto;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.service.ISolicitud;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -38,8 +37,8 @@ public class SolicitudController {
                             .descripcionSolicitudMuestraMedica(solicitudSave.getDescripcionSolicitudMuestraMedica())
                             .fechaCreacionSolicitud(solicitudSave.getFechaCreacionSolicitud())
                             .diasVencimientoSolicitud(solicitudSave.getDiasVencimientoSolicitud())
-
                     .build())
+                    .build()
                     ,HttpStatus.CREATED);
         }catch (DataAccessException exDt){
             return new ResponseEntity<>

@@ -31,16 +31,15 @@
             </section>
             <div class="divisor"></div>
             <section class="loginOpciones">
-                <div class="menuDeplegable"><a href="#">Registrarte</a>
+                <div id="username" class="menuDeplegable"><a href="#"></a></div>
+                <div id="menuDesplegableLogin" class="menuDeplegable"><a href="#">Registrarte</a>
                     <div class="menu">
                         <ul>
                             <li class="login_list_encabezado"><a class="name" href="login.html">Iniciar Sesion</a></li>
-                            <li class="login_list_encabezado"><a class="name" href="crearUsuario.html">Crear Usuario</a>
-                            </li>
-
+                            <li class="login_list_encabezado"><a class="name" href="crearUsuario.html">Crear Usuario</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>                
                 <div class="menuDeplegable"><a href="crearSolicitud.html">Crear Solicitud</a></div>
                 <div class="menuDeplegable"><a href="verSolicitudes.html">Documentos</a></div>
             </section>
@@ -177,6 +176,26 @@
             </footer>
         </section>
     </div>
+    <script src="JS/validacionesLogin.js"></script>
+    <script>
+        const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
+        console.log(usuarioEnSesion)
+        if (usuarioEnSesion) {
+            const username = document.getElementById('username');
+            username.style.color = 'white';
+            username.style.textAlign = 'center';
+            username.style.padding = '15px';
+            username.textContent = `${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
+            const menuDesplegableLogin = document.querySelector('#menuDesplegableLogin');
+            menuDesplegableLogin.style.display = 'none';
+            }else{
+            const username = document.querySelector('#username');
+            username.style.display = 'none';
+            }
+        
+
+        //menuDesplegableLogin
+    </script>
 </body>
 
 </html>

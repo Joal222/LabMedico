@@ -33,12 +33,13 @@
             </nav>
             <nav>
                 <ul class="login_encabezado">
-                    <li class="login_list_encabezado"><a class="name" href="login.html">Iniciar Sesion</a></li>
-                    <li class="login_list_encabezado"><a class="name" href="crearUsuario.html">Crear Usuario</a></li>
+                    <li class="loginUser"><a class="name" href="login.html">Iniciar Sesion</a></li>
+                    <li class="loginUser"><a class="name" href="crearUsuario.html">Crear Usuario</a></li>
+                    <li class="login_list_encabezado" id="userName"></li>
+                    <button class="login_list_encabezado" type="button" onclick="cerrarSesion()" id="logout">Cerrar Sesión</button>
                 </ul>
             </nav>
         </section>
-
         <section class="title" id="imagenes">
             <div class="nameLab">
                 <h1>Laboratorio La Bendición</h1>
@@ -51,7 +52,7 @@
                 <img class="moving-image" src="img proyeto\hepatico.jpg" alt="Imagen 5 en movimiento">
             </div>
         </section>
-
+        
         <section class="servicios" id="servicios">
             <div class="serviCenter">
                 <ul class="title__Ser">
@@ -201,7 +202,7 @@
                 </ul>
             </div>
         </section>
-
+        
         <section class="nosotros" id="nosotros">
             <div class="nosoCenter">
                 <ul class="title__Ser">
@@ -243,7 +244,7 @@
                     </div>
                     <div class="temas_nosotros">
                         <img class="logo_nosotros" src="img proyeto\logo.png">
-
+        
                     </div>
                 </ul>
             </div>
@@ -267,7 +268,38 @@
             </div>
         </footer>
         </section>  
+        
     </div>  
+    <script src="JS/validacionesLogin.js"></script>
+    <script>
+        const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
+        if (usuarioEnSesion) {
+            const userNameElement = document.getElementById('userName');
+            userNameElement.textContent = `${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
+            const loginUsers = document.querySelectorAll('.loginUser');
+            loginUsers.forEach(user => {
+                user.style.display = 'none';
+            });
+        } else {
+            // Ocultar elementos cuando no haya un usuario en sesión
+            const loginUsers = document.querySelectorAll('.login_list_encabezado');
+            loginUsers.forEach(user => {
+                user.style.display = 'none';
+            });
+        }        
+    
+        function cerrarSesion() {
+            // Remueve el usuario de la sesión
+            sessionStorage.removeItem('usuario');
+            window.location.href = 'index.html';
+        }        
+        // Asocia la función con el botón de "Cerrar Sesión"
+        const logoutButton = document.getElementById('logout');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', cerrarSesion);
+        }
+    </script>
+    
 </body>
 
 </html>

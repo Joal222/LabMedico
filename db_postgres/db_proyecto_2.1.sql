@@ -58,19 +58,6 @@ create table tipo_solicitante(
 	primary key (id)
 );
 
---CATALOGO PRIVILEGIOS
---PENDIENTE INTERRELACION
-create table privilegios(
-	id SERIAL,
-	nombre varchar(50) not null, 
-	descripcion varchar (255) not null,
-	fecha_creacion date not null,
-	fecha_modificacion date null,
-	creado_por varchar(255) not null,
-	modificado_por varchar (255) null,
-	primary key (id)
-);
-
 --TABLA USUARIO*
 create table usuario (
 	id SERIAL,
@@ -230,19 +217,20 @@ add constraint items_solicitud_muestra_medica_fkey foreign key (id_solicitud_mue
 references solicitud_muestra_medica (id) match simple;
 
 --TABLA DE DOCUMENTOS ADJUNTOS
-create table documento_muestra_adjunto (
-	id SERIAL,
-	formato_documento varchar(4),
-	tamaño_documento varchar (4),
-	primary key (id)
-);
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--create table documento_muestra_adjunto (
+	--id SERIAL,
+	--formato_documento varchar(4),
+	--tamaño_documento varchar (4),
+	--primary key (id)
+--);
 
 create table muestra_medica (
 	id SERIAL,
 	id_solicitud_muestra_medica integer not null,
 	id_presentacion_muestra integer not null,
 	id_tipo_muestra integer not null,
-	id_documento_muestra_adjunto integer null,
+	--id_documento_muestra_adjunto integer null, --POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
 	id_unidad_medida integer not null,
 	fecha_recepcion_muestra date not null,
 	fecha_creacion_muestra date not null,
@@ -280,23 +268,26 @@ alter table muestra_medica
 add constraint muestra_medica_id_tipo_muestra_fkey foreign key (id_tipo_muestra)
 references tipo_muestra (id) match simple;
 
-alter table muestra_medica
-add constraint muestra_medica_id_documento_muestra_adjunto_fkey foreign key (id_documento_muestra_adjunto)
-references documento_muestra_adjunto (id) match simple;
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--alter table muestra_medica
+--add constraint muestra_medica_id_documento_muestra_adjunto_fkey foreign key (id_documento_muestra_adjunto)
+--references documento_muestra_adjunto (id) match simple;
 
 alter table muestra_medica
 add constraint muestra_medica_id_unidad_medida_fkey foreign key (id_unidad_medida)
 references unidad_medida (id) match simple;
 
-create table documento_analisis(
-	id SERIAL,
-	id_muestra_medica integer,
-	primary key (id)
-);
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--create table documento_analisis(
+--	id SERIAL,
+--	id_muestra_medica integer,
+--	primary key (id)
+--);
 
-alter table documento_analisis 
-add constraint documento_analisis_id_muestra_medica_fkey foreign key (id_muestra_medica)
-references muestra_medica (id) match simple;
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--alter table documento_analisis
+--add constraint documento_analisis_id_muestra_medica_fkey foreign key (id_muestra_medica)
+--references muestra_medica (id) match simple;
 
 --create table bitacora
 
@@ -346,7 +337,7 @@ VALUES
     ('LQ', 'Laboratorio', CURRENT_DATE, 'Jonathan');
 
 -- Para tipo_soporte
-INSERT INTO tipo_soporte (id,nombre, descripcion, fecha_creacion, creado_por)
+INSERT INTO tipo_soporte (nombre, descripcion, fecha_creacion, creado_por)
 VALUES
     ('FP', 'Factura', CURRENT_DATE, 'Jonathan'),
     ('HO', 'Hoja Oficio', CURRENT_DATE, 'Jonathan');
@@ -358,6 +349,53 @@ VALUES
     (1, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7),
     (2, 1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
     (2, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
+
+insert into usuario (nit,nombres,apellidos,email,genero,telefono,direccion,password)
+values
+    ('45256598','Joel','Cifuentes','joeli@gmail.com','Masculino','45858596','Ciudad Quetazal','umg'),
+    ('78895456','Carlos','Pérez','carlos@gmail.com','Masculino','47475869','Ciudad Quetazal','umg');
+
+-- Inserciones para presentacion_muestra
+INSERT INTO presentacion_muestra (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('RV', 'Recipientes de vidrio', CURRENT_DATE, 'José'),
+    ('RP', 'Recipientes de plástico', CURRENT_DATE, 'José');
+
+-- Inserciones para unidad_medida
+INSERT INTO unidad_medida (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('mL', 'Mililitros', CURRENT_DATE, 'José'),
+    ('cm³', 'Centímetros Cúbicos', CURRENT_DATE, 'José'),
+    ('mg', 'Miligramos', CURRENT_DATE, 'José');
+
+-- Inserciones para tipo_muestra con creador José
+INSERT INTO tipo_muestra (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('SAN', 'Sangre', CURRENT_DATE, 'José'),
+    ('URI', 'Orina', CURRENT_DATE, 'José'),
+    ('SAL', 'Saliva', CURRENT_DATE, 'José'),
+    ('CEL', 'Células', CURRENT_DATE, 'José'),
+    ('TEJ', 'Tejidos', CURRENT_DATE, 'José'),
+    ('CSF', 'Líquido Cefalorraquídeo', CURRENT_DATE, 'José'),
+    ('ADR', 'Aire', CURRENT_DATE, 'José'),
+    ('HUE', 'Hueso', CURRENT_DATE, 'José'),
+    ('CER', 'Cerebro', CURRENT_DATE, 'José'),
+    ('HAI', 'Cabello', CURRENT_DATE, 'José'),
+    ('UN', 'Uñas', CURRENT_DATE, 'José'),
+    ('LEC', 'Líquido Cefalorraquídeo', CURRENT_DATE, 'José'),
+    ('ESP', 'Esputo', CURRENT_DATE, 'José');
+
+select * from solicitud_muestra_medica smm ;
+select * from usuario u ;
+select * from tipo_soporte ts ;
+select * from tipo_solicitud ts ;
+select * from tipo_soporte ts ;
+select * from rol;
+select * from tipo_estado_solicitud tes ;
+select * from presentacion_muestra pm ;
+select * from unidad_medida um ;
+select * from tipo_muestra tm ;
+select * from muestra_medica;
 
 
 

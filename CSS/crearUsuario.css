@@ -1,7 +1,7 @@
 .login-container{
     height: autos;
 }
-.warnings{
+.error-messages{
     width: 200px;
     text-align: center;
     margin: auto;
@@ -22,4 +22,19 @@ select{
     border-radius: 15px;
     width: 225px;;
     margin: 0 0 15px 0;
+}
+.loginList{
+    padding: 0;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: initial;
+}
+.pass{
+    width: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }

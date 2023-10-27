@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "muestra_medica")
-public class MuestraMedica implements Serializable {
+public class Muestra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +28,6 @@ public class MuestraMedica implements Serializable {
 
     @Column(name = "id_tipo_muestra")
     private Integer idTipoMuestra;
-
-    @Column(name = "id_documento_muestra_adjunto")
-    private Integer idDocumentoMuestraAdjunto;
 
     @Column(name = "id_unidad_medida")
     private Integer idUnidadMedida;

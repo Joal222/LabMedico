@@ -6,8 +6,8 @@
        <!-- Referencia de la hoja de estilo de Css -->
        <link rel="stylesheet" href="CSS\style.css">
        <link rel="stylesheet" href="CSS\flexbox.css">
-       <link rel="stylesheet" href="CSS\crearUsuario.css">
        <link rel="stylesheet" href="CSS\styleLogin.css">
+       <link rel="stylesheet" href="CSS\crearUsuario.css">
        <!-- Referencia Paginas web -->
        <link rel="stylesheet" href="crearSolicitud.html">
        <link rel="stylesheet" href="login.html">
@@ -15,6 +15,7 @@
     <title>Crear Usuario</title>
 </head>
 <body>
+    
     <section class="encabezado" id="encabezado">
         <a href="index.html#encabezado">   
         <header class="menu_header">
@@ -35,21 +36,21 @@
             </ul>
         </nav>
     </section>
-
+    
     <section class="login-section">
         <div class="login-container">
             <h1>Crear Usuario</h1>
-            <form class="login_list" method="POST" id="form">
+            <form class="login_list" method="POST" id="formulario">
                 <ul class="loginList">
                   
                  <div class="botones">   
                 <label for="nombre">Nombres</label>
-                <input type="text" id="nombre" name="nombre" placeholder="nombre" required>
+                <input type="text" id="nombre" name="nombres" placeholder="nombre" required>
                 </div>
 
                 <div class="botones">
                 <label for="apellido">Apellidos</label>
-                <input type="text" id="apellido" name="apellido" placeholder="apellido" required>  
+                <input type="text" id="apellido" name="apellidos" placeholder="apellido" required>  
                 </div>
 
                 <div class="botones">
@@ -62,6 +63,16 @@
                 <input type="text" id="telefono" name="telefono" placeholder="5555-5555" required>  
                 </div>
 
+                <div class="botones">
+                    <label for="nit">NIT</label>
+                    <input type="text" id="nit" name="nit" placeholder="55555555" required>  
+                </div>
+
+                <div class="botones">
+                    <label for="dirección">Dirección</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="dirección" required>  
+                </div>
+
                 <div class="listGenero">
                 <label for="genero">Género:</label>
                 <select id="genero" name="genero" >
@@ -70,26 +81,26 @@
                     <option value="otro">Otro</option>
                 </select>
                 </div>
+                <div class="butonSpace">
+                    <div class="pass">
+                        <div class="botones">
+                        <label for="password">Contraseña:</label required>
+                        <input type="password" id="password" name="password" placeholder="Contraseña">
+                        </div>
 
-                <div class="botones">
-                <label for="contrasena">Contraseña:</label required>
-                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
-                </div>
-
-                <div class="botones">
-                <label for="confirmarContraseña">confirmar contraseña</label required>
-                <input type="password" id="confirmarContraseña" name="confirmarContraseña" placeholder="confirme su contraseña">
-                </div>
-                
-                <button type="submit">Iniciar Sesión</button>
-                <p class="warnings" id="warnings"></p>
+                        <div class="botones">
+                        <label for="confirmarContrasena">confirmar contraseña</label required>
+                        <input type="password" id="confirmarContrasena" name="confiPass" placeholder="confirme su contraseña">
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit">Iniciar Sesión</button>
+                    <div class="error-messages" id="errorMessages"></div>
+                </div>    
                 </ul>
             </form>
     </section>
-             
-    </div>
-    <script src="JS/validacionesCrearUsuario.js"></script>
-
+    
     <section class="horarios" id="horario">
         <footer class="footer" >
             <div class="horarios">
@@ -108,5 +119,9 @@
             </div>
         </footer>
     </section>
+
+    </div>
+    <script src="JS/validacionesCrearUsuario.js"></script>
+
 </body>
 </html>
