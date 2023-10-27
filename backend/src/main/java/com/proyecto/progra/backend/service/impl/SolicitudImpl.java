@@ -33,7 +33,7 @@ public class SolicitudImpl implements ISolicitud {
         return solicitudDao.findById(id).orElse(null);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public void delete(Solicitud solicitud) {
         solicitudDao.delete(solicitud);
@@ -41,11 +41,13 @@ public class SolicitudImpl implements ISolicitud {
     @Transactional
     @Override
     public List<Solicitud> findAll() {
+
         return (List<Solicitud>) solicitudDao.findAll();
     }
 
     @Override
     public boolean existById(Integer id) {
+
         return solicitudDao.existsById(id);
     }
 }
