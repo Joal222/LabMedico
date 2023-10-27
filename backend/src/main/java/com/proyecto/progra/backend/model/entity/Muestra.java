@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "muestra_medica")
-public class MuestraMedica implements Serializable {
+public class Muestra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

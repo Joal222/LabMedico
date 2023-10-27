@@ -27,13 +27,13 @@ public class SolicitudImpl implements ISolicitud {
         return solicitudDao.save(solicitud);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public Solicitud findById(Integer id) {
         return solicitudDao.findById(id).orElse(null);
     }
 
-    @Transactional//
+    @Transactional
     @Override
     public void delete(Solicitud solicitud) {
         solicitudDao.delete(solicitud);

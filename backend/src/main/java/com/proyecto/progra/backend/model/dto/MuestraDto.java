@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 @ToString
 @Builder
-public class MuestraMedicaDto implements Serializable {
+public class MuestraDto implements Serializable {
 
     private Integer id;
     private Integer idSolicitudMuestraMedica;
