@@ -33,7 +33,7 @@ public class SolicitudImpl implements ISolicitud {
         return solicitudDao.findById(id).orElse(null);
     }
 
-    @Transactional
+    @Transactional//
     @Override
     public void delete(Solicitud solicitud) {
         solicitudDao.delete(solicitud);

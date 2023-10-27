@@ -217,19 +217,20 @@ add constraint items_solicitud_muestra_medica_fkey foreign key (id_solicitud_mue
 references solicitud_muestra_medica (id) match simple;
 
 --TABLA DE DOCUMENTOS ADJUNTOS
-create table documento_muestra_adjunto (
-	id SERIAL,
-	formato_documento varchar(4),
-	tamaño_documento varchar (4),
-	primary key (id)
-);
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--create table documento_muestra_adjunto (
+	--id SERIAL,
+	--formato_documento varchar(4),
+	--tamaño_documento varchar (4),
+	--primary key (id)
+--);
 
 create table muestra_medica (
 	id SERIAL,
 	id_solicitud_muestra_medica integer not null,
 	id_presentacion_muestra integer not null,
 	id_tipo_muestra integer not null,
-	id_documento_muestra_adjunto integer null,
+	--id_documento_muestra_adjunto integer null, --POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
 	id_unidad_medida integer not null,
 	fecha_recepcion_muestra date not null,
 	fecha_creacion_muestra date not null,
@@ -267,23 +268,26 @@ alter table muestra_medica
 add constraint muestra_medica_id_tipo_muestra_fkey foreign key (id_tipo_muestra)
 references tipo_muestra (id) match simple;
 
-alter table muestra_medica
-add constraint muestra_medica_id_documento_muestra_adjunto_fkey foreign key (id_documento_muestra_adjunto)
-references documento_muestra_adjunto (id) match simple;
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--alter table muestra_medica
+--add constraint muestra_medica_id_documento_muestra_adjunto_fkey foreign key (id_documento_muestra_adjunto)
+--references documento_muestra_adjunto (id) match simple;
 
 alter table muestra_medica
 add constraint muestra_medica_id_unidad_medida_fkey foreign key (id_unidad_medida)
 references unidad_medida (id) match simple;
 
-create table documento_analisis(
-	id SERIAL,
-	id_muestra_medica integer,
-	primary key (id)
-);
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--create table documento_analisis(
+--	id SERIAL,
+--	id_muestra_medica integer,
+--	primary key (id)
+--);
 
-alter table documento_analisis 
-add constraint documento_analisis_id_muestra_medica_fkey foreign key (id_muestra_medica)
-references muestra_medica (id) match simple;
+--POR EL MOMENTO QUEDA EN PENDIENTE, DEBIDO A QUE VAMOS EN PRIMERA FASE DE DESARROLLO
+--alter table documento_analisis
+--add constraint documento_analisis_id_muestra_medica_fkey foreign key (id_muestra_medica)
+--references muestra_medica (id) match simple;
 
 --create table bitacora
 
