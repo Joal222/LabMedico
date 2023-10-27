@@ -6,7 +6,6 @@ import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 //Debemos llamar a nuestro cliente DAO o el repositoryo que contiene los métodos CRUD
@@ -67,6 +66,7 @@ public class UsuarioImpl implements IUsuario {
     @Transactional
     @Override
     public void delete(Usuario usuario) {
+
         usuarioDao.delete(usuario);
     }
     //Implementación de método para consultar a todos los usuarios
@@ -79,6 +79,7 @@ public class UsuarioImpl implements IUsuario {
 
     @Override
     public boolean existById(Integer id) {
+
         return usuarioDao.existsById(id);
     }
 }
