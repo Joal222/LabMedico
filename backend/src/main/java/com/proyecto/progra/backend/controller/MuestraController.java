@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v3")
 @CrossOrigin(origins = "*")
 public class MuestraController {
-
+    //Full realizado
     @Autowired
     private IMuestra muestraService;
     @PostMapping("muestra")
