@@ -183,17 +183,7 @@ create table tipo_items (
 	primary key (id)
 );
 
---CATALOGO TIPO EXAMEN
-create table tipo_examen (
-    id SERIAL,
-    nombre varchar(50) not null,
-    descripcion varchar (255) not null,
-    fecha_creacion date not null,
-    fecha_modificacion date null,
-    creado_por varchar(255) not null,
-    modificado_por varchar (255) null,
-    primary key (id)
-);
+
 
 --TABLA ITEMS
 create table items (
@@ -384,6 +374,18 @@ VALUES
     ('UN', 'Uñas', CURRENT_DATE, 'José'),
     ('LEC', 'Líquido Cefalorraquídeo', CURRENT_DATE, 'José'),
     ('ESP', 'Esputo', CURRENT_DATE, 'José');
+
+INSERT INTO tipo_examen (nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    ('EO', 'Examen de Orina', CURRENT_DATE, 'José'),
+    ('PL', 'Perfil Lipídico', CURRENT_DATE, 'José'),
+    ('HC', 'Hemograma Completo', CURRENT_DATE, 'José'),
+    ('PG', 'Prueba De Glucosa', CURRENT_DATE, 'José'),
+    ('ET', 'Evaluación Tiroidal', CURRENT_DATE, 'José'),
+    ('PR', 'Panel Renal', CURRENT_DATE, 'José'),
+    ('PEI', 'Prueba De Enfermedades Infecciosas', CURRENT_DATE, 'José'),
+    ('EH', 'Evaluación De Hormonas', CURRENT_DATE, 'José');
+
 
 -- Para el Examen de Orina
 INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
