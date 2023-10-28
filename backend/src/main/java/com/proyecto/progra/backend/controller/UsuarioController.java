@@ -1,5 +1,4 @@
 package com.proyecto.progra.backend.controller;
-
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
@@ -9,13 +8,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-//La anotación @RestController se aplica a una clase para marcarla como controlador de solicitudes. La anotación se usa para crear servicios web Restful usando Spring MVC
-//La notación RequestMappingse utiliza para asignar solicitudes web a las clases del controlador específica y/o métodos de controlador
-//Dentro del paréntesis colocamos api para indicar que es una api y luego colocamos la version con v1
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
@@ -26,9 +21,6 @@ public class UsuarioController {
     @Autowired
     private IUsuario usuarioService;
 
-
-    //Para realizar acciones debemos utilizar los métodos HTTP
-    //El sustantivo usuario queda asociado a nuestro recurso @PostMappeing
     //Importantisimo! @RequestBody, aquí indicamos que cuando me envien a través de JSON la información, va a ser transformada a Usuario
     //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
@@ -66,9 +58,6 @@ public class UsuarioController {
         }
     }
 
-
-    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
-    // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
     @PutMapping ("usuario/{id}")
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody UsuarioDto usuarioDto, @PathVariable Integer id) {
@@ -115,18 +104,6 @@ public class UsuarioController {
 
     //En los parámetros recibe el Id y no va a retornar ningún valor, hay que indicarle que nos envíe el cliente completo, no solo el Id
     //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @DeleteMapping("usuario") agregandoles /{id}
-    //Para identificar el status de Respueta "ej:204 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
-    // de método, ejemplo delete sería o corresponde (HttpStatus.NO_CONTENT) con número #204
-    //Respuesta métodos Http estáticos
-    /*
-    @DeleteMapping ("usuario/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id){
-        Usuario usuarioDelete = usuarioService.findById(id);
-        usuarioService.delete(usuarioDelete);
-    }
-    */
-
     //Estudiar estructura DTO
     @DeleteMapping ("usuario/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
@@ -143,9 +120,6 @@ public class UsuarioController {
         }
     }
 
-
-    //Respuesta métodos Http con validaciones personalizadas
-    //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @GetMapping("usuario") agregandoles /{id}
     //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
     // de método, ejemplo showById que es un método para consultar sería o corresponde (HttpStatus.OK) con número #200
     @GetMapping("usuario/{id}")
@@ -180,8 +154,6 @@ public class UsuarioController {
                         ,HttpStatus.OK);
     }
 
-
-    // Controlador para consultar todos los usuarios.
     @GetMapping("usuarios")
     public ResponseEntity<?> findAll() {
         try {
@@ -218,3 +190,14 @@ public class UsuarioController {
         }
     }
 }
+
+
+//Respuesta métodos Http estáticos
+    /*
+    @DeleteMapping ("usuario/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id){
+        Usuario usuarioDelete = usuarioService.findById(id);
+        usuarioService.delete(usuarioDelete);
+    }
+    */

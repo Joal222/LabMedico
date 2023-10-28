@@ -16,8 +16,8 @@ public class ItemsImpl implements IItems {
     @Transactional
     @Override
     public Items save(ItemsDto itemsDto) {
-
         Items items = Items.builder()
+                .id(itemsDto.getId())
                 .idTipoItems(itemsDto.getIdTipoItems())
                 .idSolicitudMuestraMedica(itemsDto.getIdSolicitudMuestraMedica())
                 .build();

@@ -385,6 +385,89 @@ VALUES
     ('LEC', 'Líquido Cefalorraquídeo', CURRENT_DATE, 'José'),
     ('ESP', 'Esputo', CURRENT_DATE, 'José');
 
+-- Para el Examen de Orina
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (1, 'APHO', 'Análisis de pH de la orina', CURRENT_DATE, 'José'),
+    (1, 'DPU', 'Detección de proteínas en la orina', CURRENT_DATE, 'José'),
+    (1, 'IGUO', 'Identificación de glucosa en la orina', CURRENT_DATE, 'José'),
+    (1, 'ACUO', 'Análisis de cetonas en la orina', CURRENT_DATE, 'José'),
+    (1, 'DBU', 'Detección de bilirrubina y urobilinógeno', CURRENT_DATE, 'José'),
+    (1, 'PDU', 'Prueba de densidad urinaria', CURRENT_DATE, 'José'),
+    (1, 'ESU', 'Evaluación de sedimentos urinarios', CURRENT_DATE, 'José');
+
+-- Para el Perfil Lipídico
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (2, 'MCT', 'Medición del colesterol total', CURRENT_DATE, 'José'),
+    (2, 'NHL', 'Niveles de lipoproteínas de alta densidad (HDL)', CURRENT_DATE, 'José'),
+    (2, 'NLL', 'Niveles de lipoproteínas de baja densidad (LDL)', CURRENT_DATE, 'José'),
+    (2, 'TS', 'Triglicéridos en sangre', CURRENT_DATE, 'José'),
+    (2, 'RCTH', 'Relación colesterol total/HDL', CURRENT_DATE, 'José'),
+    (2, 'RLH', 'Relación LDL/HDL', CURRENT_DATE, 'José');
+
+-- Para el Hemograma Completo
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (3, 'RGR', 'Recuento de glóbulos rojos', CURRENT_DATE, 'José'),
+    (3, 'RGW', 'Recuento de glóbulos blancos y subtipos', CURRENT_DATE, 'José'),
+    (3, 'HyH', 'Hemoglobina y hematocrito', CURRENT_DATE, 'José'),
+    (3, 'PS', 'Plaquetas en sangre', CURRENT_DATE, 'José'),
+    (3, 'FL', 'Fórmula leucocitaria', CURRENT_DATE, 'José'),
+    (3, 'AGRH', 'Análisis de glóbulos rojos: VCM, HCM, CHCM', CURRENT_DATE, 'José');
+
+-- Para la Prueba De Glucosa
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (4, 'NGA', 'Niveles de glucosa en ayunas', CURRENT_DATE, 'José'),
+    (4, 'PTGO', 'Prueba de tolerancia a la glucosa oral', CURRENT_DATE, 'José'),
+    (4, 'PGA', 'Prueba de glucosa aleatoria', CURRENT_DATE, 'José'),
+    (4, 'MGP', 'Monitoreo de glucosa posprandial (después de comer)', CURRENT_DATE, 'José'),
+    (4, 'HbA1c', 'Hemoglobina A1c (HbA1c), control glucémico a largo plazo', CURRENT_DATE, 'José');
+
+-- Para la Evaluación Tiroidal
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (5, 'TSH', 'Hormona estimulante de la tiroides (TSH)', CURRENT_DATE, 'José'),
+    (5, 'T4L', 'T4 libre (Tiroxina libre)', CURRENT_DATE, 'José'),
+    (5, 'T3T', 'T3 total (Triyodotironina total)', CURRENT_DATE, 'José'),
+    (5, 'RT3', 'T3 inversa (RT3)', CURRENT_DATE, 'José'),
+    (5, 'AAT', 'Anticuerpos antitiroideos (TPO y Tg)', CURRENT_DATE, 'José'),
+    (5, 'CAL', 'Calcitonina (en algunos casos)', CURRENT_DATE, 'José'),
+    (5, 'TG', 'Tiroglobulina (en seguimiento de cáncer de tiroides)', CURRENT_DATE, 'José');
+
+-- Para el Panel Renal
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+values
+    (6, 'COVID', 'Prueba Covid-19', CURRENT_DATE, 'José'),
+    (6, 'Cr', 'Creatinina', CURRENT_DATE, 'José'),
+    (6, 'BUN', 'Nitrógeno ureico en sangre (BUN)', CURRENT_DATE, 'José'),
+    (6, 'eGFR', 'Filtrado glomerular estimado (eGFR)', CURRENT_DATE, 'José'),
+    (6, 'ELECT', 'Electrolitos (sodio, potasio, cloruro)', CURRENT_DATE, 'José'),
+    (6, 'AU', 'Ácido úrico', CURRENT_DATE, 'José'),
+    (6, 'FP', 'Fosfato en sangre', CURRENT_DATE, 'José'),
+    (6, 'BUN/CR', 'Relación BUN/creatinina', CURRENT_DATE, 'José');
+
+-- Para la Prueba De Enfermedades Infecciosas
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (7, 'ETS', 'Detección de enfermedades de transmisión sexual (ETS)', CURRENT_DATE, 'José'),
+    (7, 'VIH', 'Pruebas de detección de VIH', CURRENT_DATE, 'José'),
+    (7, 'HEP', 'Pruebas de hepatitis (HBV y HCV)', CURRENT_DATE, 'José'),
+    (7, 'SIF', 'Pruebas de sífilis', CURRENT_DATE, 'José'),
+    (7, 'EBV', 'Detección de enfermedades bacterianas y virales', CURRENT_DATE, 'José');
+
+-- Para la Evaluación De Hormonas
+INSERT INTO tipo_items (id_tipo_examen, nombre, descripcion, fecha_creacion, creado_por)
+VALUES
+    (8, 'TSH', 'Hormona estimulante de la tiroides (TSH)', CURRENT_DATE, 'José'),
+    (8, 'HST', 'Hormonas tiroideas (T4 y T3)', CURRENT_DATE, 'José'),
+    (8, 'HSE', 'Hormonas sexuales (estradiol, progesterona, testosterona)', CURRENT_DATE, 'José'),
+    (8, 'LH', 'Hormona luteinizante (LH) y hormona foliculoestimulante (FSH)', CURRENT_DATE, 'José'),
+    (8, 'HGC', 'Hormona del crecimiento (GH)', CURRENT_DATE, 'José'),
+    (8, 'ACTH', 'Hormona adrenocorticótropa (ACTH)', CURRENT_DATE, 'José'),
+    (8, 'ADH', 'Hormona antidiurética (ADH) y oxitocina', CURRENT_DATE, 'José');
+
 select * from solicitud_muestra_medica smm ;
 select * from usuario u ;
 select * from tipo_soporte ts ;
@@ -396,6 +479,9 @@ select * from presentacion_muestra pm ;
 select * from unidad_medida um ;
 select * from tipo_muestra tm ;
 select * from muestra_medica;
+select * from items;
+select * from tipo_items ;
+select * from tipo_examen ;
 
 
 
