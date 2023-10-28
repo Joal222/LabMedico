@@ -1,6 +1,8 @@
 package com.proyecto.progra.backend.service.impl;
 import com.proyecto.progra.backend.model.dao.UsuarioDao;
+import com.proyecto.progra.backend.model.dto.MuestraItemsDto;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
+import com.proyecto.progra.backend.model.entity.MuestraItems;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +48,6 @@ public class UsuarioImpl implements IUsuario {
 
         return usuarioDao.save(usuario);
     }
-
-
     //Cuando sean consultas o recuperación debemos de utilizar la notación @Transactional(read Only=true) de spring framework, para asegurarnos de que solo podemos
     //realizar operaciones de solo lectura
     @Transactional(readOnly = true)

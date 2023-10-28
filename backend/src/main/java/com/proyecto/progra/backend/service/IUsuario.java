@@ -1,6 +1,9 @@
 package com.proyecto.progra.backend.service;
+import com.proyecto.progra.backend.model.dto.MuestraItemsDto;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
+import com.proyecto.progra.backend.model.entity.MuestraItems;
 import com.proyecto.progra.backend.model.entity.Usuario;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
