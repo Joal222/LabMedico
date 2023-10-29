@@ -1,8 +1,6 @@
 package com.proyecto.progra.backend.service.impl;
 import com.proyecto.progra.backend.model.dao.UsuarioDao;
-import com.proyecto.progra.backend.model.dto.MuestraItemsDto;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
-import com.proyecto.progra.backend.model.entity.MuestraItems;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +28,13 @@ public class UsuarioImpl implements IUsuario {
     //en el return debemos de llamar el método de la clase que queremos ejecutar de nuestro dao/repository, ejemplo clase.método(modelo/entidad)
     @Transactional
     @Override
+    //Crea un objeto Usuario a partir de un UsuarioDto y lo guarda en la base de datos usando usuarioDao.save(usuario). Luego, devuelve el objeto Usuario guardado.
     public Usuario save(UsuarioDto usuariodto) {
         //Rol rol = rolDao.findById(usuariodto.getRol()).orElse(null);
         Usuario usuario = Usuario.builder()
                 .id(usuariodto.getId())
                 .idTipoUsuario(usuariodto.getIdTipoUsuario())
-                .idRol(usuariodto.getIdRol())  // Asignar el objeto Rol encontrado
+                .idRol(usuariodto.getIdRol())
                 .nit(usuariodto.getNit())
                 .nombres(usuariodto.getNombres())
                 .apellidos(usuariodto.getApellidos())
@@ -69,7 +68,7 @@ public class UsuarioImpl implements IUsuario {
         usuarioDao.delete(usuario);
     }
     //Implementación de método para consultar a todos los usuarios
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Usuario> findAll() {
 
