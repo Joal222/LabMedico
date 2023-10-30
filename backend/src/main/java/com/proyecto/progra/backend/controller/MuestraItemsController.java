@@ -112,7 +112,7 @@ public class MuestraItemsController {
                         ,HttpStatus.OK);
     }
 
-    @GetMapping("muestra/items")
+    @GetMapping("muestras/items")
     public ResponseEntity<?> findAll() {
         try {
             List<MuestraItems> muestrasItems = muestraItemsService.findAll();

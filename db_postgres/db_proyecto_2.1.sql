@@ -183,8 +183,6 @@ create table tipo_items (
 	primary key (id)
 );
 
-
-
 --TABLA ITEMS
 create table items (
 	id SERIAL,
