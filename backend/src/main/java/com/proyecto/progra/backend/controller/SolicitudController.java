@@ -91,9 +91,9 @@ public class SolicitudController {
     @DeleteMapping ("solicitud/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         try{
-            Solicitud solicitudDelte  = solicitudService.findById(id);
-            solicitudService.delete(solicitudDelte);
-            return new ResponseEntity<>(solicitudDelte,HttpStatus.NO_CONTENT);
+            Solicitud solicitudDelete  = solicitudService.findById(id);
+            solicitudService.delete(solicitudDelete);
+            return new ResponseEntity<>(solicitudDelete,HttpStatus.NO_CONTENT);
         }catch (DataAccessException exDt){
             return new ResponseEntity<>
                     (MensajeResponse.builder()
@@ -158,7 +158,4 @@ public class SolicitudController {
             );
         }
     }
-
-
-
 }

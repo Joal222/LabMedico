@@ -10,7 +10,7 @@ import java.util.List;
 
 //Debemos llamar a nuestro cliente DAO o el repositoryo que contiene los métodos CRUD
 //Primero debemos implementar nuestra clase de tipo interfaz IUsuario para poder utilizar los métodos que elegimos
-//Debemos definir con la notación @Service que esta clas será un servicio, la cual se usa para construir una clas de Servicio que habitualmente se conecta a varios
+//Debemos definir con la notación @Service que esta clas será un servicio, la cual se usa para construir una clase de Servicio que habitualmente se conecta a varios
 //repositorios y agrupa su funcionalidad
 //A partir de creación de paquete dto, clase UsuarioDto, se cambió la entidad de donde recibirá los datos, siendo de paquete entity clase Usuario a
 //paquete dto clase Usuario Dto para controlar los datos que quermos mostrar.
