@@ -9,11 +9,5 @@ import java.util.Date;
 @Builder
 public class TipoExamenDto implements Serializable {
 
-    private Integer id;
-    private String nombre;
     private String descripcion;
-    private Date fechaCreacion;
-    private Date fechaModificacion;
-    private String creadoPor;
-    private String modificadoPor;
 }
