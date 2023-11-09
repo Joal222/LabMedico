@@ -38,5 +38,4 @@ public class TipoSolicitud implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-
 }

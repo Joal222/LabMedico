@@ -20,6 +20,7 @@ public class TipoExamenController {
 
     @Autowired
     private ITipoExamen tipoExamenService;
+    /*
     @PostMapping("tipo-examen")
     public ResponseEntity<?> create(@RequestBody TipoExamenDto tipoExamenDto){
         TipoExamen tipoExamenSave = null;
@@ -29,12 +30,6 @@ public class TipoExamenController {
                     .mensaje("Guardado correctamente")
                     .object(TipoExamenDto.builder()
                             .id(tipoExamenSave.getId())
-                            .nombre(tipoExamenSave.getNombre())
-                            .descripcion(tipoExamenSave.getDescripcion())
-                            .fechaCreacion(tipoExamenSave.getFechaCreacion())
-                            .fechaModificacion(tipoExamenSave.getFechaModificacion())
-                            .creadoPor(tipoExamenSave.getCreadoPor())
-                            .modificadoPor(tipoExamenSave.getModificadoPor())
                             .build())
                     .build()
                     , HttpStatus.CREATED);
@@ -60,12 +55,6 @@ public class TipoExamenController {
                                 .mensaje("Guardado correctamente")
                                 .object(TipoExamenDto.builder()
                                         .id(tipoExamenUpdate.getId())
-                                        .nombre(tipoExamenUpdate.getNombre())
-                                        .descripcion(tipoExamenUpdate.getDescripcion())
-                                        .fechaCreacion(tipoExamenUpdate.getFechaCreacion())
-                                        .fechaModificacion(tipoExamenUpdate.getFechaModificacion())
-                                        .creadoPor(tipoExamenUpdate.getCreadoPor())
-                                        .modificadoPor(tipoExamenUpdate.getModificadoPor())
                                         .build())
                                 .build()
                         ,HttpStatus.CREATED);
@@ -99,6 +88,7 @@ public class TipoExamenController {
                             .build(),HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
+     */
 
     @GetMapping ("tipo-examen/{id}")
     public ResponseEntity<?> showById(@PathVariable Integer id){
@@ -115,13 +105,7 @@ public class TipoExamenController {
                 MensajeResponse.builder()
                         .mensaje("Consulta Exitosa")
                         .object(TipoExamenDto.builder()
-                                .id(tipoExamen.getId())
-                                .nombre(tipoExamen.getNombre())
-                                .descripcion(tipoExamen.getDescripcion())
-                                .fechaCreacion(tipoExamen.getFechaCreacion())
-                                .fechaModificacion(tipoExamen.getFechaModificacion())
-                                .creadoPor(tipoExamen.getCreadoPor())
-                                .modificadoPor(tipoExamen.getModificadoPor())
+                                .id(Integer.valueOf(tipoExamen.getNombre()))
                                 .build())
                         .build()
                 ,HttpStatus.OK);
@@ -133,13 +117,7 @@ public class TipoExamenController {
             List<TipoExamen> tiposExamenes = tipoExamenService.findAll();
             List<TipoExamenDto> tiposExamenesDto = tiposExamenes.stream()
                     .map(tipoExamen -> TipoExamenDto.builder()
-                            .id(tipoExamen.getId())
-                            .nombre(tipoExamen.getNombre())
-                            .descripcion(tipoExamen.getDescripcion())
-                            .fechaCreacion(tipoExamen.getFechaCreacion())
-                            .fechaModificacion(tipoExamen.getFechaModificacion())
-                            .creadoPor(tipoExamen.getCreadoPor())
-                            .modificadoPor(tipoExamen.getModificadoPor())
+                            .id(Integer.valueOf(tipoExamen.getNombre()))
                             .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(tiposExamenesDto, HttpStatus.OK);

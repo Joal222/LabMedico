@@ -15,24 +15,14 @@ public class TipoExamenImpl implements ITipoExamen {
 
     @Autowired
     private TipoExamenDao tipoExamenDao;
+
+    /*
     @Override
     public TipoExamen save(TipoExamenDto tipoExamenDto) {
         TipoExamen tipoExamen = TipoExamen.builder()
-                .id(tipoExamenDto.getId())
-                .nombre(tipoExamenDto.getNombre())
-                .descripcion(tipoExamenDto.getDescripcion())
-                .fechaCreacion(tipoExamenDto.getFechaCreacion())
-                .fechaModificacion(tipoExamenDto.getFechaModificacion())
-                .creadoPor(tipoExamenDto.getCreadoPor())
-                .modificadoPor(tipoExamenDto.getModificadoPor())
+                .id(tipoExamenDto.getNombre())
                 .build();
         return tipoExamenDao.save(tipoExamen);
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public TipoExamen findById(Integer id) {
-        return tipoExamenDao.findById(id).orElse(null);
     }
 
     @Transactional
@@ -41,14 +31,23 @@ public class TipoExamenImpl implements ITipoExamen {
         tipoExamenDao.delete(tipoExamen);
     }
 
+        @Override
+    public boolean existById(Integer id) {
+        return tipoExamenDao.existsById(id);
+    }
+    */
+
+
+    @Transactional(readOnly = true)
+    @Override
+    public TipoExamen findById(Integer id) {
+        return tipoExamenDao.findById(id).orElse(null);
+    }
+
+
     @Transactional(readOnly = true)
     @Override
     public List<TipoExamen> findAll() {
         return (List<TipoExamen>) tipoExamenDao.findAll();
-    }
-
-    @Override
-    public boolean existById(Integer id) {
-        return tipoExamenDao.existsById(id);
     }
 }

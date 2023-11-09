@@ -6,11 +6,13 @@ import com.proyecto.progra.backend.model.entity.TipoExamen;
 import java.util.List;
 
 public interface ITipoExamen {
+    /*
     TipoExamen save (TipoExamenDto tipoExamen);
-    TipoExamen findById(Integer id);
     void delete(TipoExamen tipoExamen);
-    List<TipoExamen> findAll();
-
     boolean existById(Integer id);
+     */
+    TipoExamen findById(Integer id);
+
+    List<TipoExamen> findAll();
 
 }
