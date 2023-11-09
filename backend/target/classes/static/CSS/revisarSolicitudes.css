@@ -1,0 +1,273 @@
+.bodyCrearSoli{
+    display: flex;
+    flex-direction: column;
+}
+.bodyDiv {
+    display: flex;
+}
+ul ,li, a{
+    list-style: none;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+ul{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.menuOpciones{
+    border: 2px solid black;
+    width:15%;
+    background: #383F51;
+}
+
+.encabezadoOpciones header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logoLab{
+    height: 75px;
+    width:  75px;
+    align-items: center;
+}
+.divisor {
+    border-bottom: 2px solid #727272;
+    margin-bottom: 25px; 
+}
+.dashboard{
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.logo{
+    height: 25px;
+    width: 25px;
+}
+.Settings{
+    margin: 20px;
+    display: flex;
+    align-items:start;
+    justify-content: center;
+    color: #FFFFFF; 
+}
+.config{
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: #FFFFFF;
+}
+.cerrarSesion{
+    margin: 30px 10px 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: #FFFFFF;
+}
+.loginOpciones{
+    display: flex;   
+    flex-direction: column;
+    align-items: start;
+}
+.menuDeplegable{
+    position: relative;
+    color: rgb(2, 2, 2);
+    text-decoration: none;
+    margin: 0 0 45px 0;
+}
+.menuDeplegable .menu{
+    display: none;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px rgba(0, 0, rgb(0, 0, 0), alpha);
+    position: absolute;
+    min-width: 150px;
+}
+
+.menuDeplegable:hover .menu{
+    display: block;
+}
+.menuDeplegable .menu ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: left;
+}
+.menuDeplegable .menu li a{
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+.menuDeplegable .menu li a:hover{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.acciones{  
+    width:85%; 
+}
+.encabezadoMuestra{
+    background: white;
+    margin: 50px;
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.crearSolicitud{
+    font-size: 20px;
+    border: 2px solid rgb(0, 179, 255);
+    border-radius:20px ;
+    height: 35px;
+    width: 100px;
+    background-color: rgb(36, 36, 216);
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.logoeEnca{
+    margin: 20px;
+    height: 35px;
+    width: 35px;
+}
+
+.filtrosMuestra{
+    background: white;
+    margin: 50px;
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+    display: flex;
+    
+}
+.encabesazoFiltro{
+    width: 820px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.filterFlex{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.divParte{
+    width: 80%;
+}
+.divParte2{
+    width: 20%;
+}
+.button{
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    height: 30px;
+    width: 200px;
+}
+.buttonSelec{
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    height: 38px;
+    width: 210px;
+}
+.nameButton{
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.divButon{
+    width: 820px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonFiltro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    width: 125px;
+    height: 30px;
+    background: rgb(1, 65, 107);
+    color: white;
+    border: 2px solid rgb(0, 189, 247);
+    border-radius: 5px;
+}
+.logoBuscar{
+    width: 15px;
+    height: 15px;
+}
+.encabesazoFiltro2{
+    display: flex;
+    justify-content: end;
+}
+.dropdown {
+    margin: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    right: 0;
+    position: absolute;
+    min-width: 100px;
+    top: 100%;
+    z-index: 1;
+}
+
+.dropdown-content-a {
+    padding: 5px 0 0 0; 
+    text-decoration: none;
+    display: block;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.logoDropdow {
+    font-size: 24px;
+}
+
+.name {
+    display: none;
+}
+
+.dropdown-content a:hover .name {
+    display: inline;
+}
+.logodrop{
+    margin-left: 35px;
+}
+.mostrarSoliMues{
+    background: white;
+    margin: 50px;
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+    display: flex;
+}
+.footerInterno{
+    margin: 0 60px 0 0;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}

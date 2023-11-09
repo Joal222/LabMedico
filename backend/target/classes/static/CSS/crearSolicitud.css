@@ -1,0 +1,127 @@
+.bodyCrearSoli{
+    display: flex;
+    flex-direction: column;
+}
+.bodyDiv {
+    display: flex;
+}
+ul ,li, a{
+    list-style: none;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+ul{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.menuOpciones{
+    border: 2px solid black;
+    width:15%;
+    background-image: linear-gradient(to bottom , #4821ff, #7b69d8);
+}
+
+.encabezadoOpciones header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    height: 75px;
+    width: 75px;
+    align-items: center;
+}
+
+.divisor {
+    border-bottom: 2px solid #727272;
+    margin-bottom: 20px; 
+}
+.loginOpciones{
+    display: flex;   
+    flex-direction: column;
+    
+}
+.menuDeplegable{
+    position: relative;
+    color: rgb(2, 2, 2);
+    text-decoration: none;
+    margin: 0 0 60px 0;
+}
+.menuDeplegable .menu{
+    display: none;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px rgba(0, 0, rgb(0, 0, 0), alpha);
+    position: absolute;
+    min-width: 150px;
+}
+
+.menuDeplegable:hover .menu{
+    display: block;
+}
+.menuDeplegable .menu ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: left;
+}
+.menuDeplegable .menu li a{
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+.menuDeplegable .menu li a:hover{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.acciones{  
+    width:85%; 
+}
+.acciones h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acciones{ 
+
+}
+
+/*footer*/
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+footer{
+    width: auto;
+    text-align: center;
+    background-image: linear-gradient(to bottom , #7b69d8, #d9d2ff);
+    padding:40px;
+}
+
+.copyImg{
+    height: 100px;
+}
+.copyright{
+    color:#FFFFFF;
+    font-size: 13px;
+    margin:20px;
+}
+.logoDesa{
+    height: 50px;
+    width: 50px;
+}
+.horarios{
+    color: #FFFFFF;
+}
+.contacto{
+    color: #FFFFFF;
+}
+.desa{
+    color: white;
+}

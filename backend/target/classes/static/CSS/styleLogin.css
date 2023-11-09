@@ -1,0 +1,95 @@
+/* Estilos para el contenedor de inicio de sesión */
+.encabezado{
+    padding: 0px;
+}
+ul, li, a{
+    list-style: none;
+    text-decoration: none;
+}
+.login-section{
+    background: white;
+    margin: 50px 500px;
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    padding: 20px; /* Espacio interior para separar el contenido del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+}
+.login-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+}
+
+.login_list{
+    display: flex;
+    flex-direction: initial;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.imgLogin{
+    height: 160px;
+    width: 160px;
+}
+.loginList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* Estilos para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.crearCuenta{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.login_list_encabezado2{
+    font-size: 14px;
+    margin: 0 0 0 15px;
+    font-style: italic;
+}
+.crearUser{
+    color: #000;
+}
+.warnings{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: black;
+    padding-top: 20px;
+}
