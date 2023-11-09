@@ -1,9 +1,9 @@
 package com.proyecto.progra.backend.controller;
 
-import com.proyecto.progra.backend.model.dto.TipoExamenDto;
-import com.proyecto.progra.backend.model.entity.TipoExamen;
+import com.proyecto.progra.backend.model.dto.TipoItemsDto;
+import com.proyecto.progra.backend.model.entity.TipoItems;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
-import com.proyecto.progra.backend.service.ITipoExamen;
+import com.proyecto.progra.backend.service.ITipoItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -14,55 +14,56 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/v6")
+@RequestMapping("api/v7")
 @CrossOrigin(origins = "*")
-public class TipoExamenController {
+public class TipoItemsController {
 
     @Autowired
-    private ITipoExamen tipoExamenService;
+    private ITipoItems tipoItemsService;
 
-    @GetMapping ("tipo-examen/{id}")
+    @GetMapping("tipo-items/{id}")
     public ResponseEntity<?> showById(@PathVariable Integer id){
-        TipoExamen tipoExamen = tipoExamenService.findById(id);
-        if(tipoExamen==null){
+        TipoItems tipoItems = tipoItemsService.findById(id);
+        if(tipoItems==null){
             return new ResponseEntity<>(
                     MensajeResponse.builder()
                             .mensaje("El registro que intenta buscar, no existe!!")
                             .object(null)
                             .build()
                     ,HttpStatus.NOT_FOUND);
-        }
+            }
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("Consulta Exitosa")
-                        .object(TipoExamenDto.builder()
-                                .id(tipoExamen.getId())
-                                .descripcion(tipoExamen.getDescripcion())
+                        .object(TipoItemsDto.builder()
+                                .id(tipoItems.getId())
+                                .descripcion(tipoItems.getDescripcion())
                                 .build())
                         .build()
                 ,HttpStatus.OK);
-    }
+        }
 
-    @GetMapping("tipos-examenes")
+    @GetMapping("tipos-items")
     public ResponseEntity<?> findAll() {
         try {
-            List<TipoExamen> tiposExamenes = tipoExamenService.findAll();
-            List<TipoExamenDto> tiposExamenesDto = tiposExamenes.stream()
-                    .map(tipoExamen -> TipoExamenDto.builder()
-                            .id(tipoExamen.getId())
-                            .descripcion(tipoExamen.getDescripcion())
+            List<TipoItems> tiposItems = tipoItemsService.findAll();
+            List<TipoItemsDto> tiposItemsDto = tiposItems.stream()
+                    .map(tipoItems -> TipoItemsDto.builder()
+                            .id(tipoItems.getId())
+                            .descripcion(tipoItems.getDescripcion())
                             .build())
                     .collect(Collectors.toList());
-            return new ResponseEntity<>(tiposExamenesDto, HttpStatus.OK);
+            return new ResponseEntity<>(tiposItemsDto, HttpStatus.OK);
         } catch (DataAccessException exDt) {
             return new ResponseEntity<>(
                     MensajeResponse.builder()
-                            .mensaje("Error al obtener la lista de tipos de examenes: " + exDt.getMessage())
-                    .object(null)
-                    .build(),
+                            .mensaje("Error al obtener la lista de tipos de items: " + exDt.getMessage())
+                            .object(null)
+                            .build(),
                     HttpStatus.NOT_FOUND
             );
         }
     }
 
-}
+
+    }

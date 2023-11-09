@@ -16,34 +16,11 @@ public class TipoExamenImpl implements ITipoExamen {
     @Autowired
     private TipoExamenDao tipoExamenDao;
 
-    /*
-    @Override
-    public TipoExamen save(TipoExamenDto tipoExamenDto) {
-        TipoExamen tipoExamen = TipoExamen.builder()
-                .id(tipoExamenDto.getNombre())
-                .build();
-        return tipoExamenDao.save(tipoExamen);
-    }
-
-    @Transactional
-    @Override
-    public void delete(TipoExamen tipoExamen) {
-        tipoExamenDao.delete(tipoExamen);
-    }
-
-        @Override
-    public boolean existById(Integer id) {
-        return tipoExamenDao.existsById(id);
-    }
-    */
-
-
     @Transactional(readOnly = true)
     @Override
     public TipoExamen findById(Integer id) {
         return tipoExamenDao.findById(id).orElse(null);
     }
-
 
     @Transactional(readOnly = true)
     @Override

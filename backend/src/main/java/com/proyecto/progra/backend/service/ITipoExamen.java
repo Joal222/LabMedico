@@ -1,6 +1,5 @@
 package com.proyecto.progra.backend.service;
 
-import com.proyecto.progra.backend.model.dto.TipoExamenDto;
 import com.proyecto.progra.backend.model.entity.TipoExamen;
 
 import java.util.List;
