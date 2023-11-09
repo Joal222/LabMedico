@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_tipo_usuario")
+    @Column(name = "id_tipo_usuario", columnDefinition = "int default 1")
     private Integer idTipoUsuario;
 
     /*@JsonIgnore

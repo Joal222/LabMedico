@@ -105,7 +105,8 @@ public class TipoExamenController {
                 MensajeResponse.builder()
                         .mensaje("Consulta Exitosa")
                         .object(TipoExamenDto.builder()
-                                .id(Integer.valueOf(tipoExamen.getNombre()))
+                                .id(tipoExamen.getId())
+                                .nombre(tipoExamen.getNombre())
                                 .build())
                         .build()
                 ,HttpStatus.OK);
@@ -117,7 +118,8 @@ public class TipoExamenController {
             List<TipoExamen> tiposExamenes = tipoExamenService.findAll();
             List<TipoExamenDto> tiposExamenesDto = tiposExamenes.stream()
                     .map(tipoExamen -> TipoExamenDto.builder()
-                            .id(Integer.valueOf(tipoExamen.getNombre()))
+                            .id(tipoExamen.getId())
+                            .nombre(tipoExamen.getNombre())
                             .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(tiposExamenesDto, HttpStatus.OK);
