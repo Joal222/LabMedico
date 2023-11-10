@@ -10,4 +10,5 @@ public class TipoExamenDto implements Serializable {
 
     private Integer id;
     private String descripcion;
+
 }

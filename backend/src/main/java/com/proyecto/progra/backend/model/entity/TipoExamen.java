@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -37,5 +38,12 @@ public class TipoExamen implements Serializable {
 
     @Column(name = "modificado_por")
     private String modificadoPor;
+
+    /*
+    @OneToMany (mappedBy = "tipoExamen",cascade = CascadeType.ALL)
+    private List<TipoItems> tipoItemsList;
+
+
+     */
 
 }

@@ -35,10 +35,7 @@ public class TipoItemsController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("Consulta Exitosa")
-                        .object(TipoItemsDto.builder()
-                                .id(tipoItems.getId())
-                                .descripcion(tipoItems.getDescripcion())
-                                .build())
+                        .object(tipoItems)
                         .build()
                 ,HttpStatus.OK);
         }
@@ -51,6 +48,7 @@ public class TipoItemsController {
                     .map(tipoItems -> TipoItemsDto.builder()
                             .id(tipoItems.getId())
                             .descripcion(tipoItems.getDescripcion())
+                            .tipoExamen(tipoItems.getIdTipoExamen())
                             .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(tiposItemsDto, HttpStatus.OK);
