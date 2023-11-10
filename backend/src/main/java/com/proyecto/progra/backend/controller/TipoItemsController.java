@@ -35,11 +35,14 @@ public class TipoItemsController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("Consulta Exitosa")
-                        .object(tipoItems)
+                        .object(TipoItemsDto.builder()
+                                .id(tipoItems.getId())
+                                .descripcion(tipoItems.getDescripcion())
+                                .tipoExamen(tipoItems.getIdTipoExamen())
+                                .build())
                         .build()
                 ,HttpStatus.OK);
-        }
-
+    }
     @GetMapping("tipos-items")
     public ResponseEntity<?> findAll() {
         try {

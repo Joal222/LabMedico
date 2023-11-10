@@ -40,10 +40,8 @@ public class TipoExamen implements Serializable {
     private String modificadoPor;
 
     /*
-    @OneToMany (mappedBy = "tipoExamen",cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "idTipoExamen",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TipoItems> tipoItemsList;
-
-
      */
 
 }

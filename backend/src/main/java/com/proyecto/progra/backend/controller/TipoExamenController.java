@@ -2,6 +2,7 @@ package com.proyecto.progra.backend.controller;
 
 import com.proyecto.progra.backend.model.dto.TipoExamenDto;
 import com.proyecto.progra.backend.model.entity.TipoExamen;
+import com.proyecto.progra.backend.model.entity.TipoItems;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.service.ITipoExamen;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class TipoExamenController {
                     .map(tipoExamen -> TipoExamenDto.builder()
                             .id(tipoExamen.getId())
                             .descripcion(tipoExamen.getDescripcion())
+                            //.itemsList(tipoExamen.getTipoItemsList())
                             .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(tiposExamenesDto, HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.proyecto.progra.backend.service.impl;
 
 import com.proyecto.progra.backend.model.dao.TipoItemsDao;
+import com.proyecto.progra.backend.model.dto.TipoItemsDto;
 import com.proyecto.progra.backend.model.entity.TipoExamen;
 import com.proyecto.progra.backend.model.entity.TipoItems;
 import com.proyecto.progra.backend.service.ITipoItems;
