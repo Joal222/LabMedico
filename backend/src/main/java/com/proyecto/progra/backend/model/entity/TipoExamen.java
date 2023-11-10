@@ -38,5 +38,4 @@ public class TipoExamen implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-
 }
