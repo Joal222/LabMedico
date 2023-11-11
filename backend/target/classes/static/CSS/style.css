@@ -1,0 +1,251 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    line-height: 1;
+    background: #f0f0f0;
+}
+
+ul,  a{
+    list-style: none;
+    text-decoration: none;
+}
+
+/*css encabezado*/
+.encabezado{
+    font-size: 18px;
+    margin: 30px 50px;  
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    padding: 20px; /* Espacio interior para separar el contenido del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+    background: white;
+}
+
+.logo{
+    width: 100px;
+}
+.menu_list_encabezado{
+    font-size: 14px;
+    margin: 0 25px 0 0;
+    border: 2px solid #000; 
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 10px;
+    width: 100%;
+    background-color: rgb(44, 26, 238);
+    
+}
+.login_list_encabezado{
+    color: #FFFFFF;
+    font-size: 14px;
+    margin: 0 20px 0 0;
+    border: 2px solid #000; 
+    border-radius: 15px;
+    overflow: hidden;   
+    padding: 10px; 
+    width: auto;
+    background-color: rgb(44, 26, 238);
+}
+.loginUser{
+    font-size: 14px;
+    margin: 0 20px 0 0;
+    border: 2px solid #000; 
+    border-radius: 15px;
+    overflow: hidden;   
+    padding: 10px; 
+    width: 105px;
+    background-color: rgb(44, 26, 238);
+}
+.name{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*css title*/
+.nameLab{
+    font-size: 50px;
+    width: 100%;
+    height: 100px;
+}
+.container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.moving-image {
+    position: absolute;
+    top: 25px;
+    width: 280px;
+    height: 280px;
+    animation: moveImage 15s linear infinite;
+}
+
+/* Define diferentes animaciones para cada imagen */
+.moving-image:nth-child(1) {
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.moving-image:nth-child(2) {
+    left: -200px;
+    animation-delay: 3s;
+}
+
+.moving-image:nth-child(3) {
+    left: -200px;
+    animation-delay: 6s;
+}
+
+.moving-image:nth-child(4) {
+    left: -200px;
+    animation-delay: 9s;
+}
+.moving-image:nth-child(5) {
+    left: -200px;
+    animation-delay: 12s;
+}
+@keyframes moveImage {
+    0% {
+        left: -200px;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/*css servicios*/
+.servicios{
+    background: white;
+    margin: 30px 50px;
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    padding: 20px; /* Espacio interior para separar el contenido del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+}
+.serviCenter{
+    width: 1250px;
+    height: 950px;
+    
+}
+.title_Ser_item{
+    font-size: 50px;
+}
+.imagen_ser {
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.1s;
+    transform-style: preserve-3d;
+}
+
+/* Estilo de la imagen */
+.imagen_ser img {
+    width: 300px;
+    height: 200px;
+    margin: 15px 35 px; 
+}
+
+.tltle_ser{
+    font-size: 25px;
+}
+/* Estilo del texto emergente */
+.texto_ser {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 10px;
+    transform: rotateY(0deg);
+    transform-origin: center;
+    transition: transform 0.5s;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cuando el mouse se coloca sobre la imagen, esta se voltea y muestra el texto */
+.imagen_ser:hover {
+    transform: rotateY(15deg);
+}
+
+/* Cuando el mouse se coloca sobre la imagen, muestra el texto */
+.imagen_ser:hover .texto_ser {
+    transform: rotateY(0deg);
+    opacity: 10000;
+}
+.namePrueba{
+    margin: 10px 0;
+    font-size: 25px;
+}
+/*nosotros css */
+.nosotros{
+    background: white;
+    margin: 30px 50px;
+    border-radius: 20px;  
+    border: 2px solid #ccc; /* Grosor y color del borde */
+    padding: 20px; /* Espacio interior para separar el contenido del borde */
+    box-shadow: 0px 9px 17px 10px rgba(0, 0, 0, 0.3); /* Sombra con desplazamiento X, desplazamiento Y, desenfoque y color */
+}
+.nosoCenter{
+    height: 600px;
+    width: 1250px;
+}
+.temas_nosotros{
+    margin: 10px;
+    width: 300px;
+    height: 200px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    overflow: hidden;  
+}
+.tema_nosotros_prins{
+    font-weight: bold;
+}
+.parrafo_nosotros{
+    text-align: center;
+}
+
+.logo_nosotros{
+    height: 200px;
+    width: 200px;
+
+}
+
+footer{
+    width: auto;
+    text-align: center;
+    background-color: #1f1f1f;
+    padding:40px;
+}
+
+.copyImg{
+    height: 100px;
+}
+.copyright{
+    color:#FFFFFF;
+    font-size: 13px;
+    margin:20px;
+}
+.logoDesa{
+    height: 50px;
+    width: 50px;
+}
+.horarios{
+    color: #FFFFFF;
+}
+.contacto{
+    color: #FFFFFF;
+}
+.desa{
+    color: white;
+}
