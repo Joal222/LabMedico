@@ -18,7 +18,7 @@ public class MuestraItemsController {
 
     @Autowired
     private IMuestraItems muestraItemsService;
-    @PostMapping("muestra/items")
+    @PostMapping("muestra-items")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> create(@RequestBody MuestraItemsDto muestraItemsDto){
         MuestraItems muestraItemsSave = null;
@@ -42,7 +42,7 @@ public class MuestraItemsController {
         }
     }
 
-    @PutMapping ("muestra/items/{id}")
+    @PutMapping ("muestra-items/{id}")
     public ResponseEntity<?> update(@RequestBody MuestraItemsDto muestraItemsDto, @PathVariable Integer id) {
         MuestraItems muestraItemsUpdate = null ;
         try{
@@ -75,7 +75,7 @@ public class MuestraItemsController {
                             .build(),HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-    @DeleteMapping ("muestra/items/{id}")
+    @DeleteMapping ("muestra-items/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         try{
             MuestraItems muestraItemsDelete = muestraItemsService.findById(id);
@@ -89,7 +89,7 @@ public class MuestraItemsController {
                     .build(),HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-    @GetMapping("muestra/items/{id}")
+    @GetMapping("muestra-items/{id}")
     public ResponseEntity<?> showById(@PathVariable Integer id) {
         MuestraItems muestraItems = muestraItemsService.findById(id);
         if(muestraItems==null){
@@ -112,7 +112,7 @@ public class MuestraItemsController {
                         ,HttpStatus.OK);
     }
 
-    @GetMapping("muestras/items")
+    @GetMapping("muestras-items")
     public ResponseEntity<?> findAll() {
         try {
             List<MuestraItems> muestrasItems = muestraItemsService.findAll();

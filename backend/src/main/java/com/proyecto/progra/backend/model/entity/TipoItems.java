@@ -20,6 +20,10 @@ public class TipoItems implements Serializable {
     @Column(name = "id")
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_Examen")
+    private TipoExamen idTipoExamen;
+
     @Column(name = "nombre")
     private String nombre;
 
@@ -37,6 +41,7 @@ public class TipoItems implements Serializable {
 
     @Column(name = "modificado_por")
     private String modificadoPor;
+
 
 
 }
