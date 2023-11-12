@@ -21,7 +21,6 @@
 
 <body class="bodyCrearSoli">
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
     function handleCheckboxChange(checkbox) {
         const menuDropdown = document.getElementById("menuDropdown");
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -33,12 +32,40 @@
                 }
             });
 
-            menuDropdown.classList.remove("disabled");
+            // Obtén el ID de la fila actual
+            const selectedRowId = checkbox.closest('tr').querySelector('td:nth-child(2)').innerText;
+
+            // Puedes usar el ID para activar la información correspondiente
+            activarInformacion(selectedRowId);
+
+            menuDropdown.classList.remove("dropdown-content", "disabled");
         } else {
-            menuDropdown.classList.add("disabled");
+            // Si el checkbox se desmarca, puedes realizar acciones adicionales aquí
+            menuDropdown.classList.add("dropdown-content", "disabled");
         }
     }
-    });
+    function activarInformacion(selectedRowId) {
+        // Puedes realizar una solicitud adicional a la API para obtener detalles específicos
+        // sobre la muestra con el ID seleccionado. En este ejemplo, asumiré que ya tienes
+        // los detalles de la muestra y los almacenaré en un objeto ficticio llamado sampleDetails.
+        const sampleDetails = {
+            // Puedes incluir más detalles según la estructura de tu API.
+            id: selectedRowId,
+            // Otros detalles...
+        };
+
+        // Aquí debes actualizar tu interfaz de usuario con la información de muestra obtenida.
+        // Puedes mostrar los detalles en una ventana emergente, en un área específica de la página, etc.
+
+        // En este ejemplo, mostraré los detalles en la consola. En tu aplicación, debes
+        // adaptar esto a tu estructura de interfaz de usuario.
+        console.log('Detalles de la muestra seleccionada:', sampleDetails);
+
+        // Ejemplo: Mostrar los detalles en una ventana emergente (puedes personalizar esto)
+        alert(`Detalles de la muestra seleccionada:\nID: ${sampleDetails.id}\nOtro detalle: ${sampleDetails.otroDetalle}`);
+    }
+
+
 </script>
     <div class="bodyDiv">
         <div class="menuOpciones">
@@ -440,6 +467,7 @@
     if (logoutButton) {
         logoutButton.addEventListener('click', cerrarSesion);
     }
+
     });
 </script>
 <script src="JS/revisarSolicitudes.js"></script>
