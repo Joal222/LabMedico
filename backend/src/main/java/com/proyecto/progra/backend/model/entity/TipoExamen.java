@@ -1,5 +1,6 @@
 package com.proyecto.progra.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,9 +39,12 @@ public class TipoExamen implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    /*
-    @OneToMany (mappedBy = "idTipoExamen",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    /*name="id_tipo_examen" es el nombre de la fkey en la tabla hija en nuestra db, referencedColumnName = "id" es el nombre de nuestra variable dentro de la tabla padre*/
+    /*fecht = FetchTipye. EAGER indica a nuestra relación que va a obtener o mostrar como lista a nuestra tabla hija o padre*/
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="id_tipo_examen", referencedColumnName = "id")
     private List<TipoItems> tipoItemsList;
-     */
 
 }

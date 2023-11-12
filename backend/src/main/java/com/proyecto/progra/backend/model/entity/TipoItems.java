@@ -20,8 +20,8 @@ public class TipoItems implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_tipo_Examen")
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_Examen", referencedColumnName = "id")/*id viene de la clase padre, nombre de nuestra variable*/
     private TipoExamen idTipoExamen;
 
     @Column(name = "nombre")
