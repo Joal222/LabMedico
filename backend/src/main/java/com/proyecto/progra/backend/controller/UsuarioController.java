@@ -145,6 +145,7 @@ public class UsuarioController {
                                 .telefono(usuario.getTelefono())
                                 .direccion(usuario.getDireccion())
                                 .password("********")
+                                .solicitudList(usuario.getSolicitudes())
                                 .build())
                         .build()
                         ,HttpStatus.OK);
@@ -169,6 +170,7 @@ public class UsuarioController {
                             .telefono(usuario.getTelefono())
                             .direccion(usuario.getDireccion())
                             .password("********")
+                            .solicitudList(usuario.getSolicitudes())
                             .build())
                     .collect(Collectors.toList());
 

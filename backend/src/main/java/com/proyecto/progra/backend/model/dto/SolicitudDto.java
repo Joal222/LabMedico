@@ -1,8 +1,10 @@
 package com.proyecto.progra.backend.model.dto;
+import com.proyecto.progra.backend.model.entity.Muestra;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @ToString
@@ -17,4 +19,5 @@ public class SolicitudDto implements Serializable{
     private String descripcionSolicitudMuestraMedica;
     private Date fechaCreacionSolicitud;
     private Integer diasVencimientoSolicitud;
+    private List<Muestra> muestraList;
 }

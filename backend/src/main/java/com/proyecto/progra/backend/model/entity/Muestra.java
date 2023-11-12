@@ -20,8 +20,9 @@ public class Muestra implements Serializable {
     @Column (name = "id")
     private Integer id;
 
-    @Column(name = "id_solicitud_muestra_medica")
-    private Integer idSolicitudMuestraMedica;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
+    private Solicitud idSolicitudMuestraMedica;
 
     @Column(name = "id_presentacion_muestra")
     private Integer idPresentacionMuestra;
@@ -37,8 +38,6 @@ public class Muestra implements Serializable {
 
     @Column(name = "fecha_creacion_muestra")
     private Date fechaCreacionMuestra;
-
-    // Otros campos comentados
 
     @Column(name = "observacion_expediente", length = 2000)
     private String observacionExpediente;

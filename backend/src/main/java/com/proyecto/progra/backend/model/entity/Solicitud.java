@@ -1,8 +1,11 @@
 package com.proyecto.progra.backend.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -39,6 +42,9 @@ public class Solicitud implements Serializable{
     @Column(name = "dias_vencimiento_solicitud")
     private Integer diasVencimientoSolicitud;
 
-
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
+    List<Muestra> muestraList = new ArrayList<>();
 
 }

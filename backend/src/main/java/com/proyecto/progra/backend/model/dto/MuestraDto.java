@@ -1,4 +1,5 @@
 package com.proyecto.progra.backend.model.dto;
+import com.proyecto.progra.backend.model.entity.Solicitud;
 import lombok.*;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.Date;
 public class MuestraDto implements Serializable {
 
     private Integer id;
-    private Integer idSolicitudMuestraMedica;
+    private Solicitud idSolicitudMuestraMedica;
     private Integer idPresentacionMuestra;
     private Integer idTipoMuestra;
     private Integer idUnidadMedida;
