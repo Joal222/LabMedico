@@ -42,17 +42,26 @@ public class Solicitud implements Serializable{
     @Column(name = "dias_vencimiento_solicitud")
     private Integer diasVencimientoSolicitud;
 
-    /*
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Muestra> muestraList = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "items",joinColumns =
-        @JoinColumn(name = "id_solicitud_muestra_medica",referencedColumnName = "id"),inverseJoinColumns =
-            @JoinColumn(name = "id_tipo_items", referencedColumnName = "id")
-            private List<TipoItems> tipoItemsList;
-     */
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "items",
+            joinColumns = @JoinColumn(
+                    name = "id_solicitud_muestra_medica",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "id_tipo_items",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<Items> itemsList;
 
 }

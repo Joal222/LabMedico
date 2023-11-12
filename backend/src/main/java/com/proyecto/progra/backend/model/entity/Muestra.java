@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -41,4 +42,21 @@ public class Muestra implements Serializable {
 
     @Column(name = "observacion_expediente", length = 2000)
     private String observacionExpediente;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "muestra_items",
+            joinColumns = @JoinColumn(
+                    name = "id_muestra_medica",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "id_items",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<MuestraItems> muestraItemsList;
 }
