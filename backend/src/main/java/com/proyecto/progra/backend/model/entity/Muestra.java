@@ -2,6 +2,7 @@ package com.proyecto.progra.backend.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.cache.interceptor.CacheAspectSupport;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,14 +26,17 @@ public class Muestra implements Serializable {
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     private Solicitud idSolicitudMuestraMedica;
 
-    @Column(name = "id_presentacion_muestra")
-    private Integer idPresentacionMuestra;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_presentacion_muestra",referencedColumnName = "id")
+    private PresentacionMuestra idPresentacionMuestra;
 
-    @Column(name = "id_tipo_muestra")
-    private Integer idTipoMuestra;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_muestra", referencedColumnName = "id")
+    private TipoMuestra idTipoMuestra;
 
-    @Column(name = "id_unidad_medida")
-    private Integer idUnidadMedida;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_unidad_medida",referencedColumnName = "id")
+    private UnidadMedida idUnidadMedida;
 
     @Column(name = "fecha_recepcion_muestra")
     private Date fechaRecepcionMuestra;

@@ -23,8 +23,9 @@ public class BitacoraEstado implements Serializable{
     @Column(name = "id_solicitud_muestra_medica")
     private Integer idSolicitudMuestraMedica;
 
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    private Usuario idUsuario;
 
     @Column(name = "fecha_estado", columnDefinition = "timestamp default current_timestamp")
     private Timestamp fechaEstado;

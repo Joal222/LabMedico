@@ -24,14 +24,17 @@ public class Solicitud implements Serializable{
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario idUsuario;
 
-    @Column(name = "id_tipo_solicitante", columnDefinition = "integer default 1")
-    private Integer idTipoSolicitante;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_solicitante", referencedColumnName = "id",columnDefinition = "integer default 1")
+    private TipoSolicitante idTipoSolicitante;
 
-    @Column(name = "id_tipo_solicitud")
-    private Integer idTipoSolicitud;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_solicitud",referencedColumnName = "id")
+    private TipoSolicitud idTipoSolicitud;
 
-    @Column(name = "id_tipo_soporte")
-    private Integer idTipoSoporte;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_soporte", referencedColumnName = "id")
+    private TipoSoporte idTipoSoporte;
 
     @Column(name = "descripcion_solicitud_muestra_medica", length = 2000)
     private String descripcionSolicitudMuestraMedica;
@@ -63,5 +66,23 @@ public class Solicitud implements Serializable{
             )
     )
     private List<Items> itemsList;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "bitacora_estado",
+            joinColumns = @JoinColumn(
+                    name = "id_solicitud_muestra_medica",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "id_tipo_estado_solicitud",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<BitacoraEstado> bitacoraEstadoList;
+
 
 }

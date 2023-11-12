@@ -127,6 +127,7 @@ public class SolicitudController {
                                 .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                 .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
                                 .muestraList(solicitud.getMuestraList())
+                                .itemsList(solicitud.getItemsList())
                                 .build())
                         .build()
                 ,HttpStatus.OK);
@@ -147,6 +148,7 @@ public class SolicitudController {
                                     .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                     .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
                                     .muestraList(solicitud.getMuestraList())
+                                     .itemsList(solicitud.getItemsList())
                                     .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(solicitudesDto, HttpStatus.OK);
