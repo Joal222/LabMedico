@@ -11,8 +11,7 @@ import java.util.List;
 public class TipoExamenDto implements Serializable {
 
     private Integer id;
+    private String nombre;
     private String descripcion;
-    /*
     private List<TipoItems> itemsList;
-    */
 }
