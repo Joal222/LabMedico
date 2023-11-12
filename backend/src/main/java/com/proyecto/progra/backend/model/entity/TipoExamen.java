@@ -6,13 +6,12 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-@Data
+@Entity
 @AllArgsConstructor
+@Builder
+@Data
 @NoArgsConstructor
 @ToString
-@Builder
-@Entity
 @Table(name ="tipo_examen")
 public class TipoExamen implements Serializable {
 
