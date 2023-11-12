@@ -17,8 +17,9 @@ public class Solicitud implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    private Usuario idUsuario;
 
     @Column(name = "id_tipo_solicitante", columnDefinition = "integer default 1")
     private Integer idTipoSolicitante;
@@ -37,5 +38,7 @@ public class Solicitud implements Serializable{
 
     @Column(name = "dias_vencimiento_solicitud")
     private Integer diasVencimientoSolicitud;
+
+
 
 }

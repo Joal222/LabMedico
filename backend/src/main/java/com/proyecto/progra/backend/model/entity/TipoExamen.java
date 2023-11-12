@@ -27,15 +27,19 @@ public class TipoExamen implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @JsonIgnore
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 
+    @JsonIgnore
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
+    @JsonIgnore
     @Column(name = "creado_por")
     private String creadoPor;
 
+    @JsonIgnore
     @Column(name = "modificado_por")
     private String modificadoPor;
 

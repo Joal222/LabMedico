@@ -38,7 +38,9 @@ public class TipoExamenController {
                         .mensaje("Consulta Exitosa")
                         .object(TipoExamenDto.builder()
                                 .id(tipoExamen.getId())
+                                .nombre(tipoExamen.getNombre())
                                 .descripcion(tipoExamen.getDescripcion())
+                                .itemsList(tipoExamen.getTipoItemsList())
                                 .build())
                         .build()
                 ,HttpStatus.OK);

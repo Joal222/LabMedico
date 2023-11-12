@@ -36,7 +36,6 @@ public class SolicitudController {
                             .idTipoSoporte(solicitudSave.getIdTipoSoporte())
                             .descripcionSolicitudMuestraMedica(solicitudSave.getDescripcionSolicitudMuestraMedica())
                             .fechaCreacionSolicitud(solicitudSave.getFechaCreacionSolicitud())
-                            .diasVencimientoSolicitud(solicitudSave.getDiasVencimientoSolicitud())
                     .build())
                     .build()
                     ,HttpStatus.CREATED);

@@ -1,4 +1,5 @@
 package com.proyecto.progra.backend.model.dto;
+import com.proyecto.progra.backend.model.entity.Usuario;
 import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
 public class SolicitudDto implements Serializable{
 
     private Integer id;
-    private Integer idUsuario;
+    private Usuario idUsuario;
     private Integer idTipoSolicitante;
     private Integer idTipoSolicitud;
     private Integer idTipoSoporte;

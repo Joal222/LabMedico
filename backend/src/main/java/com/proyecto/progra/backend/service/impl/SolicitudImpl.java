@@ -22,7 +22,7 @@ public class SolicitudImpl implements ISolicitud {
                 .idTipoSoporte(solicitudDto.getIdTipoSoporte())
                 .descripcionSolicitudMuestraMedica(solicitudDto.getDescripcionSolicitudMuestraMedica())
                 .fechaCreacionSolicitud(solicitudDto.getFechaCreacionSolicitud())
-                .diasVencimientoSolicitud(solicitudDto.getDiasVencimientoSolicitud())
+                .diasVencimientoSolicitud(0)
                 .build();
         return solicitudDao.save(solicitud);
     }

@@ -1,8 +1,10 @@
 package com.proyecto.progra.backend.model.entity;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,15 +20,14 @@ public class Usuario implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_tipo_usuario", columnDefinition = "int default 1")
+    @Column(name = "id_tipo_usuario", columnDefinition = "integer default 1")
     private Integer idTipoUsuario;
 
-    /*@JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "id_rol")
-    */
-    @Column(name = "id_rol")
-    private Integer idRol;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_rol", referencedColumnName = "id")
+
+    private Rol idRol;
 
     @Column(name = "nit")
     private String nit;
@@ -51,4 +52,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "password")
     private String password;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_usuario",referencedColumnName = "id")
+    List<Solicitud> solicitudes =new ArrayList<>();
 }

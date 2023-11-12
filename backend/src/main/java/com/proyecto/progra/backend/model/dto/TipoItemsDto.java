@@ -12,6 +12,6 @@ public class TipoItemsDto implements Serializable {
 
     private Integer id;
     private String descripcion;
-    private TipoExamen tipoExamen;
+    private TipoExamen idTipoExamen;
 
 }
