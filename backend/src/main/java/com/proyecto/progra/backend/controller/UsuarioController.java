@@ -144,8 +144,8 @@ public class UsuarioController {
                                 .genero(usuario.getGenero())
                                 .telefono(usuario.getTelefono())
                                 .direccion(usuario.getDireccion())
-                                .password("********")
-                                .solicitudList(usuario.getSolicitudes())
+                                .password(usuario.getPassword())
+                                //.solicitudList(usuario.getSolicitudes())
                                 .build())
                         .build()
                         ,HttpStatus.OK);
@@ -169,8 +169,8 @@ public class UsuarioController {
                             .genero(usuario.getGenero())
                             .telefono(usuario.getTelefono())
                             .direccion(usuario.getDireccion())
-                            .password("********")
-                            .solicitudList(usuario.getSolicitudes())
+                            .password(usuario.getPassword())
+                            //.solicitudList(usuario.getSolicitudes())
                             .build())
                     .collect(Collectors.toList());
 

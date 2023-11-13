@@ -44,12 +44,12 @@ public class Solicitud implements Serializable{
 
     @Column(name = "dias_vencimiento_solicitud")
     private Integer diasVencimientoSolicitud;
-
+    /*
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Muestra> muestraList = new ArrayList<>();
-
+     */
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
@@ -83,6 +83,4 @@ public class Solicitud implements Serializable{
             )
     )
     private List<BitacoraEstado> bitacoraEstadoList;
-
-
 }

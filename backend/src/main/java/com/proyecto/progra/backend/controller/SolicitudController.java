@@ -126,7 +126,7 @@ public class SolicitudController {
                                 .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                 .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                 .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
-                                .muestraList(solicitud.getMuestraList())
+                                //.muestraList(solicitud.getMuestraList())
                                 .itemsList(solicitud.getItemsList())
                                 .build())
                         .build()
@@ -147,8 +147,8 @@ public class SolicitudController {
                                     .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                     .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                     .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
-                                    .muestraList(solicitud.getMuestraList())
-                                     .itemsList(solicitud.getItemsList())
+                                    //.muestraList(solicitud.getMuestraList())
+                                    .itemsList(solicitud.getItemsList())
                                     .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(solicitudesDto, HttpStatus.OK);
