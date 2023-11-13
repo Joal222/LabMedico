@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const apiUrl = 'http://localhost:8080/api/v6/tipos-examenes';
+    const apiUrl = 'http://localhost:8080/api/v1/tipos-examenes';
     const selectExamenes = document.getElementById('listExamenes');
     const modal = document.getElementById('myModal');
     const titleExamenes = document.getElementById('titleExamenes');
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para cargar los elementos asociados al tipo de examen seleccionado
     function cargarContenidoModal(tipoExamenId) {
-        const apiUrl = `http://localhost:8080/api/v7/tipos-items?tipoExamenId=${tipoExamenId}`;
+        const apiUrl = `http://localhost:8080/api/v1/tipos-items?tipoExamenId=${tipoExamenId}`;
         const modalContent = document.getElementById('modalContent');
 
         fetch(apiUrl)
