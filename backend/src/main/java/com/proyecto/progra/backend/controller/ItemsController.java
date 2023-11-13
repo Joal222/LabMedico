@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v4")
+@RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class ItemsController {
     @Autowired

@@ -1,18 +1,18 @@
 package com.proyecto.progra.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-@Data
+@Entity
 @AllArgsConstructor
+@Builder
+@Data
 @NoArgsConstructor
 @ToString
-@Builder
-@Entity
 @Table(name ="tipo_examen")
 public class TipoExamen implements Serializable {
 
@@ -27,21 +27,28 @@ public class TipoExamen implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @JsonIgnore
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 
+    @JsonIgnore
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
+    @JsonIgnore
     @Column(name = "creado_por")
     private String creadoPor;
 
+    @JsonIgnore
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    /*
-    @OneToMany (mappedBy = "idTipoExamen",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    /*name="id_tipo_examen" es el nombre de la fkey en la tabla hija en nuestra db, referencedColumnName = "id" es el nombre de nuestra variable dentro de la tabla padre*/
+    /*fecht = FetchTipye. EAGER indica a nuestra relación que va a obtener o mostrar como lista a nuestra tabla hija o padre*/
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="id_tipo_examen", referencedColumnName = "id")
     private List<TipoItems> tipoItemsList;
-     */
 
 }

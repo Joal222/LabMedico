@@ -1,6 +1,11 @@
 package com.proyecto.progra.backend.model.dto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.proyecto.progra.backend.model.entity.Rol;
+import com.proyecto.progra.backend.model.entity.Solicitud;
+import jakarta.persistence.Column;
 import lombok.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @ToString
@@ -9,7 +14,7 @@ import java.io.Serializable;
 public class UsuarioDto implements Serializable {
     private Integer id;
     private Integer idTipoUsuario;
-    private Integer idRol;
+    private Rol idRol;
     private String nit;
     private String nombres;
     private String apellidos;
@@ -18,4 +23,5 @@ public class UsuarioDto implements Serializable {
     private String telefono;
     private String direccion;
     private String password;
+    private List<Solicitud> solicitudList;
 }

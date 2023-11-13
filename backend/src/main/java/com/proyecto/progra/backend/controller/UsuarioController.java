@@ -35,9 +35,6 @@ public class UsuarioController {
             return new ResponseEntity<>(MensajeResponse.builder()
                     .mensaje("Guardado correctamente")
                     .object(UsuarioDto.builder()
-                            .id(usuarioSave.getId())
-                            .idTipoUsuario(usuarioSave.getIdTipoUsuario())
-                            .idRol(usuarioSave.getIdRol())
                             .nit(usuarioSave.getNit())
                             .nombres(usuarioSave.getNombres())
                             .apellidos(usuarioSave.getApellidos())
@@ -70,7 +67,6 @@ public class UsuarioController {
                         MensajeResponse.builder()
                                 .mensaje("Guardado correctamente")
                                 .object(UsuarioDto.builder()
-                                        .id(usuarioUpdate.getId())
                                         .idTipoUsuario(usuarioUpdate.getIdTipoUsuario())
                                         .idRol(usuarioUpdate.getIdRol())
                                         .nit(usuarioUpdate.getNit())
@@ -79,8 +75,8 @@ public class UsuarioController {
                                         .email(usuarioUpdate.getEmail())
                                         .genero(usuarioUpdate.getGenero())
                                         .telefono(usuarioUpdate.getTelefono())
-                                        .password(usuarioUpdate.getPassword())
                                         .direccion(usuarioUpdate.getDireccion())
+                                        .password(usuarioUpdate.getPassword())
                                         .build())
                                 .build()
                         ,HttpStatus.CREATED);
@@ -149,6 +145,7 @@ public class UsuarioController {
                                 .telefono(usuario.getTelefono())
                                 .direccion(usuario.getDireccion())
                                 .password(usuario.getPassword())
+                                //.solicitudList(usuario.getSolicitudes())
                                 .build())
                         .build()
                         ,HttpStatus.OK);
@@ -171,8 +168,9 @@ public class UsuarioController {
                             .email(usuario.getEmail())
                             .genero(usuario.getGenero())
                             .telefono(usuario.getTelefono())
-                            .password(usuario.getPassword())
                             .direccion(usuario.getDireccion())
+                            .password(usuario.getPassword())
+                            //.solicitudList(usuario.getSolicitudes())
                             .build())
                     .collect(Collectors.toList());
 

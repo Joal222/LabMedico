@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/v7")
+@RequestMapping("api/v1")
 @CrossOrigin(origins = "*")
 public class TipoItemsController {
 
@@ -38,7 +38,7 @@ public class TipoItemsController {
                         .object(TipoItemsDto.builder()
                                 .id(tipoItems.getId())
                                 .descripcion(tipoItems.getDescripcion())
-                                .tipoExamen(tipoItems.getIdTipoExamen())
+                                .idTipoExamen(tipoItems.getIdTipoExamen())
                                 .build())
                         .build()
                 ,HttpStatus.OK);
@@ -51,7 +51,7 @@ public class TipoItemsController {
                     .map(tipoItems -> TipoItemsDto.builder()
                             .id(tipoItems.getId())
                             .descripcion(tipoItems.getDescripcion())
-                            .tipoExamen(tipoItems.getIdTipoExamen())
+                            .idTipoExamen(tipoItems.getIdTipoExamen())
                             .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(tiposItemsDto, HttpStatus.OK);

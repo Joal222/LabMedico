@@ -1,8 +1,8 @@
 package com.proyecto.progra.backend.service.impl;
 
 import com.proyecto.progra.backend.model.dao.TipoExamenDao;
-import com.proyecto.progra.backend.model.dto.TipoExamenDto;
 import com.proyecto.progra.backend.model.entity.TipoExamen;
+import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.service.ITipoExamen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

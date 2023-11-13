@@ -30,10 +30,9 @@ public class UsuarioImpl implements IUsuario {
     @Override
     //Crea un objeto Usuario a partir de un UsuarioDto y lo guarda en la base de datos usando usuarioDao.save(usuario). Luego, devuelve el objeto Usuario guardado.
     public Usuario save(UsuarioDto usuariodto) {
-        //Rol rol = rolDao.findById(usuariodto.getRol()).orElse(null);
         Usuario usuario = Usuario.builder()
                 .id(usuariodto.getId())
-                .idTipoUsuario(usuariodto.getIdTipoUsuario())
+                .idTipoUsuario(1)
                 .idRol(usuariodto.getIdRol())
                 .nit(usuariodto.getNit())
                 .nombres(usuariodto.getNombres())

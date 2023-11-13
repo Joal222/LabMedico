@@ -10,7 +10,10 @@ import java.util.List;
 //paquete dto clase Usuario Dto para controlar los datos que quermos mostrar.
 public interface IUsuario {
     //Guardar y actualizar
-    Usuario save (UsuarioDto usuario);
+    Usuario save(UsuarioDto usuario);
+
+    //Crea un objeto Usuario a partir de un UsuarioDto y lo guarda en la base de datos usando usuarioDao.save(usuario). Luego, devuelve el objeto Usuario guardado.
+
     //Consultar
     Usuario findById(Integer id);
     //Eliminar

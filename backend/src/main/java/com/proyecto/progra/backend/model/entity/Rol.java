@@ -1,5 +1,6 @@
 package com.proyecto.progra.backend.model.entity;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -27,22 +28,27 @@ public class Rol implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @JsonIgnore
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 
+    @JsonIgnore
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
+    @JsonIgnore
     @Column(name = "creado_por")
     private String creadoPor;
 
+    @JsonIgnore
     @Column(name = "modificado_por")
     private String modificadoPor;
-    /*
+
     @JsonIgnore
-    @OneToMany(mappedBy = "rol")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_rol", referencedColumnName = "id")
     private List<Usuario> usuarios = new ArrayList<>();
-    */
+
     /*
     @PrePersist
     public void prePersist() {

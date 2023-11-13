@@ -10,11 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class SolicitudController {
 
@@ -35,8 +36,7 @@ public class SolicitudController {
                             .idTipoSolicitud(solicitudSave.getIdTipoSolicitud())
                             .idTipoSoporte(solicitudSave.getIdTipoSoporte())
                             .descripcionSolicitudMuestraMedica(solicitudSave.getDescripcionSolicitudMuestraMedica())
-                            .fechaCreacionSolicitud(solicitudSave.getFechaCreacionSolicitud())
-                            .diasVencimientoSolicitud(solicitudSave.getDiasVencimientoSolicitud())
+                            .fechaCreacionSolicitud(new Date())
                     .build())
                     .build()
                     ,HttpStatus.CREATED);
@@ -126,6 +126,8 @@ public class SolicitudController {
                                 .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                 .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                 .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
+                                //.muestraList(solicitud.getMuestraList())
+                                .itemsList(solicitud.getItemsList())
                                 .build())
                         .build()
                 ,HttpStatus.OK);
@@ -145,6 +147,8 @@ public class SolicitudController {
                                     .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                     .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                     .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
+                                    //.muestraList(solicitud.getMuestraList())
+                                    .itemsList(solicitud.getItemsList())
                                     .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(solicitudesDto, HttpStatus.OK);
