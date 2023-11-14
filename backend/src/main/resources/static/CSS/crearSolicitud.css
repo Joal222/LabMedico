@@ -87,10 +87,20 @@ ul{
     align-items: center;
 }
 
-.acciones{ 
+.acciones{
 
 }
 
+.opcioneSolicitudes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.itemsSeleccionados{
+    font-size: 10px;
+    margin-right: 150px ;
+}
 /*footer*/
 .footer{
     display: flex;
@@ -173,4 +183,7 @@ footer{
     width: 100px;
     background: #5ed6b3;
     color: white;
+}
+#selectedItemsList li {
+    color: black;
 }

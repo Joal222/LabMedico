@@ -88,30 +88,34 @@
                                 </div>
                                 <div class="tipoAndDescription">
                                     <div class="datosSolicitud">
-                                        <div class="field">
-                                            <div class="label">Tipo de Solicitud</div>
-                                            <select>
-                                                <option value="null"> --Tipo De Solicitud-- </option>
-                                                <option>MM-Muestra Medica</option>
-                                                <option>LQ-Laboratorios</option>
-                                            </select>
-                                        </div>
-                                        <div class="field">
-                                            <div class="label">Examenes</div>
-                                            <select id="listExamenes">
-                                                <option value="null"> --Tipo De Examenes-- </option>
-                                                <option></option>
-                                                <option></option>
-                                            </select>
-                                        </div>
-                                        <div id="myModal" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close" onclick="cerrarModal()">&times;</span>
-                                                <h2 id="titleExamenes"></h2>
-                                                <div id="modalContent">
-                                                    <!-- Contenido de la ventana modal (lista de elementos con checkboxes) -->
+                                        <div class="opcioneSolicitudes">
+                                            <div class="field">
+                                                <div class="label">Tipo de Solicitud</div>
+                                                <select>
+                                                    <option value="null"> --Tipo De Solicitud-- </option>
+                                                    <option>MM-Muestra Medica</option>
+                                                    <option>LQ-Laboratorios</option>
+                                                </select>
+                                            </div>
+                                            <div class="field">
+                                                <div class="label">Examenes</div>
+                                                <select id="listExamenes">
+                                                    <option value=""> --Tipo De Examenes-- </option>
+                                                </select>
+                                            </div>
+                                            <div id="myModal" class="modal">
+                                                <div class="modal-content">
+                                                    <span class="close">&times;</span>
+                                                    <h2 id="modalTitle">Items Asociados</h2>
+                                                    <ul id="modalItemList"></ul>
+                                                    <button id="guardarBtn">Guardar</button>
                                                 </div>
-                                                    <button class="seleccionar" onclick="guardarSeleccion()">Seleccionar</button>
+                                            </div>
+                                        </div>
+                                        <div class="itemsSeleccionados">
+                                            <div id="elementosSeleccionados" style="display: none">
+                                                <h3>Items Seleccionados</h3>
+                                                <ul id="selectedItemsList"></ul>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +207,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
-        console.log(usuarioEnSesion)
         if (usuarioEnSesion) {
             const username = document.getElementById('username');
             username.style.color = 'white';

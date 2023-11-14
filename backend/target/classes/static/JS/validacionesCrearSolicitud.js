@@ -1,95 +1,105 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const examSelect = document.getElementById('listExamenes');
     const apiUrl = 'http://localhost:8080/api/v1/tipos-examenes';
-    const selectExamenes = document.getElementById('listExamenes');
     const modal = document.getElementById('myModal');
-    const titleExamenes = document.getElementById('titleExamenes');
-    // Función para obtener y agregar opciones al select
-    function cargarTiposExamenes() {
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Limpiar las opciones existentes
-                selectExamenes.innerHTML = '<option value="null"> --Tipo De Examenes-- </option>';
+    const modalItemList = document.getElementById('modalItemList');
+    const modalTitle = document.getElementById('modalTitle');
+    const guardarBtn = document.getElementById('guardarBtn');
+    const selectedItemsList = document.getElementById('selectedItemsList');
+    const elementosSeleccionados = document.getElementById('elementosSeleccionados');
+    const closeBtn = document.getElementsByClassName('close')[0];
 
-                // Agregar nuevas opciones desde los datos obtenidos
-                data.forEach(tipoExamen => {
-                    const option = document.createElement('option');
-                    option.value = tipoExamen.id;
-                    option.textContent = tipoExamen.descripcion;
-                    selectExamenes.appendChild(option);
-                });
-
-                // Agregar evento de cambio al select
-                selectExamenes.addEventListener('change', abrirModal);
-            })
-            .catch(error => console.error('Error al obtener tipos de exámenes:', error));
+    if (!examSelect || !modal || !modalItemList || !modalTitle || !guardarBtn || !selectedItemsList || !elementosSeleccionados || !closeBtn) {
+        console.error('No se pudo encontrar uno o más elementos en el DOM.');
+        return;
     }
 
-    // Llamar a la función para cargar tipos de exámenes al cargar la página
-    cargarTiposExamenes();
+    let data; // Variable para almacenar los datos de la API
 
-    // Función para abrir la ventana modal y cargar contenido
-    function abrirModal() {
-        const tipoExamenId = selectExamenes.value;
+    // Realizar la solicitud a la API y llenar el select
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(apiData => {
+            data = apiData; // Almacena los datos de la API en la variable 'data'
 
-        if (tipoExamenId === 'null') {
-            // Si no se ha seleccionado un tipo de examen, no hacer nada
-            return;
-        }
+            data.forEach(examen => {
+                const option = document.createElement('option');
+                option.value = examen.id;
+                option.text = examen.descripcion;
+                examSelect.add(option);
+            });
+        })
+        .catch(error => console.error('Error al obtener datos de la API:', error));
 
-        // Obtener el nombre del tipo de examen seleccionado
-        const tipoExamenSeleccionado = selectExamenes.options[selectExamenes.selectedIndex].textContent;
 
-        // Actualizar el contenido del elemento h2
-        titleExamenes.textContent = `Items para ${tipoExamenSeleccionado}`;
+    // Función para llenar el modal con los items asociados al examen seleccionado
+    function fillModal(selectedExam) {
+        modalItemList.innerHTML = '';
 
-        // Luego, aquí deberías cargar dinámicamente el contenido de la ventana modal
-        // Puedes utilizar fetch para obtener la lista de elementos desde la API
-        cargarContenidoModal(tipoExamenId);
+        selectedExam.itemsList.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item.descripcion;
+            listItem.style.color = 'black';
 
-        // Mostrar el modal
+            // Agregar checkbox junto a cada item
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            listItem.insertBefore(checkbox, listItem.firstChild);
+
+            modalItemList.appendChild(listItem);
+        });
+
+        modalTitle.textContent = `Items Asociados a ${selectedExam.descripcion}`;
         modal.style.display = 'block';
     }
 
-    // Función para cargar los elementos asociados al tipo de examen seleccionado
-    function cargarContenidoModal(tipoExamenId) {
-        const apiUrl = `http://localhost:8080/api/v1/tipos-items?tipoExamenId=${tipoExamenId}`;
-        const modalContent = document.getElementById('modalContent');
+    // Evento al hacer clic en el botón de guardar
+    guardarBtn.addEventListener('click', function () {
+        // Obtener los checkboxes seleccionados
+        const checkboxes = document.querySelectorAll('#modalItemList input[type="checkbox"]:checked');
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Limpiar el contenido existente
-                modalContent.innerHTML = '';
+        // Hacer algo con los checkboxes seleccionados (por ejemplo, enviar al servidor)
+        checkboxes.forEach(checkbox => {
+            const selectedItem = document.createElement('li');
+            selectedItem.textContent = checkbox.nextSibling.textContent;
+            selectedItemsList.appendChild(selectedItem);
+        });
 
-                // Filtrar solo los elementos cuyo tipoExamen.id coincide con el tipoExamenId seleccionado
-                const filteredData = data.filter(item => item.tipoExamen.id === parseInt(tipoExamenId));
+        // Ajustar dinámicamente el tamaño del div elementosSeleccionados
+        elementosSeleccionados.style.height = `${checkboxes.length * 20}px`;
 
-                // Iterar a través de los datos filtrados y agregar checkboxes al contenido modal
-                filteredData.forEach(item => {
-                    // Crear el checkbox
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.value = item.id;
-                    checkbox.classList.add('item-checkbox');
+        // Mostrar el div con id "elementosSeleccionados" después de guardar
+        elementosSeleccionados.style.display = 'block';
 
-                    // Crear el título del item
-                    const label = document.createElement('label');
-                    label.textContent = item.descripcion;
-                    label.classList.add('item-label');
+        // Cerrar el modal después de guardar
+        modal.style.display = 'none';
+    });
 
-                    // Agregar el checkbox y su label al contenido modal
-                    modalContent.appendChild(checkbox);
-                    modalContent.appendChild(label);
-                });
-            })
-            .catch(error => console.error('Error al obtener tipos de items:', error));
-    }
+    // Evento al hacer clic en el botón de cerrar
+    closeBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
 
+    // Evento al seleccionar un examen
+    examSelect.addEventListener('change', function () {
+        const selectedExamIndex = examSelect.selectedIndex;
+        const selectedExam = data[selectedExamIndex];
 
+        if (!selectedExam || !selectedExam.itemsList) {
+            console.error('No se pudo encontrar o cargar la información del examen seleccionado.');
+            return;
+        }
+
+        selectedItemsList.innerHTML = '';
+
+        // Llenar el modal con los items asociados al examen seleccionado
+        fillModal(selectedExam);
+    });
+
+    // Evento al hacer clic fuera del modal
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 });
-
-function cerrarModal() {
-    const modal = document.getElementById('myModal')
-    modal.style.display = 'none';
-}
