@@ -61,8 +61,6 @@
         // adaptar esto a tu estructura de interfaz de usuario.
         console.log('Detalles de la muestra seleccionada:', sampleDetails);
 
-        // Ejemplo: Mostrar los detalles en una ventana emergente (puedes personalizar esto)
-        alert(`Detalles de la muestra seleccionada:\nID: ${sampleDetails.id}\nOtro detalle: ${sampleDetails.otroDetalle}`);
     }
 
 
@@ -226,49 +224,48 @@
                                 <div class="nameButton">
                                     <label for="codigo">codigo Solicitud</label>
                                     <input class="button" type="text" id="codigo" name="codigo"
-                                        placeholder="codigo Solicitud" required />
+                                        placeholder="codigo Solicitud" />
                                 </div>
                                 <div class="nameButton">
                                     <label for="noSoporte">No. Soporte</label>
                                     <input class="button" type="text" id="noSoporte" name="noSoporte"
-                                        placeholder="No. Soporte" required />
+                                        placeholder="No. Soporte" />
                                 </div>
                                 <div class="nameButton">
                                     <label for="nit">NIT</label>
-                                    <input class="button" type="text" id="nit" name="nit" placeholder="NIT" required />
+                                    <input class="button" type="text" id="nit" name="nit" placeholder="NIT" />
                                 </div>
                                 <div class="nameButton">
-                                    <label for="noExpediente">No. Expediente</label>
-                                    <input class="button" type="text" id="noExpediente" name="noExpediente"
-                                        placeholder="No. Expediente" required />
+                                    <label for="usuarioAsig">Usuario Asignacion</label>
+                                    <input class="button" type="text" id="usuarioAsig" name="usuarioAsig"
+                                        placeholder="No. Expediente" />
                                 </div>
                                 <div class="nameButton">
-                                    <label for="Tipo de Solicitud">Tipo de Solicitud</label>
-                                    <select class="buttonSelec">
-                                        <option>--Tipo De Solicitud--</option>
-                                        <option>MM-Muestra Medica</option>
-                                        <option>LQ-Laboratorio</option>
+                                    <label for="tipoSolicitud">Tipo de Solicitud</label>
+                                    <select class="buttonSelec" id="tipoSolicitud">
+                                        <option value="">--Tipo Solicitud--</option>
+                                        <option value="Muestra Médica">Muestra Médica</option>
+                                        <option value="Laboratorio">Laboratorio</option>
                                     </select>
                                 </div>
                                 <div class="nameButton">
-                                    <label for="estado de Solicitud">Estado de Solicitud</label>
-                                    <select class="buttonSelec">
-                                        <option>--Estado Solicitud--</option>
-                                        <option>Creado</option>
-                                        <option>Revisado</option>
+                                    <label for="fechaDesde">Fecha Desde</label>
+                                    <input class="button" type="date" id="fechaDesde" name="fechaDesde" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="fechaHasta">Fecha Hasta</label>
+                                    <input class="button" type="date" id="fechaHasta" name="fechaHasta" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="tipoSolicitud" >Estado de Solicitud</label>
+                                    <select class="buttonSelec" id="estadoSolicitud">
+                                        <option value="">--Estado Solicitud--</option>
+                                        <option value="1">Creado</option>
+                                        <option value="2">Revisado</option>
                                     </select>
                                 </div>
                                 <div class="divButon">
-                                    <button class="buttonFiltro" type="submit">
-                                        <svg class="logoBuscar" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-search" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                                            <path d="M21 21l-6 -6"></path>
-                                        </svg>Filtrar</button>
-                                    <button class="buttonFiltro" type="submit">
+                                    <button class="buttonFiltro" type="button" id="buttonLimpiar">
                                         <svg class="logoBuscar" xmlns="http://www.w3.org/2000/svg"
                                             class="icon icon-tabler icon-tabler-trash" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -279,7 +276,8 @@
                                             <path d="M14 11l0 6"></path>
                                             <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                             <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                        </svg>Limpar</button>
+                                        </svg>Limpiar
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -427,13 +425,12 @@
                         <thead>
                             <tr>
                                 <th class="select-checkbox">Seleccionar</th>
-                                <th>ID</th>
-                                <th>Tipo Usuario</th>
-                                <th>Tipo Solicitud</th>
-                                <th>TipoSoporte</th>
-                                <th>Descripción</th>
+                                <th>Codigo Solicitud</th>
+                                <th>No. Soporte</th>
+                                <th>Usuario Asignación</th>
                                 <th>Fecha Creación</th>
-                                <th>Vencimiento</th>
+                                <th>NIT</th>
+                                <th>Tipo Solicitud</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>

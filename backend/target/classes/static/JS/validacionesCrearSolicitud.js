@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             data.forEach(examen => {
                 const option = document.createElement('option');
-                option.value = examen.id;
                 option.text = examen.descripcion;
                 examSelect.add(option);
             });
