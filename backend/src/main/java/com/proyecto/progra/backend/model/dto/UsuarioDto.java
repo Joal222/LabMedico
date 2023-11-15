@@ -23,5 +23,4 @@ public class UsuarioDto implements Serializable {
     private String telefono;
     private String direccion;
     private String password;
-    private List<Solicitud> solicitudList;
 }

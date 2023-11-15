@@ -15,39 +15,43 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="rol")
-public class Rol implements Serializable {
+public class Rol{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+    @JsonIgnore
     @Column(name = "nombre")
     private String nombre;
 
+    //@JsonIgnore
     @Column(name = "descripcion")
     private String descripcion;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Column(name = "creado_por")
     private String creadoPor;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    /*
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rol", referencedColumnName = "id")
     private List<Usuario> usuarios = new ArrayList<>();
+     */
 
     /*
     @PrePersist

@@ -1,4 +1,5 @@
 package com.proyecto.progra.backend.service.impl;
+import com.proyecto.progra.backend.model.dao.RolDao;
 import com.proyecto.progra.backend.model.dao.UsuarioDao;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
@@ -20,6 +21,7 @@ public class UsuarioImpl implements IUsuario {
     //Agregar notación @Autowired que nos proporciona control a la hora de querer inyectar nuestras dependencias o instancias que se almacenan
     @Autowired
     private UsuarioDao usuarioDao;
+
     //@Autowired  // Asegúrate de tener esta anotación para la inyección de dependencias
     //private RolDao rolDao;  // Declaración de la variable rolDao
 
@@ -32,7 +34,7 @@ public class UsuarioImpl implements IUsuario {
     public Usuario save(UsuarioDto usuariodto) {
         Usuario usuario = Usuario.builder()
                 .id(usuariodto.getId())
-                .idTipoUsuario(1)
+                .idTipoUsuario(usuariodto.getIdTipoUsuario())
                 .idRol(usuariodto.getIdRol())
                 .nit(usuariodto.getNit())
                 .nombres(usuariodto.getNombres())

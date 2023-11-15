@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="usuario")
-public class Usuario implements Serializable {
+public class Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,6 @@ public class Usuario implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rol", referencedColumnName = "id")
-
     private Rol idRol;
 
     @Column(name = "nit")

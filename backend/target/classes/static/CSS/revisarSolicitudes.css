@@ -151,7 +151,7 @@ ul{
     
 }
 .encabesazoFiltro{
-    width: 820px;
+    width: 101%;
     margin: 20px;
     display: flex;
     flex-direction: column;
