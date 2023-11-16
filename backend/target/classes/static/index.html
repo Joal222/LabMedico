@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Referencia de la hoja de estilo de Css -->
+    <link rel="stylesheet" href="CSS\style.css">
+    <link rel="stylesheet" href="CSS\flexbox.css">
+    <!-- Referencia Paginas web -->
+    <link rel="stylesheet" href="static/crearSolicitud.html">
+    <link rel="stylesheet" href="src/main/resources/static/login.html">
+    <link rel="stylesheet" href="crearUsuario.html">
+    <title>Laboratorio Medico</title>
+</head>
+
+<body>
+    <div class="all">
+        <section class="encabezado" id="encabezado">
+            <a href="#encabezado">   
+            <header class="menu_header">
+                <img class="logo" src="img proyeto\logo.png">
+                <h3 class="nameLabheader">Laboratorio La Bendicion</h3>
+            </header>
+            </a>
+            <nav>
+                <ul class="menu_encabezado">
+                    <li class="menu_list_encabezado"><a class="name" href="#servicios">Servicios</a></li>
+                    <li class="menu_list_encabezado"><a class="name" href="#nosotros">Nosotros</a></li>
+                    <li class="menu_list_encabezado"><a class="name" href="#horario">Horarios</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="login_encabezado">
+                    <li class="loginUser"><a class="name" href="login.html">Iniciar Sesion</a></li>
+                    <li class="loginUser"><a class="name" href="crearUsuario.html">Crear Usuario</a></li>
+                    <li class="login_list_encabezado" id="userName"></li>
+                    <button class="login_list_encabezado" type="button" onclick="cerrarSesion()" id="logout">Cerrar Sesión</button>
+                </ul>
+            </nav>
+        </section>
+        <section class="title" id="imagenes">
+            <div class="nameLab">
+                <h1>Laboratorio La Bendición</h1>
+            </div>
+            <div class="container">
+                <img class="moving-image" src="img proyeto\labmedico.jpg" alt="Imagen 1 en movimiento">
+                <img class="moving-image" src="img proyeto\sangre.jpg" alt="Imagen 2 en movimiento">
+                <img class="moving-image" src="img proyeto\ultra.jpeg" alt="Imagen 3 en movimiento">
+                <img class="moving-image" src="img proyeto\pruebas-covid.jpg" alt="Imagen 4 en movimiento">
+                <img class="moving-image" src="img proyeto\hepatico.jpg" alt="Imagen 5 en movimiento">
+            </div>
+        </section>
+        
+        <section class="servicios" id="servicios">
+            <div class="serviCenter">
+                <ul class="title__Ser">
+                    <div class="title_Ser_item">Servicios Disponibles</div>
+                </ul>
+                <ul class="servi_ima">
+                    <div class="imagen_ser">
+                        <div class="tltle_ser"> Muestra de Orina</div>
+                        <img src="img proyeto\orina.jpg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">orina</ol>
+                            <ol>
+                                <li>Análisis de pH de la orina</li>
+                                <li>Detección de proteínas en la orina</li>
+                                <li>Identificación de glucosa en la orina</li>
+                                <li>Análisis de cetonas en la orina</li>
+                                <li>Detección de bilirrubina y urobilinógeno</li>
+                                <li>Prueba de densidad urinaria</li>
+                                <li>Evaluación de sedimentos urinarios </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Perfil Lipídico</div>
+                        <img src="img proyeto\lipidico.jpeg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Perfil Lipídico</ol>
+                            <ol>
+                                <li>Medición del colesterol total </li>
+                                <li>Niveles de lipoproteínas de alta densidad (HDL)</li>
+                                <li>Niveles de lipoproteínas de baja densidad (LDL)</li>
+                                <li>Triglicéridos en sangre</li>
+                                <li>Relación colesterol total/HDL </li>
+                                <li>Relación LDL/HDL</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Hemograma Completo</div>
+                        <img src="img proyeto\hemogramaComp.jpg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Hemograma Completo</ol>
+                            <ol>
+                                <li>Recuento de glóbulos rojos</li>
+                                <li>Recuento de glóbulos blancos y subtipos</li>
+                                <li>Hemoglobina y hematocrito</li>
+                                <li>Plaquetas en sangre</li>
+                                <li>Fórmula leucocitaria</li>
+                                <li>Análisis de glóbulos rojos: VCM, HCM, CHCM</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Prueba De Glucosa</div>
+                        <img src="img proyeto\glucosa.jpeg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Prueba De Glucosa</ol>
+                            <ol>
+                                <li>Niveles de glucosa en ayunas</li>
+                                <li>Prueba de tolerancia a la glucosa oral</li>
+                                <li>Prueba de glucosa aleatoria</li>
+                                <li>Monitoreo de glucosa posprandial (después de comer)</li>
+                                <li>Fórmula leucocitaria</li>
+                                <li>Hemoglobina A1c (HbA1c), control glucémico a largo plazo</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Evaluación De Hormonas</div>
+                        <img src="img proyeto\hormonas.jpg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Evaluación De Hormonas </ol>
+                            <ol>
+                                <li>Hormona estimulante de la tiroides (TSH)</li>
+                                <li>Hormonas tiroideas (T4 y T3)</li>
+                                <li>Hormonas sexuales (estradiol, progesterona, testosterona)</li>
+                                <li>Hormona del crecimiento (GH)</li>
+                                <li>Hormona adrenocorticótropa (ACTH)</li>
+                                <li>Hormona antidiurética (ADH) y oxitocina</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Evaluación Tiroidal</div>
+                        <img src="img proyeto\tiroildal.jpeg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Evaluación Tiroidal</ol>
+                            <ol>
+                                <li>Hormona estimulante de la tiroides (TSH)</li>
+                                <li>T4 libre (Tiroxina libre)</li>
+                                <li>T3 total (Triyodotironina total)</li>
+                                <li>T3 inversa (RT3)</li>
+                                <li>Anticuerpos antitiroideos (TPO y Tg)</li>
+                                <li>Calcitonina (en algunos casos)</li>
+                                <li>Tiroglobulina (en seguimiento de cáncer de tiroides)</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Secreciones nasales</div>
+                        <img src="img proyeto\pruebas-covid.jpg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Secreciones nasales y faríngeas</ol>
+                            <ol>
+                                <li>Prueba COVID-19</li>
+                                <li>Diagnóstico de Infecciones Respiratorias</li>
+                                <li>Identificación de Patógenos</li>
+                                <li>Identificación de Patógenos</li>
+                                <li>Investigación de Alergias</li>
+                                <li>Estudio de Marcadores Bioquímicos</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Panel Renal </div>
+                        <img src="img proyeto\renal.jpeg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Panel Renal</ol>
+                            <ol>
+                                <li>Creatinina</li>
+                                <li>Nitrógeno ureico en sangre (BUN)</li>
+                                <li>Filtrado glomerular estimado (eGFR)</li>
+                                <li>Electrolitos (sodio, potasio, cloruro)</li>
+                                <li>Ácido úrico</li>
+                                <li>Fosfato en sangre</li>
+                                <li>Relación BUN/creatinina</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="imagen_ser">
+                        <div class="tltle_ser">Enfermedades Infecciosas</div>
+                        <img src="img proyeto\ets.jpg" alt="Imagen 2">
+                        <div class="texto_ser">
+                            <ol class="namePrueba">Enfermedades Infecciosas</ol>
+                            <ol>
+                                <li>Detección de enfermedades de transmisión sexual (ETS)</li>
+                                <li>Pruebas de detección de VIH</li>
+                                <li>Pruebas de hepatitis (HBV y HCV)</li>
+                                <li>Pruebas de sífilis</li>
+                                <li>Detección de enfermedades bacterianas y virales</li>
+                            </ol>
+                        </div>
+                    </div>
+                </ul>
+                <ul class="crear_soli_ser">
+                    <li class="menu_list_encabezado"><a class="name" href="crearSolicitud.html">Crear Solicitud</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="nosotros" id="nosotros">
+            <div class="nosoCenter">
+                <ul class="title__Ser">
+                    <div class="title_Ser_item">Conocenos</div>
+                </ul>
+                <ul class="lista_nosotrso">
+                    <div class="temas_nosotros">
+                        <div class="tema_nosotros_prins">Historia Laboratorio</div>
+                        <p class="parrafo_nosotros">Nuestro laboratorio médico fue fundado en 1995 por el Dr. Juan Pérez
+                            con el objetivo de ofrecer diagnósticos precisos y
+                            confiables a la comunidad local. Desde entonces, hemos crecido y evolucionado,
+                            convirtiéndonos en un referente en pruebas
+                            de laboratorio de alta calidad.</p>
+                    </div>
+                    <div class="temas_nosotros">
+                        <div class="tema_nosotros_prins">Equipo de Expertos</div>
+                        <p class="parrafo_nosotros">Nuestro equipo está compuesto por patólogos con más de 20 años de
+                            experiencia, técnicos de laboratorio certificados y
+                            microbiólogos altamente capacitados. Todos comparten un compromiso inquebrantable con la
+                            atención al paciente.</p>
+                    </div>
+                    <div class="temas_nosotros">
+                        <div class="tema_nosotros_prins">Tecnologia de Vanguardia</div>
+                        <p class="parrafo_nosotros">Utilizamos tecnología de punta, incluyendo equipos de análisis
+                            automatizados y sistemas de información de laboratorio
+                            avanzados, para garantizar resultados precisos y rápidos.</p>
+                    </div>
+                    <div class="temas_nosotros">
+                        <div class="tema_nosotros_prins">Certificaciones y Acreditaciones</div>
+                        <p class="parrafo_nosotros"> Estamos acreditados por el Consejo de Acreditación de Laboratorios
+                            Clínicos (CLIA) y certificados por la Comisión
+                            Conjunta, lo que refuerza nuestro compromiso con la calidad.</p>
+                    </div>
+                    <div class="temas_nosotros">
+                        <div class="tema_nosotros_prins">Compromiso con la comunidad</div>
+                        <p class="parrafo_nosotros">Colaboramos activamente con organizaciones locales para ofrecer
+                            programas de detección temprana de enfermedades y
+                            promover la educación en salud en nuestra comunidad.</p>
+                    </div>
+                    <div class="temas_nosotros">
+                        <img class="logo_nosotros" src="img proyeto\logo.png">
+        
+                    </div>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="horarios" id="horario">
+        <footer class="footer" >
+            <div class="horarios">
+                <p><strong>HORARIOS:</strong></p>
+                <p>Lunes a viernes de 06:00 AM a 17:00 PM</p>
+                <p>Sábado de 06:00 AM a 12:00 PM</p>
+                <p>Domingo: cerrado</p>
+            </div>
+            <div>
+            <img class="copyImg" src="img proyeto\logoFooter.webp" alt="Logo Laboratorio la Bendicion">
+            <p class="copyright">&copy Copyright Laboratorio la Bendición - 2023</p>
+            </div>
+            <div class="contacto">
+                <p><strong>Contacto:</strong></p>
+                <p>Tel: 123456789</p>
+            </div>
+        </footer>
+        </section>  
+        
+    </div>  
+    <script src="JS/static/JS/validacionesLogin.js"></script>
+    <script>
+        const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
+        if (usuarioEnSesion) {
+            const userNameElement = document.getElementById('userName');
+            userNameElement.textContent = `${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
+            const loginUsers = document.querySelectorAll('.loginUser');
+            loginUsers.forEach(user => {
+                user.style.display = 'none';
+            });
+        } else {
+            // Ocultar elementos cuando no haya un usuario en sesión
+            const loginUsers = document.querySelectorAll('.login_list_encabezado');
+            loginUsers.forEach(user => {
+                user.style.display = 'none';
+            });
+        }        
+    
+        function cerrarSesion() {
+            // Remueve el usuario de la sesión
+            sessionStorage.removeItem('usuario');
+            window.location.href = 'index.html';
+        }        
+        // Asocia la función con el botón de Cerrar Sesión
+        const logoutButton = document.getElementById('logout');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', cerrarSesion);
+        }
+    </script>
+    
+</body>
+
+</html>

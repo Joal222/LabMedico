@@ -29,32 +29,15 @@ public class UsuarioController {
     //paquete dto clase Usuario Dto para controlar los datos que quermos mostrar.
     @PostMapping("usuario")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> create(@RequestBody UsuarioDto usuarioDto){
-        Usuario usuarioSave = null;
-        try{
-            usuarioSave = usuarioService.save(usuarioDto);
-            return new ResponseEntity<>(MensajeResponse.builder()
-                    .mensaje("Guardado correctamente")
-                    .object(UsuarioDto.builder()
-                            .nit(usuarioSave.getNit())
-                            .nombres(usuarioSave.getNombres())
-                            .apellidos(usuarioSave.getApellidos())
-                            .email(usuarioSave.getEmail())
-                            .genero(usuarioSave.getGenero())
-                            .telefono(usuarioSave.getTelefono())
-                            .direccion(usuarioSave.getDireccion())
-                            .password(usuarioSave.getPassword())
-                    .build())
-                    .build()
-                    ,HttpStatus.CREATED);
-        }catch (DataAccessException exDt){
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
+    public ResponseEntity<Void> create(@RequestBody UsuarioDto usuarioDto){
+        try {
+            usuarioService.save(usuarioDto);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (DataAccessException exDt){
+            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
         }
     }
+
 
     @PutMapping ("usuario/{id}")
     //@ResponseStatus(HttpStatus.CREATED)

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Referencia de la hoja de estilo de Css -->
+    <link rel="stylesheet" href="CSS/revisarSolicitudes.css" />
+
+    <!-- Referencia Paginas web -->
+    <link rel="stylesheet" href="login.html" />
+    <link rel="stylesheet" href="crearUsuario.html" />
+    <link rel="stylesheet" href="index.html" />
+    <link rel="stylesheet" href="crearMuestra.html  ">
+
+    <title>Revisar Solicitudes</title>
+    <!-- Referencia js -->
+    <script src="JS/crearmuestra.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body class="bodyCrearSoli">
+<script>
+    function handleCheckboxChange(checkbox) {
+        const menuDropdown = document.getElementById("menuDropdown");
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        if (checkbox.checked) {
+            checkboxes.forEach(cb => {
+                if (cb !== checkbox) {
+                    cb.checked = false;
+                }
+            });
+
+            // Obtén el ID de la fila actual
+            const selectedRowId = checkbox.closest('tr').querySelector('td:nth-child(2)').innerText;
+
+            // Puedes usar el ID para activar la información correspondiente
+            activarInformacion(selectedRowId);
+
+            menuDropdown.classList.remove("dropdown-content", "disabled");
+        } else {
+            // Si el checkbox se desmarca, puedes realizar acciones adicionales aquí
+            menuDropdown.classList.add("dropdown-content", "disabled");
+        }
+    }
+    function activarInformacion(selectedRowId) {
+        // Puedes realizar una solicitud adicional a la API para obtener detalles específicos
+        // sobre la muestra con el ID seleccionado. En este ejemplo, asumiré que ya tienes
+        // los detalles de la muestra y los almacenaré en un objeto ficticio llamado sampleDetails.
+        const sampleDetails = {
+            // Puedes incluir más detalles según la estructura de tu API.
+            id: selectedRowId,
+            // Otros detalles...
+        };
+
+        // Aquí debes actualizar tu interfaz de usuario con la información de muestra obtenida.
+        // Puedes mostrar los detalles en una ventana emergente, en un área específica de la página, etc.
+
+        // En este ejemplo, mostraré los detalles en la consola. En tu aplicación, debes
+        // adaptar esto a tu estructura de interfaz de usuario.
+        console.log('Detalles de la muestra seleccionada:', sampleDetails);
+
+    }
+
+
+</script>
+    <div class="bodyDiv">
+        <div class="menuOpciones">
+            <section class="encabezadoOpciones">
+                <a href="index.html">
+                    <header>
+                        <img class="logoLab" src="img proyeto\logo.png" alt="Logotipo de Mi Proyecto"
+                            title="Mi Proyecto" />
+                        <h3 class="nameLabheader">Laboratorio La Bendicion</h3>
+                    </header>
+                </a>
+            </section>
+            <div class="divisor"></div>
+            <a href="dashbord.html"><div class="dashboard">
+                <svg class="logo" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-2"
+                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                    <path d="M10 12h4v4h-4z"></path>
+                </svg>
+                <p class="texDash">Dashboard</p>
+            </div></a>
+            <div class="divisor"></div>
+            <div class="dashboard">
+                <svg class="logo" xmlns="http://www.w3.org/2000/svg"
+                     class="icon icon-tabler icon-tabler-user-square-rounded" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z"></path>
+                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path>
+                    <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05"></path>
+                </svg>
+                <p id="useName"></p>
+            </div>
+            <div class="divisor"></div>
+            <section class="loginOpciones">
+                <div class="Settings">
+                    <svg class="logo" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                        </path>
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                    </svg>
+                    <div class="menuDeplegable">
+                        <a href="#">Analisis Tecnico de Muestra</a>
+                        <div class="menu">
+                            <ul>
+                                <li class="login_list_encabezado">
+                                    <a class="name" href="revisarSolicitud.html">Mantenimiento de Solicitudes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="Settings">
+                    <svg class="logo" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                        </path>
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                    </svg>
+                    <div class="menuDeplegable">
+                        <a href="#">Analisis Tecnico de Mercancias</a>
+                        <div class="menu">
+                            <ul>
+                                <li class="login_list_encabezado">
+                                    <a class="name" href="documentos.html">Documentos</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="Settings">
+                    <svg class="logo" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                        </path>
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                    </svg>
+                    <div class="menuDeplegable">
+                        <a href="#">Mantenimiento</a>
+                        <div class="menu">
+                            <ul>
+                                <li class="login_list_encabezado">
+                                    <a class="name" href="#">Mantenimiento de Analistas</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="divisor"></div>
+            <div class="config">
+                <svg class="logo" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings"
+                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                        d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                    </path>
+                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                </svg>
+                <p class="texDash">Configuración</p>
+            </div>
+            <div class="cerrarSesion">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="24"
+                     height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"></path>
+                    <path d="M15 12h-12l3 -3"></path>
+                    <path d="M6 15l-3 -3"></path>
+                </svg>
+                <p class="texDash" onclick="cerrarSesion()" id="logout"><a href="#">Cerrar Sesion</a></p>
+            </div>
+        </div>
+        <div class="acciones">
+
+            <section class="encabezadoMuestra">
+                <div class="crearSolicitud">
+                    <p>Crear</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 5l0 14"></path>
+                        <path d="M5 12l14 0"></path>
+                    </svg>
+                </div>
+                <h1>Analisis Tecnico de Solicitudes</h1>
+                <svg class="logoeEnca" xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-user-square-rounded" width="24" height="24" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z"></path>
+                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path>
+                    <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05"></path>
+                </svg>
+            </section>
+
+            <section class="filtrosMuestra">
+                <div class="divParte">
+                    <div class="encabesazoFiltro">
+                        <h1>Filtros</h1>
+                        <div class="filterFlex">
+                            <form class="filterFlex" action="">
+                                <div class="nameButton">
+                                    <label for="codigo">codigo Solicitud</label>
+                                    <input class="button" type="text" id="codigo" name="codigo"
+                                        placeholder="codigo Solicitud" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="noSoporte">No. Soporte</label>
+                                    <input class="button" type="text" id="noSoporte" name="noSoporte"
+                                        placeholder="No. Soporte" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="nit">NIT</label>
+                                    <input class="button" type="text" id="nit" name="nit" placeholder="NIT" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="usuarioAsig">Usuario Asignacion</label>
+                                    <input class="button" type="text" id="usuarioAsig" name="usuarioAsig"
+                                        placeholder="No. Expediente" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="tipoSolicitud">Tipo de Solicitud</label>
+                                    <select class="buttonSelec" id="tipoSolicitud">
+                                        <option value="">--Tipo Solicitud--</option>
+                                        <option value="Muestra Médica">Muestra Médica</option>
+                                        <option value="Laboratorio">Laboratorio</option>
+                                    </select>
+                                </div>
+                                <div class="nameButton">
+                                    <label for="fechaDesde">Fecha Desde</label>
+                                    <input class="button" type="date" id="fechaDesde" name="fechaDesde" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="fechaHasta">Fecha Hasta</label>
+                                    <input class="button" type="date" id="fechaHasta" name="fechaHasta" />
+                                </div>
+                                <div class="nameButton">
+                                    <label for="tipoSolicitud" >Estado de Solicitud</label>
+                                    <select class="buttonSelec" id="estadoSolicitud">
+                                        <option value="">--Estado Solicitud--</option>
+                                        <option value="1">Creado</option>
+                                        <option value="2">Revisado</option>
+                                    </select>
+                                </div>
+                                <div class="divButon">
+                                    <button class="buttonFiltro" type="button" id="buttonLimpiar">
+                                        <svg class="logoBuscar" xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 7l16 0"></path>
+                                            <path d="M10 11l0 6"></path>
+                                            <path d="M14 11l0 6"></path>
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                        </svg>Limpiar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="divParte2">
+                    <div class="encabesazoFiltro2">
+                        <div class="dropdown">
+                            <button class="logoDropdow"> <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 6l16 0"></path>
+                                <path d="M4 12l16 0"></path>
+                                <path d="M4 18l16 0"></path>
+                            </svg></button>
+                            <div id="menuDropdown" class="dropdown-content disabled">
+                                <div class="dropdown-content">
+                                    <a class="dropdown-content-a" href="#" onclick="mostrar()">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                                                <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Info General</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Exportar</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="crearMuestra.html">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                                                <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                                                <path d="M10 14h4"></path>
+                                                <path d="M12 12v4"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Muestra</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#" onclick="expediente()">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                                                <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                                                <path d="M9 12l.01 0"></path>
+                                                <path d="M13 12l2 0"></path>
+                                                <path d="M9 16l.01 0"></path>
+                                                <path d="M13 16l2 0"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Expediente</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#" onclick="contribuyente()">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                                <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                                                <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Contribuyente</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-dots-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M5 7m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                                <path d="M16 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                                <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                                                <path d="M6 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                                                <path d="M9 17l5 -1.5"></path>
+                                                <path d="M6.5 8.5l7.81 5.37"></path>
+                                                <path d="M7 7l8 -1"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Trazabilidad</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-box-center-bottom" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M3 19v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+                                                <path d="M11 17h2"></path>
+                                                <path d="M9 14h6"></path>
+                                                <path d="M10 11h4"></path>
+                                             </svg>
+                                        </span>
+                                        <span class="name">Estado</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-qrcode" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
+                                            <path d="M7 17l0 .01"></path>
+                                            <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
+                                            <path d="M7 7l0 .01"></path>
+                                            <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
+                                            <path d="M17 7l0 .01"></path>
+                                            <path d="M14 14l3 0"></path>
+                                            <path d="M20 14l0 .01"></path>
+                                            <path d="M14 14l0 3"></path>
+                                            <path d="M14 20l3 0"></path>
+                                            <path d="M17 17l3 0"></path>
+                                            <path d="M20 17l0 3"></path>
+                                            </svg></span>
+                                        <span class="name">Crer QR</span>
+                                    </a>
+                                    <a class="dropdown-content-a" href="#" onclick="eliminar()">
+                                        <span class="logodrop">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 7l16 0"></path>
+                                            <path d="M10 11l0 6"></path>
+                                            <path d="M14 11l0 6"></path>
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                            </svg></span>
+                                        <span class="name">Eliminar</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mostrarSoliMues" class="mostrarSoliMues">
+                <div class="table-container">
+                     <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="select-checkbox">Seleccionar</th>
+                                <th>Codigo Solicitud</th>
+                                <th>No. Soporte</th>
+                                <th>Usuario Asignación</th>
+                                <th>Fecha Creación</th>
+                                <th>NIT</th>
+                                <th>Tipo Solicitud</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                         <tbody id="data"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <div class="footerInterno">
+                    <p class="copyright">&copy Copyright Laboratorio la Bendición - 2023</p>
+                </div>
+            </section>
+        </div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
+    if (usuarioEnSesion) {
+        const useName = document.getElementById('useName');
+        useName.textContent = `${usuarioEnSesion.email}`;
+    }
+
+    function cerrarSesion() {
+        // Remueve el usuario de la sesión
+        sessionStorage.removeItem('usuario');
+        window.location.href = 'index.html';
+    }
+    // Asocia la función con el botón de "Cerrar Sesión"
+    const logoutButton = document.getElementById('logout');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', cerrarSesion);
+    }
+
+    });
+</script>
+<script src="JS/revisarSolicitudes.js"></script>
+</body>
+
+</html>
