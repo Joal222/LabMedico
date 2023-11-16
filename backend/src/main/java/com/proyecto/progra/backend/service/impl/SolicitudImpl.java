@@ -2,11 +2,14 @@ package com.proyecto.progra.backend.service.impl;
 import com.proyecto.progra.backend.model.dao.SolicitudDao;
 import com.proyecto.progra.backend.model.dto.SolicitudDto;
 import com.proyecto.progra.backend.model.entity.Solicitud;
+import com.proyecto.progra.backend.projections.solicitud.ISolicitudClosedView;
 import com.proyecto.progra.backend.service.ISolicitud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SolicitudImpl implements ISolicitud {
     @Autowired
@@ -49,5 +52,10 @@ public class SolicitudImpl implements ISolicitud {
     public boolean existById(Integer id) {
 
         return solicitudDao.existsById(id);
+    }
+
+    @Override
+    public List<ISolicitudClosedView> getSolicitudProjectionAll() {
+        return solicitudDao.findAllProjectedBy();
     }
 }

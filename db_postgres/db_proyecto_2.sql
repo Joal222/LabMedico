@@ -469,21 +469,21 @@ VALUES
     (8, 'ADH', 'Hormona antidiurética (ADH) y oxitocina', CURRENT_DATE, 'José');
 
 
-select * from usuario;
-select * from tipo_soporte;
-select * from tipo_solicitud;
-select * from tipo_soporte;
-select * from rol;
-select * from tipo_estado_solicitud;
-select * from presentacion_muestra;
-select * from unidad_medida;
-select * from tipo_muestra;
-select * from tipo_examen;
-select * from tipo_items;
-select * from solicitud_muestra_medica;
-select * from muestra_medica;
-select * from items;
-select * from muestra_items;
+-- select * from usuario;
+-- select * from tipo_soporte;
+-- select * from tipo_solicitud;
+-- select * from tipo_soporte;
+-- select * from rol;
+-- select * from tipo_estado_solicitud;
+-- select * from presentacion_muestra;
+-- select * from unidad_medida;
+-- select * from tipo_muestra;
+-- select * from tipo_examen;
+-- select * from tipo_items;
+-- select * from solicitud_muestra_medica;
+-- select * from muestra_medica;
+-- select * from items;
+-- select * from muestra_items;
 
 
 -- Muestra 2
