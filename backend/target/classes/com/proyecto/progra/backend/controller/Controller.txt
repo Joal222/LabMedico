@@ -1,0 +1,52 @@
+METODOS HTTP
+    GET: Consultar
+    POST: Crear
+    PUT: Actualizar
+    DELETE: Eliminar
+Debemos tomar en cuenta los siguientes aspectos:
+    01-ESTRUCTURA DE RECURSOS
+        Revisar en carpeta de static: 01_controller_info
+            Al utilizar GET, si la palabra Usuario esta en plural = Usuarios, en nuestro Url Get sabemos que vamos a ir a traer una colección de datos.
+            Cuando utilizarmos PUT jamás debemos de dejar que en nuestra url vayan incluidos o sean visibles los campos que estamos actualizando, ya que pueden ser interceptados por un Hacker.
+                Correcto
+                GET:
+                    •   /api/v1/usuarios
+                    •   /api/v1/usuario?id=12
+                    •   /api/v1/usuario/2/telefonos * en la entidad relación existe una tabla de teléfonos para usuario, puede que tenga más de un teléfono
+                    •   /api/v1/usuario?page=2&size=10&order=desc * consulte en la página 2 de forma descendente
+                POST
+                    •   /api/v1/usuario
+                    •   /api/v1/usuario/12/restablecer-clave * aquí se está utilizando una acción en base de un controlador "restablecer-clave"
+                PUT
+                    •   /api/v1/usuario * El body por debajo
+                    •   /api/v1/usuario/1
+                    •   /api/v1/usuario?id=12 * no se recomienda ya que estamos enviando el id por la url, a menos que utilicemos encriptación.
+                DELETE
+                    •   /api/v1/usuario?id=12
+    02-STATUS CODE
+        Son los tipos de respuestas que debemos de darle a los clientes
+            Tipos de petición
+                Correcto
+                GET-DELETE
+                    •   200 OK
+                POST
+                    •   200 OK
+                    •   201 CREATE
+                PUT
+                    •   200 OK
+                    •   201 CREATE
+                ERROR
+                    •   404 NOT FOUND
+                    •   405 METHOD NOT ALLOWED
+    03-ESTRUCTURA DEL BODY RESPONSE
+        No se debe de utilizar texto planos ej: "Guaradado correcatemnte"
+            Se recomienda realizar de las siguientes formas
+                Correcto
+                    PUT-POST-DELETE:
+                        •   {codigo = 0, mensaje="Modificado/Guardado correctamente", error=fase, fecha=2023/08/04}
+                    PUT: (Excepciones)
+                        •   {codigo=2, mensaje=1,error=false,fecha=2023/08/04}
+    04-PROTEGE TU API
+        Se comienda utilizar Bearer Token, Basic Auth y OAuth 2.0
+    05-DOCUMENTA TU API
+        Al utilizar Swagger UI, nos permite documentar la API, al momento de realizar una consulta con un enlace

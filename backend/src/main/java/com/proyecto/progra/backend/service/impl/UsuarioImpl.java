@@ -3,6 +3,7 @@ import com.proyecto.progra.backend.model.dao.RolDao;
 import com.proyecto.progra.backend.model.dao.UsuarioDao;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
+import com.proyecto.progra.backend.projections.usuario.IUsuarioClosedView;
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,5 +81,10 @@ public class UsuarioImpl implements IUsuario {
     public boolean existById(Integer id) {
 
         return usuarioDao.existsById(id);
+    }
+
+    @Override
+    public List<IUsuarioClosedView> getAllUsuariosProjection() {
+        return usuarioDao.findAllProjectedBy();
     }
 }
