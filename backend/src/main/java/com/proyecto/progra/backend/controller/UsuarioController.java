@@ -172,7 +172,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("usuarios/test")
+    @GetMapping("usuarios/all")
     public List<IUsuarioClosedView> getUsuarioAll(){
         return usuarioService.getAllUsuariosProjection();
     }

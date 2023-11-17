@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="rol")
-public class Rol{
+public class Rol implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "solicitud_muestra_medica")
-public class Solicitud{
+public class Solicitud implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
