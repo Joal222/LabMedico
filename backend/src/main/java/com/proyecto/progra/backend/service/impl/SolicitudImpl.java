@@ -20,6 +20,7 @@ public class SolicitudImpl implements ISolicitud {
         Solicitud solicitud = Solicitud.builder()
                 .id(solicitudDto.getId())
                 .idUsuario(solicitudDto.getIdUsuario())
+                .numeroSoporte(solicitudDto.getNumeroSoporte())
                 .idTipoSolicitante(solicitudDto.getIdTipoSolicitante())
                 .idTipoSolicitud(solicitudDto.getIdTipoSolicitud())
                 .idTipoSoporte(solicitudDto.getIdTipoSoporte())

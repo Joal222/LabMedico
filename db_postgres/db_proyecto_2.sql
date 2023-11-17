@@ -83,15 +83,16 @@ alter table usuario
         references rol (id) match simple;
 
 create table solicitud_muestra_medica (
-                                          id SERIAL,
-                                          id_usuario integer not null,
-                                          id_tipo_solicitante integer default 1,
-                                          id_tipo_solicitud integer not null,
-                                          id_tipo_soporte integer not null, --CAMPO AGREGADO A PARTIR DE LA ELIMINACION DE TABLA DE EXPEDIENTES 23-10-23
-                                          descripcion_solicitud_muestra_medica varchar(2000) null,
-                                          fecha_creacion_solicitud date not null,
-                                          dias_vencimiento_solicitud integer null,
-                                          primary key (id)
+    id SERIAL,
+    id_usuario integer not null,
+    numero_soporte varchar(255) not null,
+    id_tipo_solicitante integer default 1,
+    id_tipo_solicitud integer not null,
+    id_tipo_soporte integer not null, --CAMPO AGREGADO A PARTIR DE LA ELIMINACION DE TABLA DE EXPEDIENTES 23-10-23
+    descripcion_solicitud_muestra_medica varchar(2000) null,
+    fecha_creacion_solicitud date not null,
+    dias_vencimiento_solicitud integer null,
+    primary key (id)
 );
 
 --CRACION DE FKEY EN TABLA SOLICITUD_MUESTRA_MEDICA POR RELACION CON TABALA TIPO_SOPORTE

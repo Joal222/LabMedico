@@ -12,6 +12,7 @@ public class SolicitudDto implements Serializable{
 
     private Integer id;
     private Usuario idUsuario;
+    private String numeroSoporte;
     private TipoSolicitante idTipoSolicitante;
     private TipoSolicitud idTipoSolicitud;
     private TipoSoporte idTipoSoporte;
