@@ -85,6 +85,7 @@ public class UsuarioImpl implements IUsuario {
 
     @Override
     public List<IUsuarioClosedView> getAllUsuariosProjection() {
+
         return usuarioDao.findAllProjectedBy();
     }
 }

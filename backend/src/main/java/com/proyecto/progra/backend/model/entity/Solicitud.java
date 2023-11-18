@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "solicitud_muestra_medica")
-public class Solicitud{
+public class Solicitud implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,9 @@ public class Solicitud{
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario idUsuario;
+
+    @Column(name = "numero_soporte")
+    private String numeroSoporte;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_solicitante", referencedColumnName = "id",columnDefinition = "integer default 1")
