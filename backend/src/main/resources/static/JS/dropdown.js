@@ -15,14 +15,14 @@ function obtenerInformacionGeneral() {
             // Actualiza los elementos del modal con los datos obtenidos de la API
             document.getElementById('codigoSolicitud').textContent = data.object.id;
             document.getElementById('nitSolicitud').textContent = data.object.idUsuario.nit;
-            document.getElementById('noSoporteModal').textContent = data.object.idTipoSoporte.id;
+            document.getElementById('noSoporteModal').textContent = data.object.numeroSoporte;
             document.getElementById('tipoSoporte').textContent = data.object.idTipoSoporte.descripcion;
-            document.getElementById('tipoSolicitante').textContent = data.object.idTipoSolicitante.nombre;
+            document.getElementById('tipoSolicitante').textContent = data.object.idTipoSolicitante.descripcion;
             document.getElementById('usuarioAsignacion').textContent = data.object.usuarioAsignado;
             document.getElementById('estadoSolicitudModal').textContent = data.object.estado;
             document.getElementById('usuarioCreacion').textContent = data.object.idTipoSolicitante.creadoPor;
             document.getElementById('fechaCreacion').textContent = fechaFormateada;
-            document.getElementById('descripcionSolicitante').textContent = data.object.idTipoSolicitante.descripcion;
+            document.getElementById('descripcionSolicitante').textContent = data.object.descripcionSolicitudMuestraMedica;
             document.getElementById('telefono').textContent = data.object.idUsuario.telefono;
             document.getElementById('email').textContent = data.object.idUsuario.email;
 

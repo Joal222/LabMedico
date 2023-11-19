@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         row.innerHTML = `
                         <td class="select-checkbox"><input type="checkbox" onchange="handleCheckboxChange(this)"></td>
                         <td>${item.id}</td>
-                        <td>${item.idTipoSolicitante.descripcion}</td>
+                        <td>${item.numeroSoporte}</td>
                         <td>${item.idTipoSoporte ? item.idTipoSoporte.descripcion : ''}</td>
                         <td>${new Date(item.fechaCreacionSolicitud).toLocaleDateString()}</td>
                         <td>${item.idUsuario.nit}</td>
