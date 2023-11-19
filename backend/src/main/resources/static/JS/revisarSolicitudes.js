@@ -39,13 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Iterar a través de los datos y agregar filas a la tabla
                 data.forEach(item => {
                     // Verificar si el elemento cumple con los filtros
+                    const fechaSolicitud = new Date(item.fechaCreacionSolicitud);
+
                     const cumpleFiltros =
                         (codigoValue === '' || item.id.toString().includes(codigoValue)) &&
                         ((item.idTipoSoporte && soporteValue === '') || (item.idTipoSoporte && item.idTipoSoporte.descripcion.includes(soporteValue))) &&
                         (nitValue === '' || item.idUsuario.nit.includes(nitValue)) &&
                         (tipoSolicitudValue === '' || item.idTipoSolicitud.descripcion.includes(tipoSolicitudValue)) &&
-                        (fechaDesdeValue === '' || (new Date(item.fechaCreacionSolicitud) >= new Date(fechaUnMesAntes) && new Date(fechaDesdeValue) >= fechaUnMesAntes && new Date(fechaDesdeValue) <= fechaActual)) &&
-                        (fechaHastaValue === '' || (new Date(item.fechaCreacionSolicitud) <= fechaActual && new Date(fechaHastaValue) >= new Date(fechaDesdeValue) && new Date(fechaHastaValue) <= fechaActual));
+                        (fechaDesdeValue === '' || fechaSolicitud >= new Date(fechaDesdeValue)) &&
+                        (fechaHastaValue === '' || fechaSolicitud <= new Date(fechaHastaValue));
 
                     if (cumpleFiltros) {
                         const row = document.createElement('tr');
@@ -95,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         limpiarFiltros();
     });
+
     filtroFechaDesde.addEventListener('input', function () {
         const fechaDesdeValue = filtroFechaDesde.value;
         const fechaHastaValue = filtroFechaHasta.value;
@@ -123,6 +126,13 @@ document.addEventListener('DOMContentLoaded', function () {
     filtroFechaHasta.addEventListener('input', function () {
         const fechaDesdeValue = filtroFechaDesde.value;
         const fechaHastaValue = filtroFechaHasta.value;
+        const fechaActual = new Date(); // Obtener la fecha actual
+
+        if (fechaHastaValue !== '' && new Date(fechaHastaValue) > fechaActual) {
+            alert('La fecha hasta no puede ser mayor que la fecha actual.');
+            filtroFechaHasta.value = '';  // Limpiar la fecha hasta
+            return;
+        }
 
         // Validar que la fecha desde no sea menor a un mes antes de la fecha actual
         const fechaUnMesAntes = new Date();
