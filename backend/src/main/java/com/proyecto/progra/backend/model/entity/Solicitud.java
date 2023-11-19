@@ -41,7 +41,6 @@ public class Solicitud implements Serializable{
     @Column(name = "descripcion_solicitud_muestra_medica", length = 2000)
     private String descripcionSolicitudMuestraMedica;
 
-
     @Column(name = "dias_vencimiento_solicitud")
     private Integer diasVencimientoSolicitud;
 
@@ -49,29 +48,9 @@ public class Solicitud implements Serializable{
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Muestra> muestraList = new ArrayList<>();
 
-    /*
-    @ManyToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinTable(
-            name = "items",
-            joinColumns = @JoinColumn(
-                    name = "id_solicitud_muestra_medica",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "id_tipo_items",
-                    referencedColumnName = "id"
-            )
-    )
-    private List<Items> itemsList;
-     */
-
     @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Items> itemsList = new ArrayList<>();
-
 
     @ManyToOne(cascade = CascadeType.DETACH, fetch=FetchType.EAGER)
     @JoinColumn(name = "id_tipo_estado_solicitud", referencedColumnName = "id")
@@ -79,7 +58,6 @@ public class Solicitud implements Serializable{
 
     @Column(name = "fecha_creacion_solicitud")
     private Date fechaCreacionSolicitud;
-
 
     @PrePersist
     public void prePersist() {

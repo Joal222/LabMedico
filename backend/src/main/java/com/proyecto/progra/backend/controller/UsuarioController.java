@@ -1,5 +1,7 @@
 package com.proyecto.progra.backend.controller;
-import com.proyecto.progra.backend.model.dto.UsuarioDto;
+
+import com.proyecto.progra.backend.model.dto.UsuarioExternalDto;
+import com.proyecto.progra.backend.model.dto.UsuarioGetDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.projections.closed.IUsuarioClosedView;
@@ -17,30 +19,31 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*")
 public class UsuarioController {
 
-    //Primero debemos de llamar a nuestro servicio según la lógica de negocio.
-    //debemos de llamar a nuestra Interfaz
     @Autowired
     private IUsuario usuarioService;
-
-    //Importantisimo! @RequestBody, aquí indicamos que cuando me envien a través de JSON la información, va a ser transformada a Usuario
-    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
-    // de método, ejemplo create sería o corresponde (HttpStatus.CREATED), para update se utiliza siempre el mismo que el de CREATE
-    //A partir de creación de paquete dto, clase UsuarioDto, se cambió la entidad de donde recibirá los datos, siendo de paquete entity clase Usuario a
-    //paquete dto clase Usuario Dto para controlar los datos que quermos mostrar.
-    @PostMapping("usuario")
+    @PostMapping("usuario/external")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> create(@RequestBody UsuarioDto usuarioDto){
-        try {
-            usuarioService.save(usuarioDto);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (DataAccessException exDt){
-            return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).build();
-        }
+    public ResponseEntity<?> createExternal(@RequestBody UsuarioExternalDto usuarioExternalDto) {
+        Usuario usuario = new Usuario();
+
+        usuario.setCui(usuarioExternalDto.getCui());
+        usuario.setIdTipoUsuario(2);
+        usuario.setNit(usuarioExternalDto.getNit());
+        usuario.setNombres(usuarioExternalDto.getNombres());
+        usuario.setApellidos(usuarioExternalDto.getApellidos());
+        usuario.setEmail(usuarioExternalDto.getEmail());
+        usuario.setGenero(usuarioExternalDto.getGenero());
+        usuario.setTelefono(usuarioExternalDto.getTelefono());
+        usuario.setDireccion(usuarioExternalDto.getDireccion());
+        usuario.setPassword(usuarioExternalDto.getPassword());
+
+        Usuario usuarioResponse = usuarioService.save(usuario);
+
+        return ResponseEntity.ok(usuarioResponse);
     }
 
-
+    /*
     @PutMapping ("usuario/{id}")
-    //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody UsuarioDto usuarioDto, @PathVariable Integer id) {
         Usuario usuarioUpdate = null ;
         try{
@@ -52,7 +55,6 @@ public class UsuarioController {
                                 .mensaje("Guardado correctamente")
                                 .object(UsuarioDto.builder()
                                         .idTipoUsuario(usuarioUpdate.getIdTipoUsuario())
-                                        .idRol(usuarioUpdate.getIdRol())
                                         .nit(usuarioUpdate.getNit())
                                         .nombres(usuarioUpdate.getNombres())
                                         .apellidos(usuarioUpdate.getApellidos())
@@ -80,12 +82,8 @@ public class UsuarioController {
                             .build(),HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-
-
-    //En los parámetros recibe el Id y no va a retornar ningún valor, hay que indicarle que nos envíe el cliente completo, no solo el Id
-    //La notación @PathVariable indica que el id se va a enviar desde nuestra URL para y eso se identifica en el @DeleteMapping("usuario") agregandoles /{id}
-    //Estudiar estructura DTO
-    @DeleteMapping ("usuario/{id}")
+     */
+    @DeleteMapping ("usuario/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         try{
             Usuario usuarioDelete = usuarioService.findById(id);
@@ -99,11 +97,7 @@ public class UsuarioController {
                     .build(),HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-
-    //Para identificar el status de Respueta "ej:200 OK" se utiliza la notación @ResponseStatus() y se inidica el número que se requiere según sea el tipo
-    // de método, ejemplo showById que es un método para consultar sería o corresponde (HttpStatus.OK) con número #200
     @GetMapping("usuario/{id}")
-    //@ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> showById(@PathVariable Integer id) {
         Usuario usuario = usuarioService.findById(id);
         if(usuario==null){
@@ -117,11 +111,11 @@ public class UsuarioController {
         return new ResponseEntity<>(
                 MensajeResponse.builder()
                         .mensaje("Consulta Exitosa")
-                        .object(UsuarioDto.builder()
+                        .object(UsuarioGetDto.builder()
                                 .id(usuario.getId())
+                                .cui(usuario.getCui())
                                 .idTipoUsuario(usuario.getIdTipoUsuario())
                                 .nit(usuario.getNit())
-                                .idRol(usuario.getIdRol())
                                 .nombres(usuario.getNombres())
                                 .apellidos(usuario.getApellidos())
                                 .email(usuario.getEmail())
@@ -129,23 +123,20 @@ public class UsuarioController {
                                 .telefono(usuario.getTelefono())
                                 .direccion(usuario.getDireccion())
                                 .password(usuario.getPassword())
-                                //.solicitudList(usuario.getSolicitudes())
                                 .build())
                         .build()
                         ,HttpStatus.OK);
     }
-
-    @GetMapping("usuarios")
+    @GetMapping("usuarios/all")
     public ResponseEntity<?> findAll() {
         try {
             List<Usuario> usuarios = usuarioService.findAll();
 
-            // Convierte la lista de entidades Usuario a lista de DTO UsuarioDto
-            List<UsuarioDto> usuariosDto = usuarios.stream()
-                    .map(usuario -> UsuarioDto.builder()
+            List<UsuarioGetDto> usuariosGetDto = usuarios.stream()
+                    .map(usuario -> UsuarioGetDto.builder()
                             .id(usuario.getId())
+                            .cui(usuario.getCui())
                             .idTipoUsuario(usuario.getIdTipoUsuario())
-                            .idRol(usuario.getIdRol())
                             .nit(usuario.getNit())
                             .nombres(usuario.getNombres())
                             .apellidos(usuario.getApellidos())
@@ -154,14 +145,11 @@ public class UsuarioController {
                             .telefono(usuario.getTelefono())
                             .direccion(usuario.getDireccion())
                             .password(usuario.getPassword())
-                            //.solicitudList(usuario.getSolicitudes())
                             .build())
                     .collect(Collectors.toList());
 
-            // Retorna la lista de DTOs en una respuesta OK
-            return new ResponseEntity<>(usuariosDto, HttpStatus.OK);
+            return new ResponseEntity<>(usuariosGetDto, HttpStatus.OK);
         } catch (DataAccessException exDt) {
-            // Si hay una excepción, devuelve un mensaje de error con un código 500 (Internal Server Error)
             return new ResponseEntity<>(
                     MensajeResponse.builder()
                             .mensaje("Error al obtener la lista de usuarios: " + exDt.getMessage())
@@ -172,19 +160,8 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("usuarios/all")
+    @GetMapping("usuarios/allProjection")
     public List<IUsuarioClosedView> getUsuarioAll(){
         return usuarioService.getAllUsuarioProjection();
     }
 }
-
-
-//Respuesta métodos Http estáticos
-    /*
-    @DeleteMapping ("usuario/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id){
-        Usuario usuarioDelete = usuarioService.findById(id);
-        usuarioService.delete(usuarioDelete);
-    }
-    */

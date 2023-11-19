@@ -44,11 +44,9 @@ public class SolicitudController {
     @Autowired
     private IItems itemsService;
 
-
-
-    @PostMapping("solicitud/externa")
+    @PostMapping("solicitud/external")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createExterna(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
+    public ResponseEntity<?> createExternal(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
         Solicitud solicitud = new Solicitud();
 
         solicitud.setIdUsuario(usuarioService.findById(solicitudCreatedDto.getIdUsuario()));
@@ -69,9 +67,9 @@ public class SolicitudController {
         return  ResponseEntity.ok(solicitudResponse);
     }
 
-    @PostMapping("solicitud/interna")
+    @PostMapping("solicitud/internal")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createInterna(@RequestBody SolicitudCreatedIntDto solicitudCreatedIntDto) {
+    public ResponseEntity<?> createInternal(@RequestBody SolicitudCreatedIntDto solicitudCreatedIntDto) {
         Solicitud solicitud = new Solicitud();
 
         solicitud.setIdUsuario(usuarioService.findByCui(solicitudCreatedIntDto.getCui()));

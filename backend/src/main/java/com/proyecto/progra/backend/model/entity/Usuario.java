@@ -20,9 +20,11 @@ public class Usuario implements Serializable{
     @Column(name = "id")
     private Integer id;
 
+    @Column (name = "cui")
+    private String cui;
+
     @Column(name = "id_tipo_usuario", columnDefinition = "integer default 1")
     private Integer idTipoUsuario;
-
 
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rol", referencedColumnName = "id")
@@ -51,9 +53,6 @@ public class Usuario implements Serializable{
 
     @Column(name = "password")
     private String password;
-
-    @Column (name = "cui")
-    private String cui;
 
     /*
     @JsonIgnore

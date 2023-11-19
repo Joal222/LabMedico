@@ -61,8 +61,9 @@ create table tipo_solicitante(
 --TABLA USUARIO*
 create table usuario (
                          id SERIAL,
+                         cui varchar(13),
     --SIN TABLA CATALOGO, POR DEFAULT 1 Y ROL CORRESPONDE A USUARIO INTERNO 2.1,2.2 ETC
-                         id_tipo_usuario integer default 1,
+                         id_tipo_usuario integer,
                          id_rol integer default null,
     --PENDIENTE DE APLICAR A MI DB LOCAL
     --id_expediente integer unique null, --ESTE CAMBO SE ELIMINO EL 23-10-23 POR LA OBIA ELIMINACION DE LA TABLA EXPEDIENTES.

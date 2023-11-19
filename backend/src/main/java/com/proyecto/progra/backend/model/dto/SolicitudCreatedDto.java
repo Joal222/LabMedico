@@ -1,10 +1,7 @@
 package com.proyecto.progra.backend.model.dto;
-
-import com.proyecto.progra.backend.model.entity.Items;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.List;
 
