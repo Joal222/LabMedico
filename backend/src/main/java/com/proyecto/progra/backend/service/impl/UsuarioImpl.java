@@ -12,29 +12,13 @@ import java.util.List;
 public class UsuarioImpl implements IUsuario {
     @Autowired
     private UsuarioDao usuarioDao;
-    /*
-    @Transactional
-    @Override
-    public Usuario save(UsuarioDto usuariodto) {
-        Usuario usuario = Usuario.builder()
-                .id(usuariodto.getId())
-                .cui(usuariodto.getCui())
-                .idTipoUsuario(usuariodto.getIdTipoUsuario())
-                .nit(usuariodto.getNit())
-                .nombres(usuariodto.getNombres())
-                .apellidos(usuariodto.getApellidos())
-                .email(usuariodto.getEmail())
-                .genero(usuariodto.getGenero())
-                .telefono(usuariodto.getTelefono())
-                .direccion(usuariodto.getDireccion())
-                .password(usuariodto.getPassword())
-                .build();
-
-        return usuarioDao.save(usuario);
-    }
-     */
     @Override
     public Usuario save(Usuario usuario) {
+        return usuarioDao.save(usuario);
+    }
+
+    @Override
+    public Usuario update(Usuario usuario) {
         return usuarioDao.save(usuario);
     }
 

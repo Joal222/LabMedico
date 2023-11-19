@@ -2,6 +2,7 @@ package com.proyecto.progra.backend.controller;
 
 import com.proyecto.progra.backend.model.dto.UsuarioExternalDto;
 import com.proyecto.progra.backend.model.dto.UsuarioGetDto;
+import com.proyecto.progra.backend.model.dto.UsuarioUpdateDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.projections.closed.IUsuarioClosedView;
@@ -41,48 +42,12 @@ public class UsuarioController {
 
         return ResponseEntity.ok(usuarioResponse);
     }
+    @PutMapping("usuario/update/{id}")
+    public Usuario update(@RequestBody Usuario usuario){
+        return usuarioService.update(usuario);
 
-    /*
-    @PutMapping ("usuario/{id}")
-    public ResponseEntity<?> update(@RequestBody UsuarioDto usuarioDto, @PathVariable Integer id) {
-        Usuario usuarioUpdate = null ;
-        try{
-            if(usuarioService.existById(id)){
-                usuarioDto.setId(id);
-                usuarioUpdate = usuarioService.save(usuarioDto);
-                return new ResponseEntity<>(
-                        MensajeResponse.builder()
-                                .mensaje("Guardado correctamente")
-                                .object(UsuarioDto.builder()
-                                        .idTipoUsuario(usuarioUpdate.getIdTipoUsuario())
-                                        .nit(usuarioUpdate.getNit())
-                                        .nombres(usuarioUpdate.getNombres())
-                                        .apellidos(usuarioUpdate.getApellidos())
-                                        .email(usuarioUpdate.getEmail())
-                                        .genero(usuarioUpdate.getGenero())
-                                        .telefono(usuarioUpdate.getTelefono())
-                                        .direccion(usuarioUpdate.getDireccion())
-                                        .password(usuarioUpdate.getPassword())
-                                        .build())
-                                .build()
-                        ,HttpStatus.CREATED);
-            }else {
-                return new ResponseEntity<>
-                        (MensajeResponse.builder()
-                                .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
-                                .object(null)
-                                .build(),HttpStatus.NOT_FOUND);
-            }
-
-        }catch (DataAccessException exDt){
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
-        }
     }
-     */
+
     @DeleteMapping ("usuario/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
         try{

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IUsuario {
     Usuario save(Usuario usuario);
+    Usuario update(Usuario usuario);
     Usuario findByCui(String cui);
     Usuario findById(Integer id);
     void delete(Usuario usuario);

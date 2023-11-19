@@ -1,12 +1,18 @@
 package com.proyecto.progra.backend.model.dto;
-import lombok.*;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 @Data
 @ToString
 @Builder
-public class UsuarioExternalDto implements Serializable {
+public class UsuarioUpdateDto implements Serializable {
+    private Integer id;
     private String cui;
+    private Integer idTipoUsuario;
     private String nit;
     private String nombres;
     private String apellidos;
