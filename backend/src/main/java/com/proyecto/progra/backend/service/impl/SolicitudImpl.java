@@ -1,11 +1,13 @@
 package com.proyecto.progra.backend.service.impl;
 import com.proyecto.progra.backend.model.dao.ItemsDao;
 import com.proyecto.progra.backend.model.dao.SolicitudDao;
+import com.proyecto.progra.backend.model.dto.SolicitudCreatedDto;
 import com.proyecto.progra.backend.model.entity.Items;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.projections.closed.ISolicitudClosedView;
 import com.proyecto.progra.backend.service.ISolicitud;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,14 +23,23 @@ public class SolicitudImpl implements ISolicitud {
     private ItemsDao itemsDao;
     @Override
     public Solicitud save(Solicitud solicitud) {
-            List<Items> itemsList = new ArrayList<>();
-            solicitud.getItemsList().forEach(item -> {
-                itemsList.add(itemsDao.findById(item.getIdTipoItems()).get());
-            });
-            solicitud.setItemsList(itemsList);
-        return solicitudDao.save(solicitud);
+    return solicitudDao.save(solicitud);
     }
 
+    /*
+    @Override
+    public Solicitud update(SolicitudCreatedDto solicitudCreatedDto, Integer id) {
+
+        Solicitud solicitud = solicitudDao.findById(id).orElse(null);
+
+        solicitud.setNumeroSoporte(solicitudCreatedDto.getNumeroSoporte());
+        solicitud.setDescripcionSolicitudMuestraMedica(solicitudCreatedDto.getDescripcionSolicitudMuestraMedica());
+        solicitud.setItemsList(solicitudCreatedDto.getItemsList());
+
+        solicitudDao.save(solicitud);
+        return solicitud;
+    }
+     */
     @Transactional(readOnly = true)
     @Override
     public Solicitud findById(Integer id) {

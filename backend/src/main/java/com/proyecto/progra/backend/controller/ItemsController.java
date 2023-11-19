@@ -20,64 +20,6 @@ public class ItemsController {
     @Autowired
     private IItems itemsService;
 
-    @PostMapping("items")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> create(@RequestBody ItemsDto itemsDto) {
-        Items itemsSave = null;
-        try {
-            itemsSave = itemsService.save(itemsDto);
-            return new ResponseEntity<>(MensajeResponse.builder()
-                    .mensaje("Guardado correctamente")
-                    .object(ItemsDto.builder()
-                            .id(itemsSave.getId())
-                            .idTipoItems(itemsSave.getIdTipoItems())
-                            .idSolicitudMuestraMedica(itemsSave.getIdSolicitudMuestraMedica())
-                            .build())
-                    .build()
-                    , HttpStatus.CREATED);
-        } catch (DataAccessException exDt) {
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(), HttpStatus.METHOD_NOT_ALLOWED);
-        }
-    }
-
-    @PutMapping("items/{id}")
-    public ResponseEntity<?> update(@RequestBody ItemsDto itemsDto, @PathVariable Integer id) {
-        Items itemsUpdate = null;
-        try {
-            if (itemsService.existById(id)) {
-                itemsDto.setId(id);
-                itemsUpdate = itemsService.save(itemsDto);
-                return new ResponseEntity<>(
-                        MensajeResponse.builder()
-                                .mensaje("Guardado correctamente")
-                                .object(ItemsDto.builder()
-                                        .id(itemsUpdate.getId())
-                                        .idTipoItems(itemsUpdate.getIdTipoItems())
-                                        .idSolicitudMuestraMedica(itemsUpdate.getIdSolicitudMuestraMedica())
-                                        .build())
-                                .build()
-                        , HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>
-                        (MensajeResponse.builder()
-                                .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
-                                .object(null)
-                                .build(),HttpStatus.NOT_FOUND);
-            }
-
-        }catch (DataAccessException exDt){
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
-        }
-    }
-
     @DeleteMapping("items/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
@@ -109,22 +51,22 @@ public class ItemsController {
                         .mensaje("Consulta Exitosa")
                         .object(ItemsDto.builder()
                                 .id(items.getId())
-                                .idTipoItems(items.getIdTipoItems())
-                                .idSolicitudMuestraMedica(items.getIdSolicitudMuestraMedica())
+                                //.idTipoItems(items.getIdTipoItems())
+                                //.idSolicitudMuestraMedica(items.getIdSolicitudMuestraMedica())
                                 .build())
                         .build()
                 , HttpStatus.OK);
     }
 
-    @GetMapping("items")
+    @GetMapping("items/all")
     public ResponseEntity<?> findAll() {
         try {
             List<Items> itemsList = itemsService.findAll();
             List<ItemsDto> itemsDtoList = itemsList.stream()
                     .map(items -> ItemsDto.builder()
                             .id(items.getId())
-                            .idTipoItems(items.getIdTipoItems())
-                            .idSolicitudMuestraMedica(items.getIdSolicitudMuestraMedica())
+                            //.idTipoItems(items.getIdTipoItems())
+                            //.idSolicitudMuestraMedica(items.getIdSolicitudMuestraMedica())
                             .build())
                     .collect(Collectors.toList());
 

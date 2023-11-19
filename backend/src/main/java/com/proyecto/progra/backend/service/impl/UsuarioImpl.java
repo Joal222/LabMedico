@@ -48,6 +48,12 @@ public class UsuarioImpl implements IUsuario {
 
         return usuarioDao.save(usuario);
     }
+
+    @Override
+    public Usuario findByCui(String cui) {
+        return usuarioDao.findByCui(cui);
+    }
+
     //Cuando sean consultas o recuperación debemos de utilizar la notación @Transactional(read Only=true) de spring framework, para asegurarnos de que solo podemos
     //realizar operaciones de solo lectura
     @Transactional(readOnly = true)

@@ -2,6 +2,7 @@ package com.proyecto.progra.backend.service;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.projections.closed.IUsuarioClosedView;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ import java.util.List;
 public interface IUsuario {
     //Guardar y actualizar
     Usuario save(UsuarioDto usuario);
+
+    Usuario findByCui(String cui);
 
     //Crea un objeto Usuario a partir de un UsuarioDto y lo guarda en la base de datos usando usuarioDao.save(usuario). Luego, devuelve el objeto Usuario guardado.
 

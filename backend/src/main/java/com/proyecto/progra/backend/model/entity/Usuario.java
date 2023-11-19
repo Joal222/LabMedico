@@ -52,6 +52,9 @@ public class Usuario implements Serializable{
     @Column(name = "password")
     private String password;
 
+    @Column (name = "cui")
+    private String cui;
+
     /*
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

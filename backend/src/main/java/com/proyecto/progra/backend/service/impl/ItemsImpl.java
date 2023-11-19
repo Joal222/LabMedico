@@ -13,14 +13,10 @@ import java.util.List;
 public class ItemsImpl implements IItems {
     @Autowired
     private ItemsDao itemsDao;
+
     @Transactional
     @Override
-    public Items save(ItemsDto itemsDto) {
-        Items items = Items.builder()
-                .id(itemsDto.getId())
-                .idTipoItems(itemsDto.getIdTipoItems())
-                .idSolicitudMuestraMedica(itemsDto.getIdSolicitudMuestraMedica())
-                .build();
+    public Items save(Items items) {
         return itemsDao.save(items);
     }
 

@@ -1,6 +1,5 @@
 package com.proyecto.progra.backend.model.dto;
 
-import com.proyecto.progra.backend.model.entity.Items;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -11,9 +10,10 @@ import java.util.List;
 @Data
 @ToString
 @Builder
-public class SolicitudCreatedDto implements Serializable{
+public class SolicitudCreatedIntDto implements Serializable{
 
     private Integer idUsuario;
+    private String cui;
     private String numeroSoporte;
     private Integer idTipoSolicitud;
     private Integer idTipoSoporte;

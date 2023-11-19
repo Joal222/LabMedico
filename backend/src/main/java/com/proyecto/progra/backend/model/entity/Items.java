@@ -1,5 +1,6 @@
 package com.proyecto.progra.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,10 +21,14 @@ public class Items implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_tipo_items")
-    private Integer idTipoItems;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_items")
+    private TipoItems idTipoItems;
 
-    @Column(name = "id_solicitud_muestra_medica")
-    private Integer idSolicitudMuestraMedica;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
+    private Solicitud idSolicitudMuestraMedica;
 
 }

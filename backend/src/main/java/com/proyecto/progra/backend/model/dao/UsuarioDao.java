@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
     List<IUsuarioClosedView> findAllProjectedBy();
+    Usuario findByCui(String cui);
 }

@@ -1,7 +1,9 @@
 package com.proyecto.progra.backend.controller;
 
 import com.proyecto.progra.backend.model.dto.SolicitudCreatedDto;
+import com.proyecto.progra.backend.model.dto.SolicitudCreatedIntDto;
 import com.proyecto.progra.backend.model.dto.SolicitudDto;
+import com.proyecto.progra.backend.model.entity.Items;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.projections.closed.ISolicitudClosedView;
@@ -36,10 +38,17 @@ public class SolicitudController {
     @Autowired
     private ITipoSolicitante tipoSolicitanteService;
 
+    @Autowired
+    private ITipoItems tipoItemsService;
 
-    @PostMapping("solicitud")
+    @Autowired
+    private IItems itemsService;
+
+
+
+    @PostMapping("solicitud/externa")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> create(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
+    public ResponseEntity<?> createExterna(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
         Solicitud solicitud = new Solicitud();
 
         solicitud.setIdUsuario(usuarioService.findById(solicitudCreatedDto.getIdUsuario()));
@@ -48,46 +57,50 @@ public class SolicitudController {
         solicitud.setIdTipoSolicitud(tipoSolicitudService.findById(solicitudCreatedDto.getIdTipoSolicitud()));
         solicitud.setIdTipoSoporte(tipoSoporteService.findById(solicitudCreatedDto.getIdTipoSolicitud()));
         solicitud.setDescripcionSolicitudMuestraMedica(solicitudCreatedDto.getDescripcionSolicitudMuestraMedica());
-        solicitud.setItemsList(solicitudCreatedDto.getItemsList());
-        return  ResponseEntity.ok(solicitudService.save(solicitud));
+
+        Solicitud solicitudResponse = solicitudService.save(solicitud);
+
+            solicitudCreatedDto.getItemsList().forEach(itemsDto -> {
+                Items items = new Items();
+                items.setIdTipoItems(tipoItemsService.findById(itemsDto.getIdTipoItems()));
+                items.setIdSolicitudMuestraMedica(solicitudResponse);
+                itemsService.save(items);
+            });
+        return  ResponseEntity.ok(solicitudResponse);
+    }
+
+    @PostMapping("solicitud/interna")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<?> createInterna(@RequestBody SolicitudCreatedIntDto solicitudCreatedIntDto) {
+        Solicitud solicitud = new Solicitud();
+
+        solicitud.setIdUsuario(usuarioService.findByCui(solicitudCreatedIntDto.getCui()));
+
+        solicitud.setNumeroSoporte(solicitudCreatedIntDto.getNumeroSoporte());
+        solicitud.setIdTipoSolicitante(tipoSolicitanteService.findById(1));
+        solicitud.setIdTipoSolicitud(tipoSolicitudService.findById(solicitudCreatedIntDto.getIdTipoSolicitud()));
+        solicitud.setIdTipoSoporte(tipoSoporteService.findById(solicitudCreatedIntDto.getIdTipoSolicitud()));
+        solicitud.setDescripcionSolicitudMuestraMedica(solicitudCreatedIntDto.getDescripcionSolicitudMuestraMedica());
+
+        Solicitud solicitudResponse = solicitudService.save(solicitud);
+
+        solicitudCreatedIntDto.getItemsList().forEach(itemsDto -> {
+            Items items = new Items();
+            items.setIdTipoItems(tipoItemsService.findById(itemsDto.getIdTipoItems()));
+            items.setIdSolicitudMuestraMedica(solicitudResponse);
+            itemsService.save(items);
+        });
+        return  ResponseEntity.ok(solicitudResponse);
     }
 
     /*
     @PutMapping("solicitud/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> update(@RequestBody SolicitudDto solicitudDto, @PathVariable Integer id) {
-        Solicitud solicitudUpdate = null;
-        try {
-            if (solicitudService.existById(id)) {
-                solicitudDto.setId(id);
-                solicitudUpdate = solicitudService.save(solicitudDto);
-                return new ResponseEntity<>(
-                        MensajeResponse.builder()
-                                .mensaje("Guardado correctamente")
-                                .object(SolicitudDto.builder()
-                                        .id(solicitudUpdate.getId())
-                                        .fechaCreacionSolicitud(solicitudUpdate.getFechaCreacionSolicitud())
-                                        .diasVencimientoSolicitud(solicitudUpdate.getDiasVencimientoSolicitud())
-                                        .build())
-                                .build()
-                        , HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>
-                        (MensajeResponse.builder()
-                                .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
-                                .object(null)
-                                .build(), HttpStatus.NOT_FOUND);
-            }
-        } catch (DataAccessException exDt) {
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(), HttpStatus.METHOD_NOT_ALLOWED);
-        }
+    public ResponseEntity<String> update(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
+        solicitudService.update(solicitudCreatedDto,id);
+        return  ResponseEntity.ok("Solicitud actualizada!");
     }
-
-     */
+    */
 
     @DeleteMapping("solicitud/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {

@@ -5,7 +5,7 @@ import com.proyecto.progra.backend.model.entity.Items;
 import java.util.List;
 
 public interface IItems {
-    Items save (ItemsDto items);
+    Items save (Items items);
     Items findById(Integer id);
     void delete(Items items);
     List<Items> findAll();
