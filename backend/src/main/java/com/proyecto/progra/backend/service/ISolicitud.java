@@ -6,7 +6,7 @@ import com.proyecto.progra.backend.projections.closed.ISolicitudClosedView;
 import java.util.List;
 
 public interface ISolicitud {
-    Solicitud save(SolicitudDto solicitud);
+    Solicitud save(Solicitud solicitud);
     Solicitud findById(Integer id);
     void delete(Solicitud solicitud);
     List<Solicitud> findAll();

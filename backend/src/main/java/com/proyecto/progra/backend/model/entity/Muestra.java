@@ -22,9 +22,10 @@ public class Muestra implements Serializable {
     @Column (name = "id")
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
-    private Solicitud idSolicitudMuestraMedica;
+    /*@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)*/
+    /*@JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")*/
+    @Column(name="id_solicitud_muestra_medica")
+    private Integer idSolicitudMuestraMedica;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_presentacion_muestra",referencedColumnName = "id")

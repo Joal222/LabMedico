@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -46,4 +48,9 @@ public class TipoItems implements Serializable {
     @JsonIgnore
     @Column(name = "modificado_por")
     private String modificadoPor;
+
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_items", referencedColumnName = "id")
+    List<Items> itemsList = new ArrayList<>();
+
 }

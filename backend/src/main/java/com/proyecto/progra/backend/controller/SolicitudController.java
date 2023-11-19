@@ -1,10 +1,11 @@
 package com.proyecto.progra.backend.controller;
 
+import com.proyecto.progra.backend.model.dto.SolicitudCreatedDto;
 import com.proyecto.progra.backend.model.dto.SolicitudDto;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
 import com.proyecto.progra.backend.projections.closed.ISolicitudClosedView;
-import com.proyecto.progra.backend.service.ISolicitud;
+import com.proyecto.progra.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -23,30 +24,34 @@ public class SolicitudController {
     @Autowired
     private ISolicitud solicitudService;
 
+    @Autowired
+    private IUsuario usuarioService;
+
+    @Autowired
+    private ITipoSolicitud tipoSolicitudService;
+
+    @Autowired
+    private ITipoSoporte tipoSoporteService;
+
+    @Autowired
+    private ITipoSolicitante tipoSolicitanteService;
+
+
     @PostMapping("solicitud")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> create(@RequestBody SolicitudDto solicitudDto) {
-        Solicitud solicitudSave = null;
-        try {
-            solicitudSave = solicitudService.save(solicitudDto);
-            return new ResponseEntity<>(MensajeResponse.builder()
-                    .mensaje("Guardado correctamente")
-                    .object(SolicitudDto.builder()
-                            .id(solicitudSave.getId())
-                            .descripcionSolicitudMuestraMedica(solicitudSave.getDescripcionSolicitudMuestraMedica())
-                            .fechaCreacionSolicitud(new Date())
-                            .build())
-                    .build()
-                    , HttpStatus.CREATED);
-        } catch (DataAccessException exDt) {
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(), HttpStatus.METHOD_NOT_ALLOWED);
-        }
+    public ResponseEntity<?> create(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
+        Solicitud solicitud = new Solicitud();
+
+        solicitud.setIdUsuario(usuarioService.findById(solicitudCreatedDto.getIdUsuario()));
+        solicitud.setNumeroSoporte(solicitudCreatedDto.getNumeroSoporte());
+        solicitud.setIdTipoSolicitante(tipoSolicitanteService.findById(2));
+        solicitud.setIdTipoSolicitud(tipoSolicitudService.findById(solicitudCreatedDto.getIdTipoSolicitud()));
+        solicitud.setIdTipoSoporte(tipoSoporteService.findById(solicitudCreatedDto.getIdTipoSolicitud()));
+        solicitud.setDescripcionSolicitudMuestraMedica(solicitudCreatedDto.getDescripcionSolicitudMuestraMedica());
+        return  ResponseEntity.ok(solicitudService.save(solicitud));
     }
 
+    /*
     @PutMapping("solicitud/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> update(@RequestBody SolicitudDto solicitudDto, @PathVariable Integer id) {
@@ -80,6 +85,8 @@ public class SolicitudController {
                             .build(), HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
+
+     */
 
     @DeleteMapping("solicitud/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
@@ -126,6 +133,7 @@ public class SolicitudController {
                                 .idTipoSolicitante(solicitud.getIdTipoSolicitante())
                                 .idTipoSolicitud(solicitud.getIdTipoSolicitud())
                                 .idTipoSoporte(solicitud.getIdTipoSoporte())
+                                .muestraList(solicitud.getMuestraList())
                                 .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                 .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                 .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
@@ -147,10 +155,10 @@ public class SolicitudController {
                                     .idTipoSolicitante(solicitud.getIdTipoSolicitante())
                                     .idTipoSolicitud(solicitud.getIdTipoSolicitud())
                                     .idTipoSoporte(solicitud.getIdTipoSoporte())
+                                    .muestraList(solicitud.getMuestraList())
                                     .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                     .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                     .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
-                                    //.muestraList(solicitud.getMuestraList())
                                     .itemsList(solicitud.getItemsList())
                                     .build())
                     .collect(Collectors.toList());

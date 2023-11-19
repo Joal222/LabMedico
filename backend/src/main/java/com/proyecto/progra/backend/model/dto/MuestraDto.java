@@ -14,7 +14,7 @@ import java.util.Date;
 public class MuestraDto implements Serializable {
 
     private Integer id;
-    private Solicitud idSolicitudMuestraMedica;
+    private Integer idSolicitudMuestraMedica;
     private PresentacionMuestra idPresentacionMuestra;
     private TipoMuestra idTipoMuestra;
     private UnidadMedida idUnidadMedida;

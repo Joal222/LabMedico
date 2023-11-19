@@ -26,5 +26,4 @@ public class Items implements Serializable {
     @Column(name = "id_solicitud_muestra_medica")
     private Integer idSolicitudMuestraMedica;
 
-
 }

@@ -9,6 +9,9 @@ public interface ISolicitudClosedView {
     IUsuarioClosedView getIdUsuario();
     String getNumeroSoporte();
     ITipoSolicitudClosedView getIdTipoSolicitud();
+    IItemsClosedView getItemsList();
     ITipoEstadoClosedView getTipoEstadoSolicitud();
     Date getFechaCreacionSolicitud();
+
+
 }

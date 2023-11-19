@@ -1,5 +1,4 @@
 package com.proyecto.progra.backend.model.entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -42,17 +41,15 @@ public class Solicitud implements Serializable{
     @Column(name = "descripcion_solicitud_muestra_medica", length = 2000)
     private String descripcionSolicitudMuestraMedica;
 
-    @Column(name = "fecha_creacion_solicitud")
-    private Date fechaCreacionSolicitud;
 
     @Column(name = "dias_vencimiento_solicitud")
     private Integer diasVencimientoSolicitud;
-    /*
-    @JsonIgnore
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Muestra> muestraList = new ArrayList<>();
-     */
+
+    /*
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
@@ -69,8 +66,34 @@ public class Solicitud implements Serializable{
             )
     )
     private List<Items> itemsList;
+     */
+
+    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
+    List<Items> itemsList = new ArrayList<>();
+
 
     @ManyToOne(cascade = CascadeType.DETACH, fetch=FetchType.EAGER)
     @JoinColumn(name = "id_tipo_estado_solicitud", referencedColumnName = "id")
     private TipoEstadoSolicitud tipoEstadoSolicitud;
+
+    @Column(name = "fecha_creacion_solicitud")
+    private Date fechaCreacionSolicitud;
+
+
+    @PrePersist
+    public void prePersist() {
+        TipoEstadoSolicitud tipoEstadoSolicitud = new TipoEstadoSolicitud();
+        tipoEstadoSolicitud.setId(1);
+        this.tipoEstadoSolicitud = tipoEstadoSolicitud;
+        this.fechaCreacionSolicitud = new Date();
+    }
+    /*
+    @PreUpdate
+    public void preUpdate() {
+        this.fechaModificacion = new Date();
+    }
+    */
+
+
 }
