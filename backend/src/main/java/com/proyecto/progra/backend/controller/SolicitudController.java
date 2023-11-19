@@ -48,6 +48,7 @@ public class SolicitudController {
         solicitud.setIdTipoSolicitud(tipoSolicitudService.findById(solicitudCreatedDto.getIdTipoSolicitud()));
         solicitud.setIdTipoSoporte(tipoSoporteService.findById(solicitudCreatedDto.getIdTipoSolicitud()));
         solicitud.setDescripcionSolicitudMuestraMedica(solicitudCreatedDto.getDescripcionSolicitudMuestraMedica());
+        solicitud.setItemsList(solicitudCreatedDto.getItemsList());
         return  ResponseEntity.ok(solicitudService.save(solicitud));
     }
 
