@@ -129,7 +129,6 @@ public class SolicitudController {
                                 .descripcionSolicitudMuestraMedica(solicitud.getDescripcionSolicitudMuestraMedica())
                                 .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                 .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
-                                //.muestraList(solicitud.getMuestraList())
                                 .itemsList(solicitud.getItemsList())
                                 .build())
                         .build()

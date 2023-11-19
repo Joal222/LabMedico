@@ -39,10 +39,4 @@ public class TipoEstadoSolicitud implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    /*
-    @ManyToMany(mappedBy = "tipoEstadoSolicitud")
-    private List<Solicitud> solicitudes;
-    */
-
-
 }

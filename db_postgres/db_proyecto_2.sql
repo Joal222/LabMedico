@@ -88,6 +88,7 @@ create table solicitud_muestra_medica (
     numero_soporte varchar(255) not null,
     id_tipo_solicitante integer default 1,
     id_tipo_solicitud integer not null,
+    id_tipo_estado_solicitud varchar(255),
     id_tipo_soporte integer not null, --CAMPO AGREGADO A PARTIR DE LA ELIMINACION DE TABLA DE EXPEDIENTES 23-10-23
     descripcion_solicitud_muestra_medica varchar(2000) null,
     fecha_creacion_solicitud date not null,
@@ -112,28 +113,9 @@ alter table solicitud_muestra_medica
     add constraint solicitud_muestra_medica_id_tipo_solicitud_fkey foreign key (id_tipo_solicitud)
         references tipo_solicitud (id) match simple;
 
---TABLA ESTADO SOLICITUD / BITCORA
-create table bitacora_estado (
-                                 id SERIAL,
-                                 id_tipo_estado_solicitud integer,
-                                 id_solicitud_muestra_medica integer,
-                                 id_usuario integer,
-                                 fecha_estado timestamp default current_timestamp,
-                                 comentario varchar (255),
-                                 primary key (id)
-);
-
-alter table bitacora_estado
-    add constraint bitacora_estado_id_tipo_estado_solicitud_fkey foreign key (id_tipo_estado_solicitud)
+alter table solicitud_muestra_medica
+    add constraint solicitud_muestra_medica_id_tipo_estado_solicitud_fkey foreign key (id_tipo_estado_solicitud)
         references tipo_estado_solicitud (id) match simple;
-
-alter table bitacora_estado
-    add constraint bitacora_estado_id_solicitud_muestra_medica_fkey foreign key (id_solicitud_muestra_medica)
-        references solicitud_muestra_medica (id) match simple;
-
-alter table bitacora_estado
-    add constraint bitacora_estado_id_usuario_fkey foreign key (id_usuario)
-        references usuario (id) match simple;
 
 --CATALOGO UNIDAD MEDIDA
 create table unidad_medida (

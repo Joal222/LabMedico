@@ -70,20 +70,7 @@ public class Solicitud implements Serializable{
     )
     private List<Items> itemsList;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinTable(
-            name = "bitacora_estado",
-            joinColumns = @JoinColumn(
-                    name = "id_solicitud_muestra_medica",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "id_tipo_estado_solicitud",
-                    referencedColumnName = "id"
-            )
-    )
-    private List<BitacoraEstado> bitacoraEstadoList;
+    @ManyToOne(cascade = CascadeType.DETACH, fetch=FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_estado_solicitud", referencedColumnName = "id")
+    private TipoEstadoSolicitud tipoEstadoSolicitud;
 }
