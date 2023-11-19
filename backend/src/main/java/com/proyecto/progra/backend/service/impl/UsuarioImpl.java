@@ -1,9 +1,8 @@
 package com.proyecto.progra.backend.service.impl;
-import com.proyecto.progra.backend.model.dao.RolDao;
 import com.proyecto.progra.backend.model.dao.UsuarioDao;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
-import com.proyecto.progra.backend.projections.usuario.IUsuarioClosedView;
+import com.proyecto.progra.backend.projections.closed.IUsuarioClosedView;
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,7 +83,7 @@ public class UsuarioImpl implements IUsuario {
     }
 
     @Override
-    public List<IUsuarioClosedView> getAllUsuariosProjection() {
+    public List<IUsuarioClosedView> getAllUsuarioProjection() {
 
         return usuarioDao.findAllProjectedBy();
     }

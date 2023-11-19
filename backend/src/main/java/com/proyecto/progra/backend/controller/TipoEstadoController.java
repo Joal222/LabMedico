@@ -1,7 +1,7 @@
 package com.proyecto.progra.backend.controller;
 
-import com.proyecto.progra.backend.projections.closed.ITipoSolicitudClosedView;
-import com.proyecto.progra.backend.service.ITipoSolicitud;
+import com.proyecto.progra.backend.projections.closed.ITipoEstadoClosedView;
+import com.proyecto.progra.backend.service.ITipoEstado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
-public class TipoSolicitudController {
+public class TipoEstadoController {
 
     @Autowired
-    private ITipoSolicitud tipoSolicitudService;
+    private ITipoEstado tipoEstadoService;
 
-    @GetMapping("tipo-solicitud/all")
-    public List<ITipoSolicitudClosedView> getTipoSolicitudAll(){
-        return tipoSolicitudService.getAllTiposSolicitudProjection();
+    @GetMapping("tipo-estado/all")
+    public List<ITipoEstadoClosedView> getTipoEstadoAll(){
+        return tipoEstadoService.getAllTipoEstadoProjection();
     }
+
 }

@@ -2,7 +2,7 @@ package com.proyecto.progra.backend.controller;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
-import com.proyecto.progra.backend.projections.usuario.IUsuarioClosedView;
+import com.proyecto.progra.backend.projections.closed.IUsuarioClosedView;
 import com.proyecto.progra.backend.service.IUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -174,7 +174,7 @@ public class UsuarioController {
 
     @GetMapping("usuarios/all")
     public List<IUsuarioClosedView> getUsuarioAll(){
-        return usuarioService.getAllUsuariosProjection();
+        return usuarioService.getAllUsuarioProjection();
     }
 }
 

@@ -24,7 +24,7 @@ public class Usuario implements Serializable{
     private Integer idTipoUsuario;
 
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rol", referencedColumnName = "id")
     private Rol idRol;
 

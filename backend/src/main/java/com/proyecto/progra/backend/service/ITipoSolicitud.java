@@ -1,6 +1,6 @@
 package com.proyecto.progra.backend.service;
 
-import com.proyecto.progra.backend.projections.tipoSolicitud.ITipoSolicitudClosedView;
+import com.proyecto.progra.backend.projections.closed.ITipoSolicitudClosedView;
 
 import java.util.List;
 

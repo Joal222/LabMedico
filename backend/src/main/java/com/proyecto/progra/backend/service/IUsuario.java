@@ -1,7 +1,7 @@
 package com.proyecto.progra.backend.service;
 import com.proyecto.progra.backend.model.dto.UsuarioDto;
 import com.proyecto.progra.backend.model.entity.Usuario;
-import com.proyecto.progra.backend.projections.usuario.IUsuarioClosedView;
+import com.proyecto.progra.backend.projections.closed.IUsuarioClosedView;
 
 import java.util.List;
 
@@ -26,5 +26,5 @@ public interface IUsuario {
 
     boolean existById(Integer id);
 
-    List<IUsuarioClosedView> getAllUsuariosProjection();
+    List<IUsuarioClosedView> getAllUsuarioProjection();
 }

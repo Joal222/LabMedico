@@ -17,15 +17,15 @@ public class BitacoraEstado implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_estado_solicitud", referencedColumnName = "id")
     private TipoEstadoSolicitud idTipoEstadoSolicitud;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica",referencedColumnName = "id")
     private Solicitud idSolicitudMuestraMedica;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario idUsuario;
 
@@ -34,6 +34,4 @@ public class BitacoraEstado implements Serializable{
 
     @Column(name = "comentario", length = 255)
     private String comentario;
-
-
 }

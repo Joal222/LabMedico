@@ -338,12 +338,12 @@ VALUES
     ('LQ', 'Laboratorio', CURRENT_DATE, 'Jonathan');
 
 -- DATOS DE PRUEBA SOLICITUD_MUESTRA_MEDICA
-INSERT INTO solicitud_muestra_medica (id_usuario, id_tipo_solicitante, id_tipo_solicitud, id_tipo_soporte, descripcion_solicitud_muestra_medica, fecha_creacion_solicitud, dias_vencimiento_solicitud)
+INSERT INTO solicitud_muestra_medica (id_usuario, numero_soporte,id_tipo_solicitante, id_tipo_solicitud, id_tipo_soporte, descripcion_solicitud_muestra_medica, fecha_creacion_solicitud, dias_vencimiento_solicitud)
 VALUES
-    (1, 1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
-    (1, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7),
-    (2, 1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
-    (2, 2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
+    (1, 'FACE-2523',1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
+    (1, 'FACE-5689',2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7),
+    (2, 'FACE-4525',1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
+    (2, 'FACE9636',2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
 
 insert into usuario (nit,nombres,apellidos,email,genero,telefono,direccion,password)
 values

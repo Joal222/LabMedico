@@ -1,7 +1,7 @@
 package com.proyecto.progra.backend.service.impl;
 
 import com.proyecto.progra.backend.model.dao.TipoSolicitudDao;
-import com.proyecto.progra.backend.projections.tipoSolicitud.ITipoSolicitudClosedView;
+import com.proyecto.progra.backend.projections.closed.ITipoSolicitudClosedView;
 import com.proyecto.progra.backend.service.ITipoSolicitud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

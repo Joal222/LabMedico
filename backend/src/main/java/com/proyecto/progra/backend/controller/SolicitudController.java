@@ -3,7 +3,7 @@ package com.proyecto.progra.backend.controller;
 import com.proyecto.progra.backend.model.dto.SolicitudDto;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
-import com.proyecto.progra.backend.projections.solicitud.ISolicitudClosedView;
+import com.proyecto.progra.backend.projections.closed.ISolicitudClosedView;
 import com.proyecto.progra.backend.service.ISolicitud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -87,13 +86,22 @@ public class SolicitudController {
         try {
             Solicitud solicitudDelete = solicitudService.findById(id);
             solicitudService.delete(solicitudDelete);
-            return new ResponseEntity<>(solicitudDelete, HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>(
+                    MensajeResponse.builder()
+                            .mensaje("Solicitud eliminada con éxito")
+                            .object(solicitudDelete)
+                            .build(),
+                    HttpStatus.NO_CONTENT
+            );
         } catch (DataAccessException exDt) {
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
+            return new ResponseEntity<>(
+                    MensajeResponse.builder()
                             .mensaje(exDt.getMessage())
                             .object(null)
-                            .build(), HttpStatus.METHOD_NOT_ALLOWED);
+                            .build(),
+                    HttpStatus.METHOD_NOT_ALLOWED
+            );
         }
     }
 

@@ -1,7 +1,7 @@
 package com.proyecto.progra.backend.model.dao;
 
 import com.proyecto.progra.backend.model.entity.TipoSolicitud;
-import com.proyecto.progra.backend.projections.tipoSolicitud.ITipoSolicitudClosedView;
+import com.proyecto.progra.backend.projections.closed.ITipoSolicitudClosedView;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

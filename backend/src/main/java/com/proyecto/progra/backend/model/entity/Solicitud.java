@@ -20,22 +20,22 @@ public class Solicitud implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     private Usuario idUsuario;
 
     @Column(name = "numero_soporte")
     private String numeroSoporte;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_solicitante", referencedColumnName = "id",columnDefinition = "integer default 1")
     private TipoSolicitante idTipoSolicitante;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_solicitud",referencedColumnName = "id")
     private TipoSolicitud idTipoSolicitud;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_soporte", referencedColumnName = "id")
     private TipoSoporte idTipoSoporte;
 

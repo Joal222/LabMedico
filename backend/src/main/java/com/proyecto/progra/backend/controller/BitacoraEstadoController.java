@@ -1,7 +1,7 @@
 package com.proyecto.progra.backend.controller;
 
-import com.proyecto.progra.backend.projections.closed.ITipoSolicitudClosedView;
-import com.proyecto.progra.backend.service.ITipoSolicitud;
+import com.proyecto.progra.backend.projections.closed.IBitacoraEstadoClosedView;
+import com.proyecto.progra.backend.service.IBitacoraEstado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
-public class TipoSolicitudController {
-
+public class BitacoraEstadoController {
     @Autowired
-    private ITipoSolicitud tipoSolicitudService;
+    private IBitacoraEstado bitacoraEstadoService;
 
-    @GetMapping("tipo-solicitud/all")
-    public List<ITipoSolicitudClosedView> getTipoSolicitudAll(){
-        return tipoSolicitudService.getAllTiposSolicitudProjection();
+    @GetMapping("bitacoras/all")
+    public List<IBitacoraEstadoClosedView> getBitacoraEStadoProjectionAll() {
+        return bitacoraEstadoService.getAllBitacoraEstadoProjection();
     }
 }
