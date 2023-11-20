@@ -28,7 +28,7 @@ public class UsuarioController {
         Usuario usuario = new Usuario();
 
         usuario.setCui(usuarioExternalDto.getCui());
-        usuario.setIdTipoUsuario(2);
+        usuario.setIdTipoUsuario(1);
         usuario.setNit(usuarioExternalDto.getNit());
         usuario.setNombres(usuarioExternalDto.getNombres());
         usuario.setApellidos(usuarioExternalDto.getApellidos());

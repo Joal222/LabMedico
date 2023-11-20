@@ -48,7 +48,7 @@ public class Solicitud implements Serializable{
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Muestra> muestraList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     List<Items> itemsList = new ArrayList<>();
 
