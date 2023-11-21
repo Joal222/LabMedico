@@ -22,20 +22,24 @@ public class Muestra implements Serializable {
     @Column (name = "id")
     private Integer id;
 
-    /*@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)*/
-    /*@JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")*/
+    /*@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
+    */
+
+    /*
     @Column(name="id_solicitud_muestra_medica")
     private Integer idSolicitudMuestraMedica;
+     */
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_presentacion_muestra",referencedColumnName = "id")
     private PresentacionMuestra idPresentacionMuestra;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_muestra", referencedColumnName = "id")
     private TipoMuestra idTipoMuestra;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_unidad_medida",referencedColumnName = "id")
     private UnidadMedida idUnidadMedida;
 
@@ -48,20 +52,18 @@ public class Muestra implements Serializable {
     @Column(name = "observacion_expediente", length = 2000)
     private String observacionExpediente;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinTable(
-            name = "muestra_items",
-            joinColumns = @JoinColumn(
-                    name = "id_muestra_medica",
-                    referencedColumnName = "id"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "id_items",
-                    referencedColumnName = "id"
-            )
-    )
-    private List<MuestraItems> muestraItemsList;
+    @PrePersist
+    public void prePersist() {
+        this.fechaRecepcionMuestra = new Date();
+        this.fechaCreacionMuestra = new Date();
+    }
+
+    /*
+    @PreUpdate
+    public void preUpdate() {
+        this.fechaModificacionMuestra = new Date();
+    }
+     */
+
+
 }

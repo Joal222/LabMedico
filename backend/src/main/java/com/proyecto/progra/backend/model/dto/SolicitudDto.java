@@ -21,4 +21,5 @@ public class SolicitudDto implements Serializable{
     private Integer diasVencimientoSolicitud;
     private List<Muestra> muestraList;
     private List<Items> itemsList;
+    private TipoEstadoSolicitud tipoEstadoSolicitud;
 }

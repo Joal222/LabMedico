@@ -61,6 +61,7 @@ public class Solicitud implements Serializable{
 
     @PrePersist
     public void prePersist() {
+
         TipoEstadoSolicitud tipoEstadoSolicitud = new TipoEstadoSolicitud();
         tipoEstadoSolicitud.setId(1);
         this.tipoEstadoSolicitud = tipoEstadoSolicitud;

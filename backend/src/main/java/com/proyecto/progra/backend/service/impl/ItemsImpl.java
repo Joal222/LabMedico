@@ -32,12 +32,13 @@ public class ItemsImpl implements IItems {
         itemsDao.delete(items);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Items> findAll() {
         return (List<Items>) itemsDao.findAll();
     }
 
+    @Transactional
     @Override
     public boolean existById(Integer id) {
         return itemsDao.existsById(id);

@@ -36,13 +36,13 @@ public class MuestraItemsImpl implements IMuestraItems {
 
         muestraItemsDao.delete(muestraItems);
     }
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<MuestraItems> findAll() {
 
         return (List<MuestraItems>) muestraItemsDao.findAll();
     }
-
+    @Transactional
     @Override
     public boolean existById(Integer id) {
 

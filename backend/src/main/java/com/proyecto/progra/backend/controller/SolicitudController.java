@@ -44,6 +44,9 @@ public class SolicitudController {
     @Autowired
     private IItems itemsService;
 
+    @Autowired
+    private ITipoEstado tipoEstadoService;
+
     @PostMapping("solicitud/external")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> createExternal(@RequestBody SolicitudCreatedDto solicitudCreatedDto) {
@@ -150,6 +153,7 @@ public class SolicitudController {
                                 .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                 .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
                                 .itemsList(solicitud.getItemsList())
+                                .tipoEstadoSolicitud(solicitud.getTipoEstadoSolicitud())
                                 .build())
                         .build()
                 , HttpStatus.OK);
@@ -172,7 +176,8 @@ public class SolicitudController {
                                     .fechaCreacionSolicitud(solicitud.getFechaCreacionSolicitud())
                                     .diasVencimientoSolicitud(solicitud.getDiasVencimientoSolicitud())
                                     .itemsList(solicitud.getItemsList())
-                                    .build())
+                                    .tipoEstadoSolicitud(solicitud.getTipoEstadoSolicitud())
+                            .build())
                     .collect(Collectors.toList());
             return new ResponseEntity<>(solicitudesDto, HttpStatus.OK);
         } catch (DataAccessException exDt) {

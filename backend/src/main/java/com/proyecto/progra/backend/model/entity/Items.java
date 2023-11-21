@@ -21,7 +21,7 @@ public class Items implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_items")
     private TipoItems idTipoItems;
