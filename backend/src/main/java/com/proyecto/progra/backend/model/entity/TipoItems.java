@@ -49,6 +49,7 @@ public class TipoItems implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tipo_items", referencedColumnName = "id")
     List<Items> itemsList = new ArrayList<>();

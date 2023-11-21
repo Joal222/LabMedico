@@ -1,4 +1,5 @@
 package com.proyecto.progra.backend.controller;
+import com.proyecto.progra.backend.model.dto.MuestraCreatedDto;
 import com.proyecto.progra.backend.model.dto.MuestraDto;
 import com.proyecto.progra.backend.model.entity.Muestra;
 import com.proyecto.progra.backend.model.payload.MensajeResponse;
@@ -18,41 +19,25 @@ public class MuestraController {
     //Full realizado
     @Autowired
     private IMuestra muestraService;
-    @PostMapping("muestra")
-    public ResponseEntity<?> create(@RequestBody MuestraDto muestraDto){
-        Muestra muestraSave = null;
-        try{
-            muestraSave=muestraService.save(muestraDto);
-            return new ResponseEntity<>(MensajeResponse.builder()
-                    .mensaje("Guardado correctamente")
-                    .object(MuestraDto.builder()
-                            .id(muestraSave.getId())
-                            .idPresentacionMuestra(muestraSave.getIdPresentacionMuestra())
-                            .idTipoMuestra(muestraSave.getIdTipoMuestra())
-                            .idUnidadMedida(muestraSave.getIdUnidadMedida())
-                            .fechaRecepcionMuestra(muestraSave.getFechaRecepcionMuestra())
-                            .fechaCreacionMuestra(muestraSave.getFechaCreacionMuestra())
-                            .observacionExpediente(muestraSave.getObservacionExpediente())
-                            .build())
-                    .build()
-                    , HttpStatus.CREATED);
-        }catch (DataAccessException exDt){
-            return new ResponseEntity<>
-                    (MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(),HttpStatus.METHOD_NOT_ALLOWED);
+    @PostMapping("muestra/created")
+    public ResponseEntity<?> created(@RequestBody MuestraCreatedDto muestraCreatedDto){
+        Muestra muestra = new Muestra();
+
+        muestra.setObservacionExpediente(muestraCreatedDto.getObservacionExpediente());
+
+        Muestra muestraResponse = muestraService.save(muestra);
+        return ResponseEntity.ok(muestraResponse);
+
         }
 
-    }
-
+    /*
     @PutMapping("muestra/{id}")
-    public ResponseEntity<?> update(@RequestBody MuestraDto muestraDto, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@RequestBody Muestra muestra, @PathVariable Integer id) {
         Muestra muestraUpdate = null;
         try {
             if (muestraService.existById(id)) {
-                muestraDto.setId(id);
-                muestraUpdate = muestraService.save(muestraDto);
+                muestra.setId(id);
+                muestraUpdate = muestraService.save(muestra);
                 return new ResponseEntity<>(
                         MensajeResponse.builder()
                                 .mensaje("Guardado correctamente")
@@ -82,7 +67,7 @@ public class MuestraController {
                             .build(), HttpStatus.METHOD_NOT_ALLOWED);
         }
     }
-
+     */
 
     @DeleteMapping ("muestra/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
@@ -115,7 +100,7 @@ public class MuestraController {
                         .mensaje("Consulta Exitosa")
                         .object(MuestraDto.builder()
                                 .id(muestra.getId())
-                                .idSolicitudMuestraMedica(muestra.getIdSolicitudMuestraMedica())
+                                //.idSolicitudMuestraMedica(muestra.getIdSolicitudMuestraMedica())
                                 .idPresentacionMuestra(muestra.getIdPresentacionMuestra())
                                 .idTipoMuestra(muestra.getIdTipoMuestra())
                                 .idUnidadMedida(muestra.getIdUnidadMedida())
@@ -134,7 +119,7 @@ public class MuestraController {
             List<MuestraDto> muestrasDto = muestras.stream()
                     .map(muestra -> MuestraDto.builder()
                             .id(muestra.getId())
-                            .idSolicitudMuestraMedica(muestra.getIdSolicitudMuestraMedica())
+                            //.idSolicitudMuestraMedica(muestra.getIdSolicitudMuestraMedica())
                             .idPresentacionMuestra(muestra.getIdPresentacionMuestra())
                             .idTipoMuestra(muestra.getIdTipoMuestra())
                             .idUnidadMedida(muestra.getIdUnidadMedida())

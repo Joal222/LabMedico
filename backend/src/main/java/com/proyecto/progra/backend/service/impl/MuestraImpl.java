@@ -15,18 +15,7 @@ public class MuestraImpl implements IMuestra {
 
     @Transactional
     @Override
-    public Muestra save(MuestraDto muestraDto) {
-        Muestra muestra = Muestra.builder()
-                .id(muestraDto.getId())
-                .idSolicitudMuestraMedica(muestraDto.getIdSolicitudMuestraMedica())
-                .idPresentacionMuestra(muestraDto.getIdPresentacionMuestra())
-                .idTipoMuestra(muestraDto.getIdTipoMuestra())
-                .idUnidadMedida(muestraDto.getIdUnidadMedida())
-                .fechaRecepcionMuestra(muestraDto.getFechaRecepcionMuestra())
-                .fechaCreacionMuestra(muestraDto.getFechaCreacionMuestra())
-                .observacionExpediente(muestraDto.getObservacionExpediente())
-                .build();
-
+    public Muestra save(Muestra muestra) {
         return muestraDao.save(muestra);
     }
 
@@ -43,13 +32,13 @@ public class MuestraImpl implements IMuestra {
         muestraDao.delete(muestra);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Muestra> findAll() {
 
         return(List<Muestra>) muestraDao.findAll();
     }
-
+    @Transactional
     @Override
     public boolean existById(Integer id) {
         return muestraDao.existsById(id);

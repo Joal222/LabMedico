@@ -12,16 +12,19 @@ import java.util.List;
 public class UsuarioImpl implements IUsuario {
     @Autowired
     private UsuarioDao usuarioDao;
+    @Transactional
     @Override
     public Usuario save(Usuario usuario) {
         return usuarioDao.save(usuario);
     }
 
+    @Transactional
     @Override
     public Usuario update(Usuario usuario) {
         return usuarioDao.save(usuario);
     }
 
+    @Transactional
     @Override
     public Usuario findByCui(String cui) {
         return usuarioDao.findByCui(cui);
@@ -46,12 +49,14 @@ public class UsuarioImpl implements IUsuario {
         return (List<Usuario>) usuarioDao.findAll();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public boolean existById(Integer id) {
 
         return usuarioDao.existsById(id);
     }
 
+    @Transactional
     @Override
     public List<IUsuarioClosedView> getAllUsuarioProjection() {
 

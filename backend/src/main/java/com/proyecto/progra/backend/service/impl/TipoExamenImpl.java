@@ -25,6 +25,7 @@ public class TipoExamenImpl implements ITipoExamen {
     @Transactional(readOnly = true)
     @Override
     public List<TipoExamen> findAll() {
+
         return (List<TipoExamen>) tipoExamenDao.findAll();
     }
 }

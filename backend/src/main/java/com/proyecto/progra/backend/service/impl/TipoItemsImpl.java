@@ -21,12 +21,14 @@ public class TipoItemsImpl implements ITipoItems {
     @Transactional(readOnly = true)
     @Override
     public TipoItems findById(Integer id) {
+
         return tipoItemsDao.findById(id).orElse(null);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<TipoItems> findAll() {
+
         return (List<TipoItems>) tipoItemsDao.findAll();
     }
 }

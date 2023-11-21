@@ -32,13 +32,13 @@ public class SolicitudImpl implements ISolicitud {
     public void delete(Solicitud solicitud) {
         solicitudDao.delete(solicitud);
     }
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<Solicitud> findAll() {
 
         return (List<Solicitud>) solicitudDao.findAll();
     }
-
+    @Transactional
     @Override
     public boolean existById(Integer id) {
 
