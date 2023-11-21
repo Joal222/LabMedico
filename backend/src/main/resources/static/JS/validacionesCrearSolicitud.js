@@ -9,13 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const elementosSeleccionados = document.getElementById('elementosSeleccionados');
     const closeBtn = document.getElementsByClassName('close')[0];
 
+    let data; // Variable para almacenar los datos de la API
+    let itemsSeleccionados = [];
+    window.itemsListToSend = []; // Mover esta declaración al inicio del bloque de código
+
     if (!examSelect || !modal || !modalItemList || !modalTitle || !guardarBtn || !selectedItemsList || !elementosSeleccionados || !closeBtn) {
         console.error('No se pudo encontrar uno o más elementos en el DOM.');
         return;
     }
-
-    let data; // Variable para almacenar los datos de la API
-
     // Realizar la solicitud a la API y llenar el select
     fetch(apiUrl)
         .then(response => response.json())
@@ -43,26 +44,51 @@ document.addEventListener('DOMContentLoaded', function () {
             // Agregar checkbox junto a cada item
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
+
+            // Agregar el ID del ítem como un atributo de datos
+            checkbox.setAttribute('data-id', item.id);
             listItem.insertBefore(checkbox, listItem.firstChild);
 
             modalItemList.appendChild(listItem);
         });
 
-        modalTitle.textContent = `Items Asociados a ${selectedExam.descripcion}`;
+        modalTitle.textContent = `Items Asociados a ${selectedExam.descripcion}`; // Verifica que 'descripcion' sea el campo correcto a mostrar
         modal.style.display = 'block';
     }
 
-    // Evento al hacer clic en el botón de guardar
+
+// ...
+
     guardarBtn.addEventListener('click', function () {
-        // Obtener los checkboxes seleccionados
         const checkboxes = document.querySelectorAll('#modalItemList input[type="checkbox"]:checked');
 
-        // Hacer algo con los checkboxes seleccionados (por ejemplo, enviar al servidor)
+        const selectedItemsIDs = []; // Crear un arreglo para almacenar los IDs de los elementos seleccionados
+
         checkboxes.forEach(checkbox => {
-            const selectedItem = document.createElement('li');
-            selectedItem.textContent = checkbox.nextSibling.textContent;
-            selectedItemsList.appendChild(selectedItem);
+            const selectedItemID = checkbox.getAttribute('data-id');
+            selectedItemsIDs.push(selectedItemID);
         });
+
+        // Crear objetos con el formato necesario para la API usando los IDs de los elementos seleccionados
+        itemsListToSend = selectedItemsIDs.map((itemID, index) => {
+            return {
+                id: 0, // Ajustar el ID si es necesario
+                idTipoItems: itemID, // Utilizar el ID real del elemento seleccionado
+                idSolicitudMuestraMedica: 0 // Ajustar según tu lógica de solicitud médica
+            };
+        });
+
+        // Mostrar los objetos creados en la consola (puedes eliminar esto en producción)
+        console.log('Elementos a enviar a la API:', itemsListToSend);
+
+        // Almacenar los elementos seleccionados en la lista
+        checkboxes.forEach(checkbox => {
+            const selectedItem = checkbox.nextSibling.textContent;
+            itemsSeleccionados.push(selectedItem);
+        });
+
+        // Mostrar los elementos seleccionados en la consola
+        console.log('Elementos Seleccionados:', itemsSeleccionados);
 
         // Ajustar dinámicamente el tamaño del div elementosSeleccionados
         elementosSeleccionados.style.height = `${checkboxes.length * 20}px`;
@@ -72,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Cerrar el modal después de guardar
         modal.style.display = 'none';
-    });
 
+    });
     // Evento al hacer clic en el botón de cerrar
     closeBtn.addEventListener('click', function () {
         modal.style.display = 'none';
@@ -82,13 +108,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Evento al seleccionar un examen
     examSelect.addEventListener('change', function () {
         const selectedExamIndex = examSelect.selectedIndex;
-        const selectedExam = data[selectedExamIndex];
+        const selectedExam = data[selectedExamIndex - 1];
 
         if (!selectedExam || !selectedExam.itemsList) {
             console.error('No se pudo encontrar o cargar la información del examen seleccionado.');
             return;
         }
-
         selectedItemsList.innerHTML = '';
 
         // Llenar el modal con los items asociados al examen seleccionado

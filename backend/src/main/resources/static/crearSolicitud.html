@@ -16,9 +16,11 @@
 
     <title>Crear Solicitud Medica</title>
     <!-- Referencia js -->
+
 </head>
 
 <body class="bodyCrearSoli">
+
     <Div class="bodyDiv">
         <div class="menuOpciones">
             <section class="encabezadoOpciones">
@@ -91,10 +93,10 @@
                                         <div class="opcioneSolicitudes">
                                             <div class="field">
                                                 <div class="label">Tipo de Solicitud</div>
-                                                <select>
-                                                    <option value="null"> --Tipo De Solicitud-- </option>
-                                                    <option>MM-Muestra Medica</option>
-                                                    <option>LQ-Laboratorios</option>
+                                                <select name="idTipoSolicitud" id="idTipoSolicitud">
+                                                    <option value=""> --Tipo De Solicitud-- </option>
+                                                    <option value="1">MM-Muestra Medica</option>
+                                                    <option value="2">LQ-Laboratorios</option>
                                                 </select>
                                             </div>
                                             <div class="field">
@@ -140,7 +142,8 @@
                                         <div class="label">Usuario</div>
                                         <input type="text" placeholder="username">
                                     </div>
-                                    <div class="field">
+                                    <div id="nit2" class="menuDeplegable"><a href="#"></a></div>
+                                    <div class="field" id="ocultarNit2">
                                         <div class="label">NIT</div>
                                         <input type="text" placeholder="NIT">
                                     </div>
@@ -148,31 +151,33 @@
                                 <div class="nameAndNit">
                                     <div class="field">
                                         <div class="label">Tipo de Soporte</div>
-                                        <select>
-                                            <option value="null"> --Tipo De Soporte-- </option>
-                                            <option>FP-Factura</option>
-                                            <option>HO-Hoja De Oficio</option>
+                                        <select id="idTipoSoporte" name="idTipoSoporte">
+                                            <option value=""> --Tipo De Soporte-- </option>
+                                            <option value="1">FP-Factura</option>
+                                            <option value="2">HO-Hoja De Oficio</option>
                                         </select>
                                     </div>
                                     <div class="field">
                                         <div class="label">No. Soporte</div>
-                                        <input type="text" placeholder="Soporte">
+                                        <input id="numeroSoporte" type="text" placeholder="Soporte" name="numeroSoporte">
                                     </div>
                                 </div>
                                 <div class="nameAndNit">
-                                    <div class="field">
+                                    <div id="cel" class="menuDeplegable"><a href="#"></a></div>
+                                    <div class="field" id="ocultarCel">
                                         <div class="label">No. Telefono</div>
                                         <input type="text" placeholder="Telefono">
                                     </div>
-                                    <div class="field">
-                                        <div class="label">Correo</div>
+                                    <div id="correo" class="menuDeplegable"><a href="#"></a></div>
+                                    <div class="field"id="ocultarCorreo">
+                                        <div class="label" >Correo</div>
                                         <input type="email" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="botones">
                                     <div class="field btns">
                                         <button class="prev-3 prev">Atrás</button>
-                                        <button class="submit" type="button">Enviar</button>
+                                        <button class="submit" type="button" onclick="enviarSolicitud()">Enviar</button>
                                     </div>
                                 </div>
                             </div>
@@ -204,50 +209,74 @@
         </section>
     </div>
     <script src="JS/validacionesCrearSolicitud.js"></script>
+    <script src="JS/crearSolicitud.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
-        if (usuarioEnSesion) {
-            const username = document.getElementById('username');
-            username.style.color = 'white';
-            username.style.textAlign = 'center';
-            username.style.padding = '15px';
-            username.textContent = `${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
-            const menuDesplegableLogin = document.querySelector('#menuDesplegableLogin');
-            menuDesplegableLogin.style.display = 'none';
+            const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
+            if (usuarioEnSesion) {
+                const username = document.getElementById('username');
+                username.style.color = 'white';
+                username.style.textAlign = 'center';
+                username.style.padding = '15px';
+                username.textContent = `${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
+                const menuDesplegableLogin = document.querySelector('#menuDesplegableLogin');
+                menuDesplegableLogin.style.display = 'none';
 
-            const usernamePage1 = document.getElementById('username1');
-            const ocultarUsuarioPage1 = document.getElementById('OcultarUsuario1');
-            usernamePage1.style.color = 'black';
-            usernamePage1.style.textAlign = 'center';
-            usernamePage1.style.padding = '15px';
-            usernamePage1.textContent = ` Nombre: ${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
-            ocultarUsuarioPage1.style.display = 'none';
+                const usernamePage1 = document.getElementById('username1');
+                const ocultarUsuarioPage1 = document.getElementById('OcultarUsuario1');
+                usernamePage1.style.color = 'black';
+                usernamePage1.style.textAlign = 'center';
+                usernamePage1.style.padding = '15px';
+                usernamePage1.textContent = ` Nombre: ${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
+                ocultarUsuarioPage1.style.display = 'none';
 
-            const usernamePage2 = document.getElementById('username2');
-            const ocultarUsuarioPage2 = document.getElementById('OcultarUsuario2');
-            usernamePage2.style.color = 'black';
-            usernamePage2.style.textAlign = 'center';
-            usernamePage2.style.padding = '15px';
-            usernamePage2.textContent = `Nombre: ${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
-            ocultarUsuarioPage2.style.display = 'none';
+                const usernamePage2 = document.getElementById('username2');
+                const ocultarUsuarioPage2 = document.getElementById('OcultarUsuario2');
+                usernamePage2.style.color = 'black';
+                usernamePage2.style.textAlign = 'center';
+                usernamePage2.style.padding = '15px';
+                usernamePage2.textContent = `Nombre: ${usuarioEnSesion.nombres} ${usuarioEnSesion.apellidos}`;
+                ocultarUsuarioPage2.style.display = 'none';
 
-            const nit = document.getElementById('nit');
-            const ocultarNit = document.getElementById('ocultarNit');
-            nit.style.color = 'black';
-            nit.style.textAlign = 'center';
-            nit.style.padding = '15px';
-            nit.textContent = `No de Nit: ${usuarioEnSesion.nit}`;
-            ocultarNit.style.display = 'none';
+                const nit = document.getElementById('nit');
+                const ocultarNit = document.getElementById('ocultarNit');
+                nit.style.color = 'black';
+                nit.style.textAlign = 'center';
+                nit.style.padding = '15px';
+                nit.textContent = `No de Nit: ${usuarioEnSesion.nit}`;
+                ocultarNit.style.display = 'none';
+
+                const nit2 = document.getElementById('nit2');
+                const ocultarNit2 = document.getElementById('ocultarNit2');
+                nit2.style.color = 'black';
+                nit2.style.textAlign = 'center';
+                nit2.style.padding = '15px';
+                nit2.textContent = `No de Nit: ${usuarioEnSesion.nit}`;
+                ocultarNit2.style.display = 'none';
+
+                const cel = document.getElementById('cel')
+                const ocultarCel = document.getElementById('ocultarCel');
+                cel.style.color = 'black';
+                cel.style.textAlign = 'center';
+                cel.style.padding = '15px';
+                cel.textContent = `No de Telefono: ${usuarioEnSesion.nit}`;
+                ocultarCel  .style.display = 'none';
+
+                const correo = document.getElementById('correo')
+                const ocultarCorreo = document.getElementById('ocultarCorreo');
+                correo.style.color = 'black';
+                correo.style.textAlign = 'center';
+                correo.style.padding = '15px';
+                correo.textContent = `Correo Electronico: ${usuarioEnSesion.email}`;
+                ocultarCorreo.style.display = 'none';
 
 
 
             }else{
-            const username = document.querySelector('#username');
-            username.style.display = 'none';
+                const username = document.querySelector('#username');
+                username.style.display = 'none';
             }
         });
-        
 
         //menuDesplegableLogin
     </script>
