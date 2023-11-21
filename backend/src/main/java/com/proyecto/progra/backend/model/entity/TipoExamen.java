@@ -43,7 +43,6 @@ public class TipoExamen implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-
     /*name="id_tipo_examen" es el nombre de la fkey en la tabla hija en nuestra db, referencedColumnName = "id" es el nombre de nuestra variable dentro de la tabla padre*/
     /*fecht = FetchTipye. EAGER indica a nuestra relación que va a obtener o mostrar como lista a nuestra tabla hija o padre*/
     @JsonIgnore

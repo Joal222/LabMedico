@@ -18,11 +18,12 @@ public class MuestraItems implements Serializable {
     @Column(name = "id")
     private Integer id;
 
+    @JsonIgnore//VERIFICAR
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_muestra_medica",referencedColumnName = "id")
     private Muestra idMuestraMedica;
 
-    @JsonIgnore
+    @JsonIgnore//VERIFICAR
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_items",referencedColumnName = "id")
     private Items idItems;

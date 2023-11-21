@@ -54,10 +54,4 @@ public class Usuario implements Serializable{
     @Column(name = "password")
     private String password;
 
-    /*
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_usuario",referencedColumnName = "id")
-    List<Solicitud> solicitudes =new ArrayList<>();
-    */
 }

@@ -36,6 +36,9 @@ public class MuestraController {
     @Autowired
     private IMuestraItems muestraItemsService;
 
+    @Autowired
+    private IItems itemsService;
+
     @PostMapping("muestra/created")
     public ResponseEntity<?> created(@RequestBody MuestraCreatedDto muestraCreatedDto){
         Muestra muestra = new Muestra();
@@ -49,53 +52,13 @@ public class MuestraController {
         Muestra muestraResponse = muestraService.save(muestra);
         muestraCreatedDto.getMuestraItemsList().forEach(muestraItemsDto -> {
             MuestraItems muestraItems= new MuestraItems();
-        //AQUI ME QUEDE VER EJEMPLO CREATED SOLICITUD CONTROLLER
-
+            muestraItems.setIdItems(itemsService.findById(muestraItemsDto.getIdItems()));
+            muestraItems.setIdMuestraMedica(muestraResponse);
+            muestraItemsService.save(muestraItems);
         });
-
-
         return ResponseEntity.ok(muestraResponse);
 
         }
-
-    /*
-    @PutMapping("muestra/{id}")
-    public ResponseEntity<?> update(@RequestBody Muestra muestra, @PathVariable Integer id) {
-        Muestra muestraUpdate = null;
-        try {
-            if (muestraService.existById(id)) {
-                muestra.setId(id);
-                muestraUpdate = muestraService.save(muestra);
-                return new ResponseEntity<>(
-                        MensajeResponse.builder()
-                                .mensaje("Guardado correctamente")
-                                .object(MuestraDto.builder()
-                                        .id(muestraUpdate.getId())
-                                        .idPresentacionMuestra(muestraUpdate.getIdPresentacionMuestra())
-                                        .idTipoMuestra(muestraUpdate.getIdTipoMuestra())
-                                        .idUnidadMedida(muestraUpdate.getIdUnidadMedida())
-                                        .fechaRecepcionMuestra(muestraUpdate.getFechaRecepcionMuestra())
-                                        .fechaCreacionMuestra(muestraUpdate.getFechaCreacionMuestra())
-                                        .observacionExpediente(muestraUpdate.getObservacionExpediente())
-                                        .build())
-                                .build()
-                        , HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>(
-                        MensajeResponse.builder()
-                                .mensaje("El registro que intenta actualizar no se encuentra en la base de datos.")
-                                .object(null)
-                                .build(), HttpStatus.NOT_FOUND);
-            }
-        } catch (DataAccessException exDt) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje(exDt.getMessage())
-                            .object(null)
-                            .build(), HttpStatus.METHOD_NOT_ALLOWED);
-        }
-    }
-     */
 
     @DeleteMapping ("muestra/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){

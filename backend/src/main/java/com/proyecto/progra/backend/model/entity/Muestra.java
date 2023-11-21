@@ -1,5 +1,6 @@
 package com.proyecto.progra.backend.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.cache.interceptor.CacheAspectSupport;
@@ -23,6 +24,7 @@ public class Muestra implements Serializable {
     @Column (name = "id")
     private Integer id;
 
+    @JsonIgnore//verificar
     @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
     private Solicitud idSolicitudMuestraMedica;

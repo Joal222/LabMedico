@@ -52,20 +52,4 @@ public class MuestraItemsController {
        MuestraItems muestraItems = muestraItemsService.findById(id);
         return ResponseEntity.ok(muestraItems);
     }
-
-
-    /*
-        @GetMapping("ptmuestras/all")
-    public ResponseEntity<List<PresentacionMuestra>> findAll() {
-        List<PresentacionMuestra> presentacionMuestras = pTMuestraService.findAll();
-        return ResponseEntity.ok(presentacionMuestras);
-    }
-
-    @GetMapping("ptmuestra/{id}")
-    public ResponseEntity<PresentacionMuestra> showById(@PathVariable Integer id) {
-        PresentacionMuestra presentacionMuestra = pTMuestraService.findById(id);
-        return ResponseEntity.ok(presentacionMuestra);
-    }
-}
-     */
 }
