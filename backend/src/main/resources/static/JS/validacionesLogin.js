@@ -1,6 +1,6 @@
 async function obtenerUsuarios() {
     try {
-        const response = await fetch('http://localhost:8080/api/v1/usuarios');
+        const response = await fetch('http://localhost:8080/api/v1/usuarios/all');
         if (!response.ok) {
             throw new Error(`Error al cargar usuarios: ${response.statusText}`);
         }
@@ -30,6 +30,7 @@ async function obtenerUsuarios() {
             if (usuario.idTipoUsuario === 2) {
                 // Almacena el usuario en sessionStorage
                 sessionStorage.setItem('usuario', JSON.stringify(usuario)   );
+                sessionStorage.setItem('userId', usuario.id);
                 window.location.href = 'dashbord.html';
                
             } else {
