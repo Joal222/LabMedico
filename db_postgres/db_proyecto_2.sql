@@ -89,11 +89,11 @@ create table solicitud_muestra_medica (
     numero_soporte varchar(255) not null,
     id_tipo_solicitante integer default 1,
     id_tipo_solicitud integer not null,
-    id_tipo_estado_solicitud integer,
+    id_tipo_estado_solicitud integer default 1,
     id_tipo_soporte integer not null, --CAMPO AGREGADO A PARTIR DE LA ELIMINACION DE TABLA DE EXPEDIENTES 23-10-23
     descripcion_solicitud_muestra_medica varchar(2000) null,
     fecha_creacion_solicitud date not null,
-    dias_vencimiento_solicitud integer null,
+    dias_vencimiento_solicitud varchar(255),
     primary key (id)
 );
 
@@ -321,12 +321,12 @@ VALUES
     ('LQ', 'Laboratorio', CURRENT_DATE, 'Jonathan');
 
 -- DATOS DE PRUEBA SOLICITUD_MUESTRA_MEDICA
-INSERT INTO solicitud_muestra_medica (id_usuario, numero_soporte,id_tipo_solicitante, id_tipo_solicitud, id_tipo_soporte, descripcion_solicitud_muestra_medica, fecha_creacion_solicitud, dias_vencimiento_solicitud)
+INSERT INTO solicitud_muestra_medica (id_usuario, numero_soporte,id_tipo_solicitante, id_tipo_solicitud,id_tipo_estado_solicitud, id_tipo_soporte, descripcion_solicitud_muestra_medica, fecha_creacion_solicitud, dias_vencimiento_solicitud)
 VALUES
-    (1, 'FACE-2523',1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
-    (1, 'FACE-5689',2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7),
-    (2, 'FACE-4525',1, 1, 1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
-    (2, 'FACE9636',2, 2, 2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
+    (1, 'FACE-2523',2, 1, 1,1, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
+    (1, 'FACE-5689',2, 1, 1,1, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7),
+    (2, 'FACE-4525',2, 2, 1,2, 'Solicitud de muestra médica para análisis', CURRENT_DATE, 10),
+    (2, 'FACE9636',2, 2, 1,2, 'Solicitud de laboratorio para examen externo', CURRENT_DATE, 7);
 
 insert into usuario (nit,nombres,apellidos,email,genero,telefono,direccion,password)
 values

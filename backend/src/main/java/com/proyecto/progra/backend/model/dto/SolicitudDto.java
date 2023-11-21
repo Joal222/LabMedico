@@ -11,14 +11,14 @@ import java.util.List;
 public class SolicitudDto implements Serializable{
 
     private Integer id;
-    private Usuario idUsuario;
+    private UsuarioGetDto idUsuario;
     private String numeroSoporte;
     private TipoSolicitante idTipoSolicitante;
     private TipoSolicitud idTipoSolicitud;
     private TipoSoporte idTipoSoporte;
     private String descripcionSolicitudMuestraMedica;
     private Date fechaCreacionSolicitud;
-    private Integer diasVencimientoSolicitud;
+    private String diasVencimientoSolicitud;
     private List<Muestra> muestraList;
     private List<Items> itemsList;
     private TipoEstadoSolicitud tipoEstadoSolicitud;

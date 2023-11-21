@@ -42,7 +42,7 @@ public class Solicitud implements Serializable{
     private String descripcionSolicitudMuestraMedica;
 
     @Column(name = "dias_vencimiento_solicitud")
-    private Integer diasVencimientoSolicitud;
+    private String  diasVencimientoSolicitud;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")

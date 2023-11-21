@@ -1,6 +1,4 @@
 package com.proyecto.progra.backend.service;
-import com.proyecto.progra.backend.model.dto.SolicitudCreatedDto;
-import com.proyecto.progra.backend.model.dto.SolicitudDto;
 import com.proyecto.progra.backend.model.entity.Solicitud;
 import com.proyecto.progra.backend.projections.closed.ISolicitudClosedView;
 

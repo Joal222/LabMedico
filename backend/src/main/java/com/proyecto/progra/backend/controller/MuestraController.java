@@ -112,59 +112,14 @@ public class MuestraController {
         }
     }
 
-    @GetMapping("muestra/{id}")
-    public ResponseEntity<?> showById(@PathVariable Integer id) {
-        Muestra muestra = muestraService.findById(id);
-        if(muestra==null){
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje("El registro que intenta buscar, no existe!!")
-                            .object(null)
-                            .build()
-                    ,HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(
-                MensajeResponse.builder()
-                        .mensaje("Consulta Exitosa")
-                        .object(MuestraDto.builder()
-                                .id(muestra.getId())
-                                //.idSolicitudMuestraMedica(muestra.getIdSolicitudMuestraMedica())
-                                .idPresentacionMuestra(muestra.getIdPresentacionMuestra())
-                                .idTipoMuestra(muestra.getIdTipoMuestra())
-                                .idUnidadMedida(muestra.getIdUnidadMedida())
-                                .fechaRecepcionMuestra(muestra.getFechaRecepcionMuestra())
-                                .fechaCreacionMuestra(muestra.getFechaCreacionMuestra())
-                                .observacionExpediente(muestra.getObservacionExpediente())
-                                .build())
-                        .build()
-                ,HttpStatus.OK);
+    @GetMapping("muestras/all")
+    public ResponseEntity<List<Muestra>> findAll() {
+        List<Muestra> muestras = muestraService.findAll();
+        return ResponseEntity.ok(muestras);
     }
-
-    @GetMapping("muestras")
-    public ResponseEntity<?> findAll() {
-        try {
-            List<Muestra> muestras = muestraService.findAll();
-            List<MuestraDto> muestrasDto = muestras.stream()
-                    .map(muestra -> MuestraDto.builder()
-                            .id(muestra.getId())
-                            //.idSolicitudMuestraMedica(muestra.getIdSolicitudMuestraMedica())
-                            .idPresentacionMuestra(muestra.getIdPresentacionMuestra())
-                            .idTipoMuestra(muestra.getIdTipoMuestra())
-                            .idUnidadMedida(muestra.getIdUnidadMedida())
-                            .fechaRecepcionMuestra(muestra.getFechaRecepcionMuestra())
-                            .fechaCreacionMuestra(muestra.getFechaCreacionMuestra())
-                            .observacionExpediente(muestra.getObservacionExpediente())
-                            .build())
-                    .collect(Collectors.toList());
-            return new ResponseEntity<>(muestrasDto, HttpStatus.OK);
-        } catch (DataAccessException exDt) {
-            return new ResponseEntity<>(
-                    MensajeResponse.builder()
-                            .mensaje("Error al obtener la lista de muestras: " + exDt.getMessage())
-                            .object(null)
-                            .build(),
-                    HttpStatus.NOT_FOUND
-            );
-        }
+    @GetMapping("muestra/{id}")
+    public ResponseEntity<Muestra> showById(@PathVariable Integer id) {
+        Muestra muestra = muestraService.findById(id);
+        return ResponseEntity.ok(muestra);
     }
 }
