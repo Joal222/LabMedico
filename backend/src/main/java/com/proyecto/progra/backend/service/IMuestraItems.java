@@ -6,7 +6,7 @@ import com.proyecto.progra.backend.model.entity.MuestraItems;
 import java.util.List;
 
 public interface IMuestraItems {
-        MuestraItems save (MuestraItemsDto muestraItems);
+        MuestraItems save (MuestraItems muestraItems);
         MuestraItems findById(Integer id);
         void delete(MuestraItems muestraItems);
         List<MuestraItems> findAll();

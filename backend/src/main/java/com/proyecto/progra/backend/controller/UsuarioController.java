@@ -43,6 +43,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioResponse);
     }
     @PutMapping("usuario/update/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
     public Usuario update(@RequestBody Usuario usuario){
         return usuarioService.update(usuario);
 

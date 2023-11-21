@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.cache.interceptor.CacheAspectSupport;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,14 +23,9 @@ public class Muestra implements Serializable {
     @Column (name = "id")
     private Integer id;
 
-    /*@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_solicitud_muestra_medica", referencedColumnName = "id")
-    */
-
-    /*
-    @Column(name="id_solicitud_muestra_medica")
-    private Integer idSolicitudMuestraMedica;
-     */
+    private Solicitud idSolicitudMuestraMedica;
 
     @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_presentacion_muestra",referencedColumnName = "id")
@@ -51,6 +47,10 @@ public class Muestra implements Serializable {
 
     @Column(name = "observacion_expediente", length = 2000)
     private String observacionExpediente;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_muestra_medica",referencedColumnName = "id")
+    private List<MuestraItems> muestraItemsList = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

@@ -14,13 +14,7 @@ public class MuestraItemsImpl implements IMuestraItems {
     private MuestraItemsDao muestraItemsDao;
     @Transactional
     @Override
-    public MuestraItems save(MuestraItemsDto muestraItemsdto) {
-        MuestraItems muestraItems = MuestraItems.builder()
-                .id(muestraItemsdto.getId())
-                .idMuestraMedica(muestraItemsdto.getIdMuestraMedica())
-                .idItems(muestraItemsdto.getIdItems())
-                .build();
-
+    public MuestraItems save(MuestraItems muestraItems) {
         return muestraItemsDao.save(muestraItems);
     }
 
