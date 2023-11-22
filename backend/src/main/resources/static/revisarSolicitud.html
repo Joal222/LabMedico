@@ -55,6 +55,7 @@
             // Puedes incluir más detalles según la estructura de tu API.
             id: selectedRowId,
             // Otros detalles...
+
         };
 
         // Aquí debes actualizar tu interfaz de usuario con la información de muestra obtenida.
@@ -63,7 +64,9 @@
         // En este ejemplo, mostraré los detalles en la consola. En tu aplicación, debes
         // adaptar esto a tu estructura de interfaz de usuario.
         console.log('Detalles de la muestra seleccionada:', sampleDetails);
+        sessionStorage.setItem('selectedRowId', selectedRowId);
     }
+
 
 
 </script>

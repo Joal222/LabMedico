@@ -5,12 +5,16 @@ function enviarSolicitud() {
     const descripcionSolicitudMuestraMedica = document.getElementById('descripcions').value;
     const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
 
-    console.log('Número de Soporte:', numeroSoporte);
-    console.log('ID de Tipo de Solicitud:', idTipoSolicitud);
-    console.log('ID de Tipo de Soporte:', idTipoSoporte);
-    console.log('Descripción de la Solicitud:', descripcionSolicitudMuestraMedica);
+    if (!numeroSoporte || !idTipoSolicitud || !idTipoSoporte || !descripcionSolicitudMuestraMedica) {
+        alert('Por favor, completa todos los campos.');
+        return; // Detiene la ejecución si hay campos vacíos
+    }
+    if (!usuarioEnSesion) {
+        alert("Debe iniciar sesion");
+        return;
+    }
+
     const idUsuarioSesion = usuarioEnSesion ? usuarioEnSesion.id : null;
-    console.log('ID de Usuario en Sesión:', idUsuarioSesion);
 
     const itemsList = window.itemsListToSend.map(item => {
         return {
@@ -20,9 +24,6 @@ function enviarSolicitud() {
         };
     });
 
-    console.log('Antes de imprimir itemsList');
-    console.log('Datos de itemsList a enviar:', itemsList);
-    console.log('Después de imprimir itemsList');
 
     const requestData = {
         idUsuario: parseInt(idUsuarioSesion), // Asegúrate de convertir a número si es necesario
@@ -47,10 +48,9 @@ function enviarSolicitud() {
             return response.json();
         })
         .then(data => {
-            console.log('Solicitud enviada con éxito:', data);
-            // Hacer algo con la respuesta del servidor si es necesario
         })
         .catch(error => {
             console.error('Error al enviar la solicitud:', error);
         });
 }
+

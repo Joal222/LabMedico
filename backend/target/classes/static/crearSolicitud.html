@@ -73,19 +73,19 @@
                             <div class="check fas fa-check"></div>
                         </div>
                     </div>
-                    <div class="form-outer"><!--form-outer-->
-                        <form action="#"><!--form-->
+                    <div id="miFormulario" class="form-outer"><!--form-outer-->
+                        <form action="#" ><!--form-->
                             <div class="page slide-page">
                                 <div class="nameAndNit">
                                     <div id="username1" class="menuDeplegable"><a href="#"></a></div>
                                     <div class="field" id="OcultarUsuario1">
                                         <div class="label" >Usuario</div>
-                                        <input type="text" placeholder="username">
+                                        <input type="text" placeholder="username" required>
                                     </div>
                                     <div id="nit" class="menuDeplegable"><a href="#"></a></div>
                                     <div class="field" id="ocultarNit">
                                         <div class="label">NIT</div>
-                                        <input type="text" placeholder="NIT">
+                                        <input type="text" placeholder="NIT" required>
                                     </div>
                                 </div>
                                 <div class="tipoAndDescription">
@@ -93,7 +93,7 @@
                                         <div class="opcioneSolicitudes">
                                             <div class="field">
                                                 <div class="label">Tipo de Solicitud</div>
-                                                <select name="idTipoSolicitud" id="idTipoSolicitud">
+                                                <select name="idTipoSolicitud" id="idTipoSolicitud" required>
                                                     <option value=""> --Tipo De Solicitud-- </option>
                                                     <option value="1">MM-Muestra Medica</option>
                                                     <option value="2">LQ-Laboratorios</option>
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="field">
                                                 <div class="label">Examenes</div>
-                                                <select id="listExamenes">
+                                                <select id="listExamenes" required>
                                                     <option value=""> --Tipo De Examenes-- </option>
                                                 </select>
                                             </div>
@@ -123,7 +123,7 @@
                                     </div>
                                     <div class="field">
                                         <div class="label">Descripcion</div>
-                                        <textarea class="descripcions" name="descripcions" id="descripcions" cols="50"
+                                        <textarea required class="descripcions" name="descripcions" id="descripcions" cols="50"
                                             rows="10" placeholder="descripción"></textarea>
                                     </div>
                                 </div>
@@ -140,18 +140,18 @@
                                     <div id="username2" class="menuDeplegable"><a href="#"></a></div>
                                     <div class="field" id="OcultarUsuario2">
                                         <div class="label">Usuario</div>
-                                        <input type="text" placeholder="username">
+                                        <input type="text" placeholder="username" required>
                                     </div>
                                     <div id="nit2" class="menuDeplegable"><a href="#"></a></div>
                                     <div class="field" id="ocultarNit2">
                                         <div class="label">NIT</div>
-                                        <input type="text" placeholder="NIT">
+                                        <input type="text" placeholder="NIT" required>
                                     </div>
                                 </div>
                                 <div class="nameAndNit">
                                     <div class="field">
                                         <div class="label">Tipo de Soporte</div>
-                                        <select id="idTipoSoporte" name="idTipoSoporte">
+                                        <select id="idTipoSoporte" name="idTipoSoporte" required>
                                             <option value=""> --Tipo De Soporte-- </option>
                                             <option value="3">FP-Factura</option>
                                             <option value="4">HO-Hoja De Oficio</option>
@@ -278,7 +278,6 @@
             }
         });
 
-        //menuDesplegableLogin
     </script>
 </body>
 

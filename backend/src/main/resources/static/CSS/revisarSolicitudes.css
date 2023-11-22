@@ -277,11 +277,15 @@ table {
 }
 
 th, td {
+    text-align: center;
     padding: 10px;
     text-align: left;
 }
-
+td{
+    text-align: center;
+}
 th {
+    text-align: center;
     background-color: #333;
     color: white;
 }

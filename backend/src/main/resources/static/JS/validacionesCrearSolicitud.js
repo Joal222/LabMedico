@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const elementosSeleccionados = document.getElementById('elementosSeleccionados');
     const closeBtn = document.getElementsByClassName('close')[0];
 
+
     let data; // Variable para almacenar los datos de la API
     let itemsSeleccionados = [];
     window.itemsListToSend = []; // Mover esta declaración al inicio del bloque de código
@@ -79,8 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         });
 
-        // Mostrar los objetos creados en la consola (puedes eliminar esto en producción)
-        console.log('Elementos a enviar a la API:', itemsListToSend);
 
         // Almacenar los elementos seleccionados en la lista
         checkboxes.forEach(checkbox => {
@@ -88,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
             itemsSeleccionados.push(selectedItem);
         });
 
-        // Mostrar los elementos seleccionados en la consola
-        console.log('Elementos Seleccionados:', itemsSeleccionados);
 
         // Ajustar dinámicamente el tamaño del div elementosSeleccionados
         elementosSeleccionados.style.height = `${checkboxes.length * 20}px`;

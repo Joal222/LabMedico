@@ -158,20 +158,9 @@
         <section class="filtrosMuestra">
             <div class="divParte">
                 <div class="encabesazoFiltro">
-                    <h1>Mantenimiento y Creacion de Solicitudes</h1>
+                    <h1>Mantenimiento y Creacion de Muestras</h1>
                 </div>
-                <div class="divButon">
-                    <button class="buttonFiltro" type="submit">
-                        <svg class="logoBuscar" xmlns="http://www.w3.org/2000/svg"
-                             class="icon icon-tabler icon-tabler-search" width="24" height="24"
-                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                             stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                            <path d="M21 21l-6 -6"></path>
-                        </svg>Listar Muestras</button>
-                </div>
-                <div>
+                <div id="btnMuestra">
                     <a href="revisarSolicitud.html">
                         <button class="return" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -181,6 +170,16 @@
                             </svg>
                             Regresar</button>
                     </a>
+                    <div class="divButon">
+                        <button class="return" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                        <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                        <path d="M10 14h4"></path>
+                        <path d="M12 12v4"></path>
+                    </svg>Crear Muestra</button>
+                    </div>
                 </div>
             </div>
             <div class="divParte2">
@@ -289,7 +288,24 @@
                 </div>
             </div>
         </section>
-
+        <section class="mostrarSoliMues" class="mostrarSoliMues">
+            <div class="table-container">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="select-checkbox">Seleccionar</th>
+                        <th>Codigo Muestra</th>
+                        <th>Presentacion</th>
+                        <th>Tipo de Muestra</th>
+                        <th>Unidad Medida</th>
+                        <th>cantidad de items</th>
+                        <th>fecha Creacion</Creacion></th>
+                    </tr>
+                    </thead>
+                    <tbody id="data"></tbody>
+                </table>
+            </div>
+        </section>
         <section>
             <div class="footerInterno">
                 <p class="copyright">&copy Copyright Laboratorio la Bendición - 2023</p>
@@ -298,6 +314,7 @@
     </div>
 </div>
 </body>
+<script src="JS/crearMuestra.js"></script>
 <script>
     const usuarioEnSesion = JSON.parse(sessionStorage.getItem('usuario'));
     if (usuarioEnSesion) {
