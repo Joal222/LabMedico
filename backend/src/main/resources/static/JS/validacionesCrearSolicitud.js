@@ -60,13 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
 // ...
 
     guardarBtn.addEventListener('click', function () {
+        event.preventDefault();
         const checkboxes = document.querySelectorAll('#modalItemList input[type="checkbox"]:checked');
 
         const selectedItemsIDs = []; // Crear un arreglo para almacenar los IDs de los elementos seleccionados
 
         checkboxes.forEach(checkbox => {
-            const selectedItemID = checkbox.getAttribute('data-id');
-            selectedItemsIDs.push(selectedItemID);
+            const selectedItem = checkbox.getAttribute('data-id');
+            selectedItemsIDs.push(selectedItem);
         });
 
         // Crear objetos con el formato necesario para la API usando los IDs de los elementos seleccionados

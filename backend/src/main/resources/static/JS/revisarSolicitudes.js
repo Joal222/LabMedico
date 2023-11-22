@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <td>${new Date(item.fechaCreacionSolicitud).toLocaleDateString()}</td>
                         <td>${item.idUsuario.nit}</td>
                         <td>${item.idTipoSolicitud.descripcion}</td>
-                        <td>${item.estado}</td>
+                       <td>${item.tipoEstadoSolicitud ? item.tipoEstadoSolicitud.descripcion : 'Sin estado'}</td>
                     `;
                         tableBody.appendChild(row);
                     }
@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         limpiarFiltros();
     });
+
 
     filtroFechaDesde.addEventListener('input', function () {
         const fechaDesdeValue = filtroFechaDesde.value;
