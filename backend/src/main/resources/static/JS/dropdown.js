@@ -6,25 +6,25 @@ function obtenerInformacionGeneral() {
             console.log('Datos de la fila seleccionada:', data);
 
             // Convertir la fecha de creación a un objeto Date
-            const fechaCreacion = new Date(data.object.fechaCreacionSolicitud);
+            const fechaCreacion = new Date(data.fechaCreacionSolicitud);
 
             // Obtener la parte de la fecha sin la hora (formato DD/MM/YYYY)
             const fechaFormateada = fechaCreacion.toLocaleDateString('es-ES');
 
 
             // Actualiza los elementos del modal con los datos obtenidos de la API
-            document.getElementById('codigoSolicitud').textContent = data.object.id;
-            document.getElementById('nitSolicitud').textContent = data.object.idUsuario.nit;
-            document.getElementById('noSoporteModal').textContent = data.object.numeroSoporte;
-            document.getElementById('tipoSoporte').textContent = data.object.idTipoSoporte.descripcion;
-            document.getElementById('tipoSolicitante').textContent = data.object.idTipoSolicitante.descripcion;
-            document.getElementById('usuarioAsignacion').textContent = data.object.usuarioAsignado;
-            document.getElementById('estadoSolicitudModal').textContent = data.object.estado;
-            document.getElementById('usuarioCreacion').textContent = data.object.idTipoSolicitante.creadoPor;
+            document.getElementById('codigoSolicitud').textContent = data.id;
+            document.getElementById('nitSolicitud').textContent = data.idUsuario.nit;
+            document.getElementById('noSoporteModal').textContent = data.numeroSoporte;
+            document.getElementById('tipoSoporte').textContent = data.idTipoSoporte.descripcion;
+            document.getElementById('tipoSolicitante').textContent = data.idTipoSolicitante.descripcion;
+            document.getElementById('usuarioAsignacion').textContent = data.usuarioAsignado;
+            document.getElementById('estadoSolicitudModal').textContent = data.estado;
+            document.getElementById('usuarioCreacion').textContent = data.idTipoSolicitante.creadoPor;
             document.getElementById('fechaCreacion').textContent = fechaFormateada;
-            document.getElementById('descripcionSolicitante').textContent = data.object.descripcionSolicitudMuestraMedica;
-            document.getElementById('telefono').textContent = data.object.idUsuario.telefono;
-            document.getElementById('email').textContent = data.object.idUsuario.email;
+            document.getElementById('descripcionSolicitante').textContent = data.descripcionSolicitudMuestraMedica;
+            document.getElementById('telefono').textContent = data.idUsuario.telefono;
+            document.getElementById('email').textContent = data.idUsuario.email;
 
             // Mostrar el modal después de actualizar los datos
             const modal = document.getElementById('myModal');
@@ -54,17 +54,17 @@ function exportToExcel() {
         .then(response => response.json())
         .then(data => {
             // Convertir la fecha de creación a un objeto Date
-            const fechaCreacion = new Date(data.object.fechaCreacionSolicitud);
+            const fechaCreacion = new Date(data.fechaCreacionSolicitud);
             // Obtener la parte de la fecha sin la hora (formato DD/MM/YYYY)
             const fechaFormateada = fechaCreacion.toLocaleDateString('es-ES');
 
             const datosExportacion = {
-                codigoSolicitud: data.object.id,
-                nitSolicitud: data.object.idUsuario.nit,
-                Descripcion: data.object.descripcionSolicitudMuestraMedica,
+                codigoSolicitud: data.id,
+                nitSolicitud: data.idUsuario.nit,
+                Descripcion: data.descripcionSolicitudMuestraMedica,
                 fechaCreacionSolicitud:fechaFormateada  ,
-                telefono : data.object.idUsuario.telefono,
-                email : data.object.idUsuario.email
+                telefono : data.idUsuario.telefono,
+                email : data.idUsuario.email
             };
 
             const wb = XLSX.utils.book_new();
