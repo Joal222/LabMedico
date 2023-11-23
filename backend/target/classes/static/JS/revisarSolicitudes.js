@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const apiUrl = 'http://localhost:8080/api/v1/solicitudes';
     const tableBody = document.getElementById('data');
     const filtroCodigo = document.getElementById('codigo');
-    const filtroSoporte = document.getElementById('usuarioAsig');
+    const filtroSoporte = document.getElementById('noSoporte');
+    const filtroExpe = document.getElementById('usuarioAsig');
     const filtroNIT = document.getElementById('nit');
     const filtroTipoSolicitud = document.getElementById('tipoSolicitud');
     const filtroEstadoSolicitud = document.getElementById('estadoSolicitud');
-    const buttonFiltrar = document.getElementById('buttonFiltrar');
+
     const buttonLimpiar = document.getElementById('buttonLimpiar');
     const filtroFechaDesde = document.getElementById('fechaDesde');
     const filtroFechaHasta = document.getElementById('fechaHasta');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Obtener los valores actuales de los filtros
         const codigoValue = filtroCodigo.value.trim();
         const soporteValue = filtroSoporte.value.trim();
+        const expeValue = filtroExpe.value.trim();
         const nitValue = filtroNIT.value.trim();
         const tipoSolicitudValue = filtroTipoSolicitud.value.trim();
         const estadoSolicitudValue = filtroEstadoSolicitud.value.trim();
@@ -43,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const cumpleFiltros =
                         (codigoValue === '' || item.id.toString().includes(codigoValue)) &&
-                        ((item.idTipoSoporte && soporteValue === '') || (item.idTipoSoporte && item.idTipoSoporte.descripcion.includes(soporteValue))) &&
+                        (soporteValue ==='' || item.numeroSoporte.toString().includes(soporteValue)) &&
+                        (expeValue === '' || item.idTipoSoporte.descripcion.toString().includes(expeValue))&&
                         (nitValue === '' || item.idUsuario.nit.includes(nitValue)) &&
                         (tipoSolicitudValue === '' || item.idTipoSolicitud.descripcion.includes(tipoSolicitudValue)) &&
                         (fechaDesdeValue === '' || fechaSolicitud >= new Date(fechaDesdeValue)) &&
