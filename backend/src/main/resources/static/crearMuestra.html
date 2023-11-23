@@ -15,7 +15,7 @@
 <div class="bodyDiv">
     <div class="menuOpciones">
         <section class="encabezadoOpciones">
-            <a href="index.html">
+            <a href="#">
                 <header>
                     <img class="logoLab" src="img proyeto\logo.png" alt="Logotipo de Mi Proyecto"
                          title="Mi Proyecto" />
@@ -171,7 +171,7 @@
                             Regresar</button>
                     </a>
                     <div class="divButon">
-                        <button class="return" type="submit">
+                        <button class="return" type="submit" id="mostrarModal">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
@@ -195,17 +195,6 @@
                             <path d="M4 18l16 0"></path>
                         </svg></button>
                         <div class="dropdown-content">
-                            <a class="dropdown-content-a" href="#">
-                                        <span class="logodrop">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                                                <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                                                <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-                                             </svg>
-                                        </span>
-                                <span class="name">Crear Muestras</span>
-                            </a>
                             <a class="dropdown-content-a" href="#" onclick="mostrar()">
                                         <span class="logodrop">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -333,5 +322,193 @@
         logoutButton.addEventListener('click', cerrarSesion);
     }
 </script>
+
 </body>
+<style>
+    /* Estilos para el formulario */
+    form {
+        width: 400px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilos para las etiquetas y selectores */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    select,
+    input[type="number"],
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        width: auto;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    /* Estilo para el espacio entre los elementos */
+    br {
+        line-height: 0;
+        margin: 10px 0;
+    }
+    /* Estilos para el formulario */
+    form {
+        width: 400px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Estilos para las etiquetas y selectores */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    select,
+    input[type="number"],
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        width: auto;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    /* Estilo para el espacio entre los elementos */
+    br {
+        line-height: 0;
+        margin: 10px 0;
+    }
+    /* Estilos para el modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 400px;
+        position: relative;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+</style>
+
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="/ruta-de-envio" method="post" enctype="multipart/form-data">
+            <label for="tipoMuestra">Tipo de Muestra:</label>
+            <select id="tipoMuestra" name="tipoMuestra">
+
+            </select><br><br>
+
+            <label for="presentacion">Presentación:</label>
+            <select id="presentacion" name="presentacion">
+                <option value="1">Vidrio</option>
+                <option value="2">Plastico</option>
+            </select><br><br>
+
+            <label for="cantidadUnidades">Cantidad de Unidades:</label>
+            <input type="number" id="cantidadUnidades" name="cantidadUnidades"><br><br>
+
+            <label for="unidadMedida">Unidad de Medida:</label>
+            <select id="unidadMedida" name="unidadMedida">
+                <option value="1">Mililitros</option>
+                <option value="2">Centimetros Cubicos</option>
+                <option value="unidad3">Miligramos</option>
+            </select><br><br>
+
+            <label for="adjunto">Adjuntar archivo:</label>
+            <input type="file" id="adjunto" name="adjunto"><br><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>\
+</div>
+<script>
+            // Obtener el botón y el modal
+            var btnMostrarModal = document.getElementById("mostrarModal");
+            var modal = document.getElementById("myModal");
+
+            // Obtener el elemento de cierre del modal
+            var spanCerrar = document.getElementsByClassName("close")[0];
+
+            // Mostrar el modal al hacer clic en el botón
+            btnMostrarModal.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // Cerrar el modal al hacer clic en la "X"
+            spanCerrar.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Cerrar el modal al hacer clic fuera del contenido del modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+</script>
+<script src="JS/addMuestra.js"></script>
 </html>
