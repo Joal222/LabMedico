@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <td>${muestra.idPresentacionMuestra.descripcion}</td>
                             <td>${muestra.idTipoMuestra.descripcion}</td>
                             <td>${muestra.idUnidadMedida.descripcion}</td>
-                            <td>${muestra.muestraItemsList.length}</td>
+                            <td>${muestra.cantidad}</td>
                             <td>${fechaCreacionMuestra}</td>
                         `;
                         tableBody.appendChild(row);

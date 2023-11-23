@@ -3,8 +3,6 @@ function obtenerInformacionGeneral() {
     fetch(`http://localhost:8080/api/v1/solicitud/${selectedRowId}`)
         .then(response => response.json())
         .then(data => {
-            console.log('Datos de la fila seleccionada:', data);
-
             // Convertir la fecha de creación a un objeto Date
             const fechaCreacion = new Date(data.fechaCreacionSolicitud);
 
@@ -40,6 +38,39 @@ function obtenerInformacionGeneral() {
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = 'none';
+                }
+            };
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+            // Manejas cualquier error que pueda ocurrir durante la solicitud
+        });
+}
+
+function expediente() {
+    fetch(`http://localhost:8080/api/v1/solicitud/${selectedRowId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('exped').textContent = data.idUsuario.id;
+            document.getElementById('nitExpe').textContent = data.idUsuario.cui;
+            document.getElementById('nombresExpe').textContent = `${data.idUsuario.nombres} ${data.idUsuario.apellidos}`;
+            document.getElementById('telefonoExp').textContent = data.idUsuario.telefono;
+            document.getElementById('emailExpre').textContent = data.idUsuario.email;
+
+            // Mostrar el modal después de actualizar los datos
+            const modal = document.getElementById('Expediente');
+            Expediente.style.display = 'block';
+
+            // Agregar la lógica para cerrar el modal al hacer clic en la 'x'
+            const closeBtn = document.getElementsByClassName('cerrar')[0];
+            closeBtn.onclick = function() {
+                Expediente.style.display = 'none';
+            };
+
+            // También cerrar el modal si se hace clic fuera de él
+            window.onclick = function(event) {
+                if (event.target == Expediente) {
+                    Expediente.style.display = 'none';
                 }
             };
         })

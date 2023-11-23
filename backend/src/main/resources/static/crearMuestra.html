@@ -215,51 +215,6 @@
                                         </span>
                                 <span class="name">Exportar</span>
                             </a>
-                            <a class="dropdown-content-a" href="items.html">
-                                        <span class="logodrop">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
-                                                <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
-                                                <path d="M10 14h4"></path>
-                                                <path d="M12 12v4"></path>
-                                             </svg>
-                                        </span>
-                                <span class="name">Items</span>
-                            </a>
-                            <a class="dropdown-content-a" href="#">
-                                        <span class="logodrop">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
-                                                <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
-                                                <path d="M9 12l.01 0"></path>
-                                                <path d="M13 12l2 0"></path>
-                                                <path d="M9 16l.01 0"></path>
-                                                <path d="M13 16l2 0"></path>
-                                             </svg>
-                                        </span>
-                                <span class="name">Documentos</span>
-                            </a>
-                            <a class="dropdown-content-a" href="#">
-                                        <span class="logodrop">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-qrcode" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                                            <path d="M7 17l0 .01"></path>
-                                            <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                                            <path d="M7 7l0 .01"></path>
-                                            <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                                            <path d="M17 7l0 .01"></path>
-                                            <path d="M14 14l3 0"></path>
-                                            <path d="M20 14l0 .01"></path>
-                                            <path d="M14 14l0 3"></path>
-                                            <path d="M14 20l3 0"></path>
-                                            <path d="M17 17l3 0"></path>
-                                            <path d="M20 17l0 3"></path>
-                                            </svg></span>
-                                <span class="name">Crer QR</span>
-                            </a>
                             <a class="dropdown-content-a" href="#">
                                         <span class="logodrop">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -287,7 +242,7 @@
                         <th>Presentacion</th>
                         <th>Tipo de Muestra</th>
                         <th>Unidad Medida</th>
-                        <th>cantidad de items</th>
+                        <th>Cantidad Recibida</th>
                         <th>fecha Creacion</Creacion></th>
                     </tr>
                     </thead>
@@ -469,23 +424,24 @@
             </select><br><br>
 
             <label for="cantidadUnidades">Cantidad de Unidades:</label>
-            <input type="number" id="cantidadUnidades" name="cantidadUnidades"><br><br>
+            <input type="text" id="cantidadUnidades" name="cantidadUnidades" required><br><br>
 
             <label for="unidadMedida">Unidad de Medida:</label>
             <select id="unidadMedida" name="unidadMedida">
                 <option value="1">Mililitros</option>
                 <option value="2">Centimetros Cubicos</option>
-                <option value="unidad3">Miligramos</option>
+                <option value="3">Miligramos</option>
             </select><br><br>
 
             <label for="adjunto">Adjuntar archivo:</label>
             <input type="file" id="adjunto" name="adjunto"><br><br>
 
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Enviar" onclick="crearMuestra()">
         </form>
     </div>\
 </div>
 <script>
+
             // Obtener el botón y el modal
             var btnMostrarModal = document.getElementById("mostrarModal");
             var modal = document.getElementById("myModal");
