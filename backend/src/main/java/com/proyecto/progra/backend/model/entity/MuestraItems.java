@@ -23,7 +23,7 @@ public class MuestraItems implements Serializable {
     @JoinColumn(name = "id_muestra_medica",referencedColumnName = "id")
     private Muestra idMuestraMedica;
 
-    @JsonIgnore//VERIFICAR
+    //@JsonIgnore//VERIFICAR
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_items",referencedColumnName = "id")
     private Items idItems;

@@ -50,6 +50,7 @@ public class MuestraController {
         muestra.setObservacionExpediente(muestraCreatedDto.getObservacionExpediente());
 
         Muestra muestraResponse = muestraService.save(muestra);
+
         muestraCreatedDto.getMuestraItemsList().forEach(muestraItemsDto -> {
             MuestraItems muestraItems= new MuestraItems();
             muestraItems.setIdItems(itemsService.findById(muestraItemsDto.getIdItems()));

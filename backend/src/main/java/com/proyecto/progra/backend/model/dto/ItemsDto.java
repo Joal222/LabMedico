@@ -10,6 +10,7 @@ public class ItemsDto implements Serializable {
     private Integer id;
     private Integer idTipoItems;
     private Integer idSolicitudMuestraMedica;
+    private Integer muestraItemsList;
 
 
 }
