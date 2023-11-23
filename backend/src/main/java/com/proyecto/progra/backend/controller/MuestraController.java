@@ -48,7 +48,7 @@ public class MuestraController {
         muestra.setIdTipoMuestra(tipoMuestraService.findById(muestraCreatedDto.getIdTipoMuestra()));
         muestra.setIdUnidadMedida(unidadMedidaService.findById(muestraCreatedDto.getIdUnidadMedida()));
         muestra.setObservacionExpediente(muestraCreatedDto.getObservacionExpediente());
-        muestra.setCantidad(muestraCreatedDto.getCantidad());   
+        muestra.setCantidad(muestraCreatedDto.getCantidad());
 
         Muestra muestraResponse = muestraService.save(muestra);
         /*
