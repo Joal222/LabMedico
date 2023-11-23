@@ -22,6 +22,8 @@ public class MuestraCreatedDto implements Serializable {
     private Integer idTipoMuestra;
     private Integer idUnidadMedida;
     private String observacionExpediente;
+    private String cantidad;
+    /*
     private List<MuestraItemsDto> muestraItemsList;
-
+     */
 }

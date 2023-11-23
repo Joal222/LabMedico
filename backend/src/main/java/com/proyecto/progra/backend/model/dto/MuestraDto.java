@@ -21,4 +21,5 @@ public class MuestraDto implements Serializable {
     private Date fechaRecepcionMuestra;
     private Date fechaCreacionMuestra;
     private String observacionExpediente;
+    private String cantidad;
 }

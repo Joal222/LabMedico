@@ -48,15 +48,17 @@ public class MuestraController {
         muestra.setIdTipoMuestra(tipoMuestraService.findById(muestraCreatedDto.getIdTipoMuestra()));
         muestra.setIdUnidadMedida(unidadMedidaService.findById(muestraCreatedDto.getIdUnidadMedida()));
         muestra.setObservacionExpediente(muestraCreatedDto.getObservacionExpediente());
+        muestra.setCantidad(muestraCreatedDto.getCantidad());   
 
         Muestra muestraResponse = muestraService.save(muestra);
-
+        /*
         muestraCreatedDto.getMuestraItemsList().forEach(muestraItemsDto -> {
             MuestraItems muestraItems= new MuestraItems();
             muestraItems.setIdItems(itemsService.findById(muestraItemsDto.getIdItems()));
             muestraItems.setIdMuestraMedica(muestraResponse);
             muestraItemsService.save(muestraItems);
         });
+         */
         return ResponseEntity.ok(muestraResponse);
 
         }

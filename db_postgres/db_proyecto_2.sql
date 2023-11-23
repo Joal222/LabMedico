@@ -483,6 +483,9 @@ VALUES (13, 1), (13, 2), (13, 3);
 INSERT INTO muestra_items (id_muestra_medica, id_items)
 VALUES (1, 1), (1, 2), (1, 3);
 
+alter table muestra_medica
+    add column cantidad varchar(4);
+
 
 
 

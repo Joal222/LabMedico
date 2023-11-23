@@ -50,9 +50,13 @@ public class Muestra implements Serializable {
     @Column(name = "observacion_expediente", length = 2000)
     private String observacionExpediente;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_muestra_medica",referencedColumnName = "id")
     private List<MuestraItems> muestraItemsList = new ArrayList<>();
+
+    @Column(name = "cantidad")
+    private String cantidad;
 
     @PrePersist
     public void prePersist() {
